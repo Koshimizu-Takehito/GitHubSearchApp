@@ -23,4 +23,5 @@ protocol GitHubSearchPresentation: AnyObject {
     func starOderButtonDidPush()
 
     func item(at index: Int) -> GitHubSearchViewItem
+    func fetchImage(at index: Int)
 }
