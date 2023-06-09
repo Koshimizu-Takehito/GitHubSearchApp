@@ -119,7 +119,7 @@ extension GitHubSearchViewController: GitHubSearchView {
     }
 
     /// ボタンの見た目を変更する
-    func didChangeStarOrder(searchItem: [Item], order: Order) {
+    func configure(order: Order) {
         starOderButton.setTitle(order.text, for: .normal)
         starOderButton.backgroundColor = order.backgroundColor
     }

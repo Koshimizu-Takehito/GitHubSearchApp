@@ -128,7 +128,7 @@ private extension GitHubSearchPresenter {
     /// Starソート順のタイプとボタンの見た目を変更する
     func changeStarOrder() {
         self.orderType = orderType.next
-        view?.didChangeStarOrder(searchItem: items, order: orderType)
+        view?.configure(order: orderType)
     }
 
     /// もしリポジトリデータが空だった場合、APIからデータを取得する。データがすでにある場合はそれを使用する。
