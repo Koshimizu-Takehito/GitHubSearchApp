@@ -1,0 +1,13 @@
+input_dir: ${PROJECT_DIR}/${TARGET_NAME}/
+output_dir: ${PROJECT_DIR}/${TARGET_NAME}/Generated/
+storyboards:
+  inputs: .
+  outputs:
+    - templateName: scenes-swift5
+      output: StoryBoards.swift
+xcassets:
+  inputs:
+    - Resource/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: Assets.swift
