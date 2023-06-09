@@ -11,8 +11,6 @@ import Foundation
 // Presenter
 protocol GitHubSearchPresentation: AnyObject {
     var numberOfRow: Int { get }
-
-    func viewDidLoad()
     /// サーチボタンのタップ通知
     func searchButtonDidPush(word: String)
     /// 検索テキストの変更を通知
