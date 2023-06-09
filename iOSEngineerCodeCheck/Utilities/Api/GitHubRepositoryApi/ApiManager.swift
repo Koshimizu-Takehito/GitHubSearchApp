@@ -9,13 +9,7 @@
 import Foundation
 
 protocol ApiManagerProtocol {
-    var decoder: JSONDecoder { get }
-    var task: Task<(), Never>? { get }
     func fetch(url: URL?) async -> Result<RepositoryItem, Error>
-    func makeURL(word: String, orderType: Order) -> URL?
-    func makeRequest(url: URL?) throws -> URLRequest
-    func httpData(request: URLRequest) async throws -> Data
-    func convert(request: URLRequest) async throws -> RepositoryItem
 }
 
 // MARK: - GitHub API通信で使用する -
