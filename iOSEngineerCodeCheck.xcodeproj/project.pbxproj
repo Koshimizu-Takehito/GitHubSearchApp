@@ -46,6 +46,7 @@
 		BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */; };
 		BFD945F6244DC5EB0012785A /* IOSEngineerCodeCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945F5244DC5EB0012785A /* IOSEngineerCodeCheckTests.swift */; };
 		BFD94601244DC5EC0012785A /* IOSEngineerCodeCheckUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD94600244DC5EC0012785A /* IOSEngineerCodeCheckUITests.swift */; };
+		FB1BA74C2A32E1E90003A317 /* AvatarImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA74B2A32E1E90003A317 /* AvatarImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		BFD94602244DC5EC0012785A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F86BDEDB1277B8E6E201CA3B /* Pods-iOSEngineerCodeCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheckTests/Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FAB670FE5EDD6EAECE417B6A /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FB1BA74B2A32E1E90003A317 /* AvatarImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				380A2F9A2A193BA5009941A6 /* ImageLoader.swift */,
+				FB1BA74B2A32E1E90003A317 /* AvatarImageLoader.swift */,
 			);
 			path = ImageLoader;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				38F34E6629F91F3000120671 /* GitHubSearchInteractor.swift in Sources */,
 				38F34E7729F920E600120671 /* GitHubDetailRouter.swift in Sources */,
 				38D37C6B2A16886E005EA7C6 /* GitHubSearchWireFrame.swift in Sources */,
+				FB1BA74C2A32E1E90003A317 /* AvatarImageLoader.swift in Sources */,
 				385C324E2A1E5C9400EDADC4 /* Int+Extension.swift in Sources */,
 				388949C92A17E57100307A11 /* Order.swift in Sources */,
 				BF0A658D244F2A3B00280FA6 /* GitHubDetailViewController.swift in Sources */,

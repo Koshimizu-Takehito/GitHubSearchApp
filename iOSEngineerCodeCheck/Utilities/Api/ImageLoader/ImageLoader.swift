@@ -9,58 +9,27 @@
 import Foundation
 import class UIKit.UIImage
 
-protocol ImageLoaderProtocol {
-    func load(url: URL?) async throws -> UIImage
+// MARK: - ImageLoadable
+protocol ImageLoadable {
+    func load(url: URL) async throws -> UIImage
 }
 
-/// 画像の取得処理に関する。
-final class ImageLoader: ImageLoaderProtocol {
-}
+// MARK: - ImageLoader
+final class ImageLoader: ImageLoadable {
+    private let session: URLSession
 
-extension ImageLoader {
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+
     /// GitHub APIから画像データの取得
-    func load(url: URL?) async throws -> UIImage {
-        return try await withCheckedThrowingContinuation { configuration in
-            Task {
-                do {
-                    let request = try makeRequest(url: url)
-                    let image = try await convert(request: request)
-                    configuration.resume(returning: image)
-                } catch let error {
-                    configuration.resume(throwing: error)
-                }
-            }
+    func load(url: URL) async throws -> UIImage {
+        let (data, _) = try await session.data(for: URLRequest(url: url))
+        switch UIImage(data: data) {
+        case let image?:
+            return image
+        case _:
+            throw ApiError.invalidData
         }
-    }
-}
-
-/// 画像の取得に関する。
-extension ImageLoader {
-    var session: URLSession {
-        let configuration = URLSessionConfiguration.default
-        configuration.requestCachePolicy = .returnCacheDataElseLoad
-        let session = URLSession(configuration: configuration)
-        return session
-    }
-
-    func makeRequest(url: URL?) throws -> URLRequest {
-        guard let url else { throw ApiError.invalidData }
-        let request = URLRequest(url: url)
-        return request
-    }
-
-    func httpData(request: URLRequest) async throws -> Data {
-        let (data, response) = try await session.data(for: request)
-        guard let httpURLResponse = response as? HTTPURLResponse,
-            httpURLResponse.statusCode == 200 else {
-            throw ApiError.serverError
-        }
-        return data
-    }
-
-    func convert(request: URLRequest) async throws -> UIImage {
-        let data = try await httpData(request: request)
-        let image = UIImage(data: data)!
-        return image
     }
 }

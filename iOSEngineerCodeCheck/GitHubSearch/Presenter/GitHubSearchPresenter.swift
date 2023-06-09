@@ -13,20 +13,22 @@ final class GitHubSearchPresenter {
     private weak var view: GitHubSearchView?
     private let interactor: GitHubSearchInputUsecase
     private let router: GitHubSearchWireFrame
-    private let imageLoader = ImageLoader()
+    private let imageLoadable: AvatarImageLoadable
     private var orderType: Order = .default
     private var word: String = ""
-    private var avatarImages: [Int: UIImage] = [:]
 
     private var items: [Item] = []
 
     init(
         view: GitHubSearchView,
         interactor: GitHubSearchInputUsecase,
-        router: GitHubSearchWireFrame) {
+        router: GitHubSearchWireFrame,
+        imageLoadable: AvatarImageLoadable = AvatarImageLoader()
+    ) {
         self.view = view
         self.interactor = interactor
         self.router = router
+        self.imageLoadable = imageLoadable
     }
 }
 // MARK: - GitHubSearchPresentationプロトコルに関する -
@@ -71,10 +73,28 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
 
     func item(at index: Int) -> GitHubSearchViewItem {
         let item = items[index]
-        let image = avatarImages[item.id]
-        let gitHubSearchViewItem = GitHubSearchViewItem(item: item, image: image?.resize())
+        let image = imageLoadable.image(id: item.id)
+        let viewItem = GitHubSearchViewItem(item: item, image: image)
+        return viewItem
+    }
 
-        return gitHubSearchViewItem
+    func fetchImage(at index: Int) {
+        Task { [weak self, weak view, loadable = imageLoadable, items] in
+            let item = items[index]
+            // 取得済みの場合はサムネイル取得処理をスキップ
+            guard loadable.image(id: item.id) == nil else {
+                return
+            }
+            // サムネイル取得処理を実行
+            let image = (try? await loadable.load(item: item)) ?? UIImage(named: "Untitled")
+            // 取得完了時の該当インデックスを探索
+            guard let index = self?.items.firstIndex(where: { $0.id == item.id }) else {
+                return
+            }
+            // ビューを更新
+            let viewItem = GitHubSearchViewItem(item: item, image: image)
+            view?.configure(item: viewItem, at: index)
+        }
     }
 }
 
@@ -85,9 +105,6 @@ extension GitHubSearchPresenter: GitHubSearchOutputUsecase {
         view?.stopLoading()
         switch result {
         case .success(let item):
-            Task.detached { [weak self] in
-                await self?.fetchAvatarImages(items: item.items)
-            }
             setSearchOrderItem(item: item)
             view?.tableViewReload()
         case .failure(let error):
@@ -97,38 +114,6 @@ extension GitHubSearchPresenter: GitHubSearchOutputUsecase {
 }
 
 private extension GitHubSearchPresenter {
-    /// 画像の取得が完了したら、そのセルだけリロード。.. ここ読むの辛いな〜...
-    func fetchAvatarImages(items: [Item]?) async {
-        guard let items else { return }
-
-        await withTaskGroup(of: Void.self) { group in
-            for item in items {
-                group.addTask {
-                    do {
-                        try await Task { @MainActor in
-                            // 画像を生成する
-                            let image = try await self.imageLoader.load(url: item.owner.avatarUrl)
-                            self.avatarImages[item.id] = image
-
-                            // 画像元のセルの順番(インデックス番号)を調べリロードする。
-                            if let index = items.firstIndex(where: { $0.id == item.id }) {
-                                self.view?.reloadRow(at: index)
-                            }
-                        }.value
-                    } catch {
-                        // エラーだった場合は、ダミーの画像が入る
-                        DispatchQueue.main.async {
-                            self.avatarImages[item.id] = UIImage(named: "Untitled")!
-                            if let index = items.firstIndex(where: { $0.id == item.id }) {
-                                self.view?.reloadRow(at: index)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     /// 保管しているリポジトリのデータをリセット
     func reset() {
         items = []
@@ -136,7 +121,7 @@ private extension GitHubSearchPresenter {
 
     ///  APIから取得したデータを各リポジトリへセット
     func setSearchOrderItem(item: RepositoryItem) {
-        let items = item.items!
+        let items = item.items
         self.items = items
     }
 

@@ -120,7 +120,8 @@ extension ApiManager {
         let repositoryItem = try decoder.decode(RepositoryItem.self, from: data)
 
         // リポジトリデータがnilまたは、中身が空ならエラーを返す
-        guard let items = repositoryItem.items, !(items.isEmpty) else {
+        let items = repositoryItem.items
+        guard !(items.isEmpty) else {
             throw ApiError.notFound
         }
 

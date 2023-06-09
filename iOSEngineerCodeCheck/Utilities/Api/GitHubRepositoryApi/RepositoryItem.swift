@@ -9,10 +9,10 @@
 import Foundation
 
 struct RepositoryItem: Decodable {
-    var items: [Item]?
+    var items: [Item]
 }
 // MARK: - GitHub リポジトリデータ構造 -
-struct Item: Decodable {
+struct Item: Decodable, Hashable {
     let id: Int
     let fullName: String
     let language: String?
@@ -23,7 +23,7 @@ struct Item: Decodable {
     let owner: Owner
 }
 
-struct Owner: Decodable {
+struct Owner: Decodable, Hashable {
     let avatarUrl: URL
     let htmlUrl: String
 }

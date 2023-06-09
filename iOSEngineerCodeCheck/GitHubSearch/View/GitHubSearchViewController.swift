@@ -121,12 +121,11 @@ extension GitHubSearchViewController: GitHubSearchView {
         }
     }
 
-    func reloadRow(at index: Int) {
-        tableView.performBatchUpdates {
-            guard index < tableView.numberOfRows(inSection: 0) else {
-                return
+    func configure(item: GitHubSearchViewItem, at index: Int) {
+        DispatchQueue.main.async { [tableView = tableView!] in
+            if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? GitHubSearchTableViewCell {
+                cell.configure(item: item)
             }
-            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
         }
     }
 
@@ -216,5 +215,9 @@ extension GitHubSearchViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        presenter.fetchImage(at: indexPath.row)
     }
 }
