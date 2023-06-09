@@ -86,7 +86,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
                 return
             }
             // サムネイル取得処理を実行
-            let image = (try? await loadable.load(item: item)) ?? UIImage(named: "Untitled")
+            let image = (try? await loadable.load(item: item)) ?? Asset.untitled.image
             // 取得完了時の該当インデックスを探索
             guard let index = self?.items.firstIndex(where: { $0.id == item.id }) else {
                 return

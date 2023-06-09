@@ -39,14 +39,6 @@ final class GitHubSearchViewController: UIViewController {
     }
 }
 
-extension GitHubSearchViewController {
-    static func instantiate() -> GitHubSearchViewController {
-        let storyboard = UIStoryboard(name: "GitHubSearch", bundle: .main)
-        // swiftlint:disable:next force_cast
-        return storyboard.instantiateInitialViewController() as! GitHubSearchViewController
-    }
-}
-
 private extension GitHubSearchViewController {
     @IBAction func starOrderButton(_ sender: Any) {
         guard !isLoading else { return }
