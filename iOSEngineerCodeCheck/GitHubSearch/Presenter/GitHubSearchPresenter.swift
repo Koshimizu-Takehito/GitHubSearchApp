@@ -102,7 +102,6 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
 extension GitHubSearchPresenter: GitHubSearchOutputUsecase {
     /// GitHubリポジトリデータを各リポジトリ (デフォルト, 降順, 昇順) に保管しテーブルビューへ表示。
     func didFetchResult(result: Result<RepositoryItem, Error>) {
-        view?.stopLoading()
         switch result {
         case .success(let item):
             setSearchOrderItem(item: item)

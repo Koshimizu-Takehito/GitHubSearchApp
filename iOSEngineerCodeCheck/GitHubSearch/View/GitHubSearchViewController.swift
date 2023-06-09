@@ -92,6 +92,7 @@ extension GitHubSearchViewController: GitHubSearchView {
 
     /// エラーアラートの表示
     func appearErrorAlert(message: String) {
+        stopLoading()
         errorAlert(message: message)
     }
 
@@ -105,7 +106,9 @@ extension GitHubSearchViewController: GitHubSearchView {
     }
 
     func reloadTableView() {
+
         DispatchQueue.main.async { [weak self] in
+            self?.stopLoading()
             self?.tableView.reloadData()
         }
     }
