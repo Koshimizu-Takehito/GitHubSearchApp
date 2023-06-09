@@ -104,7 +104,7 @@ extension GitHubSearchViewController: GitHubSearchView {
         }
     }
 
-    func tableViewReload() {
+    func reloadTableView() {
         DispatchQueue.main.async { [weak self] in
             self?.tableView.reloadData()
         }
