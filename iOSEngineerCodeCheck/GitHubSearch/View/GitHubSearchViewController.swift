@@ -118,16 +118,16 @@ extension GitHubSearchViewController: GitHubSearchView {
     }
 
     /// ボタンの見た目を変更する
-    func configure(order: Order) {
+    func configure(order: StarSortingOrder?) {
         starOderButton.setTitle(order.text, for: .normal)
         starOderButton.backgroundColor = order.backgroundColor
     }
 }
 
-private extension Order {
+private extension Optional<StarSortingOrder> {
     var text: String {
         switch self {
-        case .default:
+        case .none:
             return "☆ Star数 "
         case .asc:
             return "☆ Star数 ⍒"
@@ -138,7 +138,7 @@ private extension Order {
 
     var backgroundColor: UIColor {
         switch self {
-        case .default:
+        case .none:
             return .lightGray
         case .asc:
             return #colorLiteral(red: 0.1634489, green: 0.1312818527, blue: 0.2882181406, alpha: 1)

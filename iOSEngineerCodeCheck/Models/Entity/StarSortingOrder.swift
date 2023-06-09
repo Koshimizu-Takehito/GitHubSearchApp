@@ -1,5 +1,5 @@
 //
-//  Order.swift
+//  StarSortingOrder.swift
 //  iOSEngineerCodeCheck
 //
 //  Created by 日高隼人 on 2023/05/20.
@@ -8,9 +8,8 @@
 
 import Foundation
 
-// MARK: - Star数ボタンに関する -
-enum Order {
+/// Githubスター数のソート順
+enum StarSortingOrder: String {
     case desc
     case asc
-    case `default`
 }

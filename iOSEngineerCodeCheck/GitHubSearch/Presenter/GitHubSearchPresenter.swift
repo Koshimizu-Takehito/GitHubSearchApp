@@ -14,7 +14,7 @@ final class GitHubSearchPresenter {
     private let interactor: GitHubSearchInputUsecase
     private let router: GitHubSearchWireFrame
     private let imageLoadable: AvatarImageLoadable
-    private var orderType: Order = .default
+    private var orderType: StarSortingOrder?
     private var word: String = ""
 
     private var items: [Item] = []
@@ -51,7 +51,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
         word = ""
         reset()
         view?.resetDisplay()
-        interactor.apiManager.task?.cancel()
+        interactor.cancel()
     }
 
     /// セルタップの検知。DetailVCへ画面遷移通知。
@@ -135,31 +135,32 @@ private extension GitHubSearchPresenter {
 
     /// API通信でエラーが返ってきた場合の処理
     func setAppearError(error: Error) {
-        if error is ApiError {
-            guard let apiError = error as? ApiError else { return }
-            // 独自で定義したエラーを通知
-            switch apiError {
-            case .cancel: return
-            case .notFound: view?.appearNotFound(message: apiError.errorDescription!)
-            default: view?.appearErrorAlert(message: apiError.errorDescription!)
-            }
-        } else {
-            //  標準のURLSessionのエラーを返す
-            view?.appearErrorAlert(message: error.localizedDescription)
-        }
+        // TODO: 実装
+//        if error is ApiError {
+//            guard let apiError = error as? ApiError else { return }
+//            // 独自で定義したエラーを通知
+//            switch apiError {
+//            case .cancel: return
+//            case .notFound: view?.appearNotFound(message: apiError.errorDescription!)
+//            default: view?.appearErrorAlert(message: apiError.errorDescription!)
+//            }
+//        } else {
+//            //  標準のURLSessionのエラーを返す
+//            view?.appearErrorAlert(message: error.localizedDescription)
+//        }
     }
 }
 
-private extension Order {
+private extension Optional<StarSortingOrder> {
     // 他の画面では異なる表示順にしたくなるかもなので、private extensionとした
-    var next: Order {
+    var next: Self {
         switch self {
-        case .default:
+        case .none:
             return .desc
         case .desc:
             return .asc
         case .asc:
-            return .default
+            return .none
         }
     }
 }

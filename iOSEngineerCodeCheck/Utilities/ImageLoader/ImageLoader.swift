@@ -29,7 +29,9 @@ final class ImageLoader: ImageLoadable {
         case let image?:
             return image
         case _:
-            throw ApiError.invalidData
+            // TODO: 実装
+            fatalError()
+//            throw ApiError.invalidData
         }
     }
 }
