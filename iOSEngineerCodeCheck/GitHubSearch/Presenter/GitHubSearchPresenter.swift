@@ -10,9 +10,9 @@ import Foundation
 import class UIKit.UIImage
 
 final class GitHubSearchPresenter {
-    weak var view: GitHubSearchView?
-    private var interactor: GitHubSearchInputUsecase
-    private var router: GitHubSearchWireFrame
+    private weak var view: GitHubSearchView?
+    private let interactor: GitHubSearchInputUsecase
+    private let router: GitHubSearchWireFrame
     private let imageLoader = ImageLoader()
     private var orderType: Order = .default
     private var word: String = ""
