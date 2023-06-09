@@ -30,9 +30,6 @@ final class GitHubSearchViewController: UIViewController {
         }
     }
 
-    private static let storyboardID = "GitHubSearchID"
-    private static let storyboardName = "Main"
-
     var presenter: GitHubSearchPresentation!
     private var isLoading = false
 
@@ -44,9 +41,9 @@ final class GitHubSearchViewController: UIViewController {
 
 extension GitHubSearchViewController {
     static func instantiate() -> GitHubSearchViewController {
-        let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
-        let view = storyboard.instantiateViewController(withIdentifier: storyboardID) as? GitHubSearchViewController
-        return view ?? GitHubSearchViewController()
+        let storyboard = UIStoryboard(name: "GitHubSearch", bundle: .main)
+        // swiftlint:disable:next force_cast
+        return storyboard.instantiateInitialViewController() as! GitHubSearchViewController
     }
 }
 

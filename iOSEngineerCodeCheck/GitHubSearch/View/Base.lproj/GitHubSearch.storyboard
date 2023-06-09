@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oRs-JB-gNc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22113.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mWg-7I-heg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22089"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Nhh-bC-RlQ">
-                                <rect key="frame" x="0.0" y="157" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="113" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="mWg-7I-heg" id="f3E-NW-Esu"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="liG-7t-Vgz">
-                                <rect key="frame" x="0.0" y="213" width="414" height="649"/>
+                                <rect key="frame" x="0.0" y="169" width="414" height="693"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GitHubSearchCell" rowHeight="85" id="cPw-yt-da1" customClass="GitHubSearchTableViewCell" customModule="iOSEngineerCodeCheck" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="85"/>
@@ -109,10 +109,10 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zS5-Kj-DSu">
-                                <rect key="frame" x="0.0" y="213" width="414" height="649"/>
+                                <rect key="frame" x="0.0" y="169" width="414" height="693"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="51X-Gw-He7">
-                                        <rect key="frame" x="188.5" y="273.5" width="37" height="37"/>
+                                        <rect key="frame" x="188.5" y="293.5" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="F0y-PC-QiL"/>
                                             <constraint firstAttribute="width" constant="37" id="NRK-Dn-0cy"/>
@@ -120,7 +120,7 @@
                                         <color key="color" systemColor="labelColor"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="結果がみつかりませんでした。" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14X-ZN-avM">
-                                        <rect key="frame" x="64.5" y="280" width="285.5" height="24"/>
+                                        <rect key="frame" x="64.5" y="300" width="285.5" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="PqQ-3M-Ll3"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="285.5" id="bd8-M7-7fv"/>
@@ -139,7 +139,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZxL-Dc-iWN">
-                                <rect key="frame" x="0.0" y="92" width="414" height="65"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="65"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K31-sg-1Ex">
                                         <rect key="frame" x="0.0" y="0.0" width="79" height="65"/>
@@ -238,24 +238,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="24r-F6-fgY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-520.28985507246375" y="-526.33928571428567"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Ll8-3m-9O5">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oRs-JB-gNc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dmj-71-YGv">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="mWg-7I-heg" kind="relationship" relationship="rootViewController" id="rgD-T8-vKk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uh0-xz-xgC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1417" y="-526"/>
         </scene>
     </scenes>
     <resources>
