@@ -137,3 +137,5 @@ iOSInjectionProject/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,swift,xcode
+iOSEngineerCodeCheck/Generated/Assets.swift
+iOSEngineerCodeCheck/Generated/StoryBoards.swift
