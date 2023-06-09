@@ -12,7 +12,6 @@ import Foundation
 protocol GitHubSearchView: AnyObject {
     func configure()
     func startLoading()
-    func stopLoading()
     func reloadTableView()
     func resetDisplay()
     func appearErrorAlert(message: String)
