@@ -10,8 +10,6 @@ import Foundation
 
 // Presenter
 protocol GitHubSearchPresentation: AnyObject {
-    var view: GitHubSearchView? { get }
-
     var numberOfRow: Int { get }
 
     func viewDidLoad()

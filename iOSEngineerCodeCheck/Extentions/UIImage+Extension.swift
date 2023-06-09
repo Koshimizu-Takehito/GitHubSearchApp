@@ -6,7 +6,7 @@
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
-import UIKit.UIImage
+import UIKit
 
 extension UIImage {
     /// 画像サイズを圧縮

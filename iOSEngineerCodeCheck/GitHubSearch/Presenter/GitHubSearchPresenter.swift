@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import UIKit.UIImage
+import class UIKit.UIImage
 
 final class GitHubSearchPresenter {
-    weak var view: GitHubSearchView?
-    private var interactor: GitHubSearchInputUsecase
-    private var router: GitHubSearchWireFrame
+    private weak var view: GitHubSearchView?
+    private let interactor: GitHubSearchInputUsecase
+    private let router: GitHubSearchWireFrame
     private let imageLoader = ImageLoader()
     private var orderType: Order = .default
     private var word: String = ""
@@ -21,7 +21,7 @@ final class GitHubSearchPresenter {
     private var items: [Item] = []
 
     init(
-        view: GitHubSearchView? = nil,
+        view: GitHubSearchView,
         interactor: GitHubSearchInputUsecase,
         router: GitHubSearchWireFrame) {
         self.view = view
@@ -148,8 +148,6 @@ private extension GitHubSearchPresenter {
 
     /// もしリポジトリデータが空だった場合、APIからデータを取得する。データがすでにある場合はそれを使用する。
     func fetchOrSetSearchOrderItem() {
-        let isEmptyWord = word.isEmpty
-
         items = []
         view?.startLoading()
         interactor.fetch(word: word, orderType: orderType)
