@@ -8,14 +8,13 @@
 
 import Foundation
 
-// Interactor インプット
-protocol GitHubSearchInputUsecase: AnyObject {
-    func fetch(word: String, orderType: StarSortingOrder?)
-    func cancel()
+enum GitHubSearchFetchResult {
+    case items([Item])
+    case empty
+    case error(Error)
 }
 
-// Interactor アウトプット
-protocol GitHubSearchOutputUsecase: AnyObject {
-    /// 取得したGitHubデータの結果をViewへ通知
-    func didFetchResult(result: Result<RepositoryItem, Error>)
+// Interactor インプット
+protocol GitHubSearchInputUsecase: AnyObject {
+    func fetch(word: String, order: StarSortingOrder?) async -> GitHubSearchFetchResult
 }

@@ -9,28 +9,18 @@
 import Foundation
 import APIKit
 
-final class GitHubSearchInteractor {
-    private var currentTask: Task<Void, Never>?
-    weak var presenter: GitHubSearchOutputUsecase?
-}
-
-extension GitHubSearchInteractor: GitHubSearchInputUsecase {
-    func fetch(word: String, orderType: StarSortingOrder?) {
-        cancel()
-        currentTask = Task {
-            let result: Result<RepositoryItem, Error>
-            do {
-                let request = GetSearchRepositoriesRequest(word: word, order: orderType)
-                let response = try await Session.shared.send(request)
-                result = .success(response)
-            } catch {
-                result = .failure(error)
+actor GitHubSearchInteractor: GitHubSearchInputUsecase {
+    func fetch(word: String, order: StarSortingOrder?) async -> GitHubSearchFetchResult {
+        do {
+            let request = GetSearchRepositoriesRequest(word: word, order: order)
+            let items = try await Session.shared.send(request).items
+            if items.isEmpty {
+                return .empty
+            } else {
+                return .items(items)
             }
-            presenter?.didFetchResult(result: result)
+        } catch {
+            return .error(error)
         }
-    }
-
-    func cancel() {
-        currentTask?.cancel()
     }
 }

@@ -14,10 +14,11 @@ final class GitHubSearchPresenter {
     private let interactor: GitHubSearchInputUsecase
     private let router: GitHubSearchWireFrame
     private let imageLoadable: AvatarImageLoadable
-    private var orderType: StarSortingOrder?
+    private var order: StarSortingOrder?
     private var word: String = ""
 
     private var items: [Item] = []
+    private var task: Task<Void, Never>?
 
     init(
         view: GitHubSearchView,
@@ -39,19 +40,21 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
 
     /// 検索ボタンのタップを検知。 GitHubデータのリセット。ローディングの開始。GitHubデータの取得を通知。
     func searchButtonDidPush(word: String) {
-        reset()
+        guard let view else { return }
+        self.items = []
         self.word = word
-        view?.resetDisplay()
-        view?.startLoading()
-        interactor.fetch(word: word, orderType: orderType)
+        view.resetDisplay()
+        view.startLoading()
+        fetch()
     }
 
     /// テキスト変更を検知。GitHubデータと画面の状態をリセット。タスクのキャンセル
     func searchTextDidChange() {
+        guard let view else { return }
+        task?.cancel()
+        items = []
         word = ""
-        reset()
-        view?.resetDisplay()
-        interactor.cancel()
+        view.resetDisplay()
     }
 
     /// セルタップの検知。DetailVCへ画面遷移通知。
@@ -62,9 +65,13 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
 
     /// スター数順の変更ボタンのタップを検知。(スター数で降順・昇順を切り替え)
     func starOderButtonDidPush() {
-        changeStarOrder()
-        fetchOrSetSearchOrderItem()
-        view?.reloadTableView()
+        guard let view else { return }
+        items = []
+        order.toggle()
+        view.configure(order: order)
+        view.startLoading()
+        view.reloadTableView()
+        fetch()
     }
 
     func item(at index: Int) -> GitHubSearchViewItem {
@@ -94,73 +101,32 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
     }
 }
 
-// MARK: - GitHubSearchOutputUsecase プロトコルに関する -
-extension GitHubSearchPresenter: GitHubSearchOutputUsecase {
-    /// GitHubリポジトリデータを各リポジトリ (デフォルト, 降順, 昇順) に保管しテーブルビューへ表示。
-    func didFetchResult(result: Result<RepositoryItem, Error>) {
-        switch result {
-        case .success(let item):
-            setSearchOrderItem(item: item)
-            view?.reloadTableView()
-        case .failure(let error):
-            setAppearError(error: error)
+private extension GitHubSearchPresenter {
+    func fetch() {
+        task = Task { [interactor, word, order, weak view, weak self] in
+            switch await interactor.fetch(word: word, order: order) {
+            case .items(let items):
+                self?.items = items
+                view?.reloadTableView()
+            case .empty:
+                view?.appearNotFound(message: "結果が見つかりませんでした")
+            case .error(let error):
+                view?.appearErrorAlert(message: error.localizedDescription)
+            }
         }
     }
 }
 
-private extension GitHubSearchPresenter {
-    /// 保管しているリポジトリのデータをリセット
-    func reset() {
-        items = []
-    }
-
-    ///  APIから取得したデータを各リポジトリへセット
-    func setSearchOrderItem(item: RepositoryItem) {
-        let items = item.items
-        self.items = items
-    }
-
-    /// Starソート順のタイプとボタンの見た目を変更する
-    func changeStarOrder() {
-        self.orderType = orderType.next
-        view?.configure(order: orderType)
-    }
-
-    /// もしリポジトリデータが空だった場合、APIからデータを取得する。データがすでにある場合はそれを使用する。
-    func fetchOrSetSearchOrderItem() {
-        items = []
-        view?.startLoading()
-        interactor.fetch(word: word, orderType: orderType)
-    }
-
-    /// API通信でエラーが返ってきた場合の処理
-    func setAppearError(error: Error) {
-        // TODO: 実装
-//        if error is ApiError {
-//            guard let apiError = error as? ApiError else { return }
-//            // 独自で定義したエラーを通知
-//            switch apiError {
-//            case .cancel: return
-//            case .notFound: view?.appearNotFound(message: apiError.errorDescription!)
-//            default: view?.appearErrorAlert(message: apiError.errorDescription!)
-//            }
-//        } else {
-//            //  標準のURLSessionのエラーを返す
-//            view?.appearErrorAlert(message: error.localizedDescription)
-//        }
-    }
-}
-
+// MARK: - StarSortingOrder
 private extension Optional<StarSortingOrder> {
-    // 他の画面では異なる表示順にしたくなるかもなので、private extensionとした
-    var next: Self {
+    mutating func toggle() {
         switch self {
         case .none:
-            return .desc
+            self = .desc
         case .desc:
-            return .asc
+            self = .asc
         case .asc:
-            return .none
+            self = .none
         }
     }
 }
