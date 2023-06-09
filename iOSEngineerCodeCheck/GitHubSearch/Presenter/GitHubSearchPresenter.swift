@@ -148,8 +148,6 @@ private extension GitHubSearchPresenter {
 
     /// もしリポジトリデータが空だった場合、APIからデータを取得する。データがすでにある場合はそれを使用する。
     func fetchOrSetSearchOrderItem() {
-        let isEmptyWord = word.isEmpty
-
         items = []
         view?.startLoading()
         interactor.fetch(word: word, orderType: orderType)
