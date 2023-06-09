@@ -10,7 +10,6 @@ import Foundation
 
 // View
 protocol GitHubSearchView: AnyObject {
-    func configure()
     func startLoading()
     func reloadTableView()
     func resetDisplay()

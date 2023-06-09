@@ -35,7 +35,7 @@ final class GitHubSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.viewDidLoad()
+        setUp()
     }
 }
 
@@ -49,7 +49,7 @@ private extension GitHubSearchViewController {
 // MARK: - GitHubSearchViewプロトコルに関する -
 extension GitHubSearchViewController: GitHubSearchView {
     /// 初期画面の構成
-    func configure() {
+    func setUp() {
         searchBar.placeholder = "GitHub リポジトリを検索"
         searchBar.delegate = self
         tableView.dataSource = self

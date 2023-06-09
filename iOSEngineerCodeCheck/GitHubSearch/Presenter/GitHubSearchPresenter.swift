@@ -37,10 +37,6 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
         items.count
     }
 
-    func viewDidLoad() {
-        view?.configure()
-    }
-
     /// 検索ボタンのタップを検知。 GitHubデータのリセット。ローディングの開始。GitHubデータの取得を通知。
     func searchButtonDidPush(word: String) {
         reset()
