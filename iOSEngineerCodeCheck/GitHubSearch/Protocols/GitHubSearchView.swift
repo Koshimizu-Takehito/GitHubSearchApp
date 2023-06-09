@@ -13,7 +13,7 @@ protocol GitHubSearchView: AnyObject {
     func configure()
     func startLoading()
     func stopLoading()
-    func tableViewReload()
+    func reloadTableView()
     func resetDisplay()
     func appearErrorAlert(message: String)
     func appearNotFound(message: String)

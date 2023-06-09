@@ -68,7 +68,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
     func starOderButtonDidPush() {
         changeStarOrder()
         fetchOrSetSearchOrderItem()
-        view?.tableViewReload()
+        view?.reloadTableView()
     }
 
     func item(at index: Int) -> GitHubSearchViewItem {
@@ -106,7 +106,7 @@ extension GitHubSearchPresenter: GitHubSearchOutputUsecase {
         switch result {
         case .success(let item):
             setSearchOrderItem(item: item)
-            view?.tableViewReload()
+            view?.reloadTableView()
         case .failure(let error):
             setAppearError(error: error)
         }
