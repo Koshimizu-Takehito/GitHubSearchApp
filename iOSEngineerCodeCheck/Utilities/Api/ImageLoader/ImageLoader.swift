@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKit.UIImage
+import class UIKit.UIImage
 
 protocol ImageLoaderProtocol {
     func load(url: URL?) async throws -> UIImage
