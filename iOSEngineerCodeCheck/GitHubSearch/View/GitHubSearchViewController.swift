@@ -31,7 +31,6 @@ final class GitHubSearchViewController: UIViewController {
     }
 
     var presenter: GitHubSearchPresentation!
-    private var isLoading = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +40,7 @@ final class GitHubSearchViewController: UIViewController {
 
 private extension GitHubSearchViewController {
     @IBAction func starOrderButton(_ sender: Any) {
-        guard !isLoading else { return }
+        guard !indicatorView.isHidden else { return }
         presenter.starOderButtonDidPush()
     }
 }
@@ -62,7 +61,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     /// 画面の状態をリセットする
     func resetDisplay() {
         DispatchQueue.main.async { [weak self] in
-            self?.isLoading = false
             self?.frontView.isHidden = true
             self?.indicatorView.isHidden = true
             self?.notFoundLabel.text = nil
@@ -73,7 +71,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     /// ローディング中を表示
     func startLoading() {
         DispatchQueue.main.async { [weak self] in
-            self?.isLoading = true
             self?.indicatorView.startAnimating()
             self?.frontView.isHidden = false
             self?.indicatorView.isHidden = false
@@ -83,7 +80,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     /// ローディング画面を停止
     func stopLoading() {
         DispatchQueue.main.async { [weak self] in
-            self?.isLoading = false
             self?.indicatorView.stopAnimating()
             self?.frontView.isHidden = true
             self?.indicatorView.isHidden = true
@@ -106,7 +102,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     }
 
     func reloadTableView() {
-
         DispatchQueue.main.async { [weak self] in
             self?.stopLoading()
             self?.tableView.reloadData()
@@ -164,7 +159,7 @@ extension GitHubSearchViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // テキストが空、もしくはローディング中はタップ無効。
-        guard let text = searchBar.text, !text.isEmpty, !isLoading else { return }
+        guard let text = searchBar.text, !text.isEmpty, !indicatorView.isHidden else { return }
         // 検索ボタンのタップを通知。 GitHubデータを取得の指示。
         presenter.searchButtonDidPush(word: text)
         searchBar.resignFirstResponder()
