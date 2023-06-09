@@ -21,7 +21,7 @@ final class GitHubSearchPresenter {
     private var items: [Item] = []
 
     init(
-        view: GitHubSearchView? = nil,
+        view: GitHubSearchView,
         interactor: GitHubSearchInputUsecase,
         router: GitHubSearchWireFrame) {
         self.view = view
