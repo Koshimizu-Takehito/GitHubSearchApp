@@ -11,7 +11,7 @@ import UIKit
 final class GitHubSearchViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var notFoundLabel: UILabel!
+    @IBOutlet private weak var emptyDescriptionLabel: UILabel!
     @IBOutlet private weak var frontView: UIView!
     @IBOutlet private weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var starOderButton: UIButton! {
@@ -54,58 +54,60 @@ extension GitHubSearchViewController: GitHubSearchView {
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
-        notFoundLabel.text = nil
+        emptyDescriptionLabel.text = nil
         frontView.isHidden = true
         setupNavigationBar(title: "ホーム")
     }
 
     /// 画面の状態をリセットする
     func resetDisplay() {
-        DispatchQueue.main.async { [weak self] in
-            self?.frontView.isHidden = true
-            self?.indicatorView.isHidden = true
-            self?.notFoundLabel.text = nil
-            self?.tableView.reloadData()
+        DispatchQueue.main.async { [self] in
+            frontView.isHidden = true
+            indicatorView.isHidden = true
+            emptyDescriptionLabel.text = nil
+            tableView.reloadData()
         }
     }
 
     /// ローディング中を表示
     func startLoading() {
-        DispatchQueue.main.async { [weak self] in
-            self?.indicatorView.startAnimating()
-            self?.frontView.isHidden = false
-            self?.indicatorView.isHidden = false
+        DispatchQueue.main.async { [self] in
+            indicatorView.startAnimating()
+            frontView.isHidden = false
+            indicatorView.isHidden = false
         }
     }
 
     /// ローディング画面を停止
     func stopLoading() {
-        DispatchQueue.main.async { [weak self] in
-            self?.indicatorView.stopAnimating()
-            self?.frontView.isHidden = true
-            self?.indicatorView.isHidden = true
+        DispatchQueue.main.async { [self] in
+            indicatorView.stopAnimating()
+            frontView.isHidden = true
+            indicatorView.isHidden = true
         }
     }
 
     /// エラーアラートの表示
-    func appearErrorAlert(message: String) {
-        stopLoading()
-        errorAlert(message: message)
+    func showErrorAlert(error: Error) {
+        DispatchQueue.main.async { [self] in
+            stopLoading()
+            presentAlertController(error: error)
+        }
     }
 
     /// GitHubデータの取得が0件の場合に表示
-    func appearNotFound(message: String) {
-        DispatchQueue.main.async { [weak self] in
-            self?.frontView.isHidden = false
-            self?.indicatorView.isHidden = true
-            self?.notFoundLabel.text = message
+    func showEmptyMessage() {
+        DispatchQueue.main.async { [self] in
+            frontView.isHidden = false
+            indicatorView.isHidden = true
+            emptyDescriptionLabel.text = "結果が見つかりませんでした"
         }
     }
 
     func reloadTableView() {
-        DispatchQueue.main.async { [weak self] in
-            self?.stopLoading()
-            self?.tableView.reloadData()
+        DispatchQueue.main.async { [self] in
+            stopLoading()
+            tableView.reloadData()
         }
     }
 
@@ -199,10 +201,6 @@ extension GitHubSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルタップを通知。GitHubデータを渡してます。
         presenter.didSelectRow(at: indexPath.row)
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

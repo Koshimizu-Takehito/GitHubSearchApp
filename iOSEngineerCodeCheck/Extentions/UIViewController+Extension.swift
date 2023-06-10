@@ -10,15 +10,10 @@ import UIKit
 
 extension UIViewController {
     ///  API通信。失敗した場合のエラーのアラート
-    func errorAlert(message: String) {
-        let alert = UIAlertController(
-            title: "エラーです。",
-            message: message,
-            preferredStyle: .alert
-        )
-        let ok = UIAlertAction(title: "OK", style: .default)// swiftlint:disable:this all
-        alert.addAction(ok)
+    func presentAlertController(error: Error) {
         DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
             self?.present(alert, animated: true, completion: nil)
         }
     }
