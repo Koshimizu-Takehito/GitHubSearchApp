@@ -6,6 +6,7 @@ target 'iOSEngineerCodeCheck' do
   pod 'SwiftLint'
   pod 'SwiftGen', '~> 6.0'
   pod 'APIKit', '~> 5.0'
+  pod 'Kingfisher', '~> 7.0'
 
   target 'iOSEngineerCodeCheckTests' do
     inherit! :search_paths
