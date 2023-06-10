@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 import class UIKit.UIImage
 
 // MARK: - AvatarImageLoadable
@@ -23,7 +24,7 @@ class AvatarImageLoader: AvatarImageLoadable {
 
     init(
         queue: DispatchQueue = .init(label: #function),
-        loader: any ImageLoadable = ImageLoader()
+        loader: any ImageLoadable = KingfisherManager.shared
     ) {
         self.queue = queue
         self.loader = loader
@@ -37,7 +38,7 @@ class AvatarImageLoader: AvatarImageLoadable {
         if let image = (queue.sync { images[item.id] }) {
             return image
         } else {
-            let image = try await loader.load(url: item.owner.avatarUrl)
+            let image = try await loader.loadImage(url: item.owner.avatarUrl)
             queue.sync { images[item.id] = image }
             return image
         }
