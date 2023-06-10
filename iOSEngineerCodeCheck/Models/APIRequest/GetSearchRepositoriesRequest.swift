@@ -18,7 +18,7 @@ struct GetSearchRepositoriesRequest {
 }
 
 extension GetSearchRepositoriesRequest: GithubRequest {
-    typealias Response = RepositoryItem
+    typealias Response = RepositoryItems
 
     var method: HTTPMethod {
         .get
