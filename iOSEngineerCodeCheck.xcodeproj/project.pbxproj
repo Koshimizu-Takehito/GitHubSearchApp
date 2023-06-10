@@ -47,6 +47,7 @@
 		FB1BA74C2A32E1E90003A317 /* AvatarImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA74B2A32E1E90003A317 /* AvatarImageLoader.swift */; };
 		FB1BA75B2A3333770003A317 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA7592A3333770003A317 /* Assets.swift */; };
 		FB1BA75C2A3333770003A317 /* StoryBoards.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA75A2A3333770003A317 /* StoryBoards.swift */; };
+		FB3B0DB22A34239A009BE7D5 /* ItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B0DB12A34239A009BE7D5 /* ItemID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		FB1BA74B2A32E1E90003A317 /* AvatarImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageLoader.swift; sourceTree = "<group>"; };
 		FB1BA7592A3333770003A317 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		FB1BA75A2A3333770003A317 /* StoryBoards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoards.swift; sourceTree = "<group>"; };
+		FB3B0DB12A34239A009BE7D5 /* ItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 		38F34E7C29F9526900120671 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				FB3B0DB12A34239A009BE7D5 /* ItemID.swift */,
 				38F34E6229F91E9400120671 /* Api */,
 			);
 			path = Utilities;
@@ -663,6 +666,7 @@
 				38E3B11A2A2C6E5C00CC18F9 /* GitHubSearchViewItem.swift in Sources */,
 				38F34E6A29F91F7100120671 /* RepositoryItem.swift in Sources */,
 				BFD945E3244DC5E80012785A /* GitHubSearchViewController.swift in Sources */,
+				FB3B0DB22A34239A009BE7D5 /* ItemID.swift in Sources */,
 				380A2F9B2A193BA5009941A6 /* ImageLoader.swift in Sources */,
 				38D37C732A168B88005EA7C6 /* GitHubDetailWireFrame.swift in Sources */,
 				38D37C712A168AE8005EA7C6 /* GitHubDetailPresentation.swift in Sources */,
