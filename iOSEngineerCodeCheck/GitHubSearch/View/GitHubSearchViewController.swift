@@ -49,6 +49,7 @@ private extension GitHubSearchViewController {
 extension GitHubSearchViewController: GitHubSearchView {
     /// 初期画面の構成
     func setUp() {
+        indicatorView.isHidden = true
         searchBar.placeholder = "GitHub リポジトリを検索"
         searchBar.delegate = self
         tableView.dataSource = self
@@ -159,7 +160,7 @@ extension GitHubSearchViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // テキストが空、もしくはローディング中はタップ無効。
-        guard let text = searchBar.text, !text.isEmpty, !indicatorView.isHidden else { return }
+        guard let text = searchBar.text, !text.isEmpty, indicatorView.isHidden else { return }
         // 検索ボタンのタップを通知。 GitHubデータを取得の指示。
         presenter.searchButtonDidPush(word: text)
         searchBar.resignFirstResponder()
