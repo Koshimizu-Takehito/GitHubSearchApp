@@ -11,13 +11,13 @@ import class UIKit.UIImage
 
 // MARK: - AvatarImageLoadable
 protocol AvatarImageLoadable {
-    func image(id: Int) -> UIImage?
+    func image(id: ItemID) -> UIImage?
     @discardableResult func load(item: Item) async throws -> UIImage
 }
 
 // MARK: - AvatarImageLoader
 class AvatarImageLoader: AvatarImageLoadable {
-    private var images: [Int: UIImage] = [:]
+    private var images: [ItemID: UIImage] = [:]
     private let queue: DispatchQueue
     private let loader: any ImageLoadable
 
@@ -29,7 +29,7 @@ class AvatarImageLoader: AvatarImageLoadable {
         self.loader = loader
     }
 
-    func image(id: Int) -> UIImage? {
+    func image(id: ItemID) -> UIImage? {
         queue.sync { images[id] }
     }
 
