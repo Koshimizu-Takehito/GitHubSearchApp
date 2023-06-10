@@ -113,18 +113,10 @@
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="51X-Gw-He7">
                                         <rect key="frame" x="188.5" y="293.5" width="37" height="37"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="37" id="F0y-PC-QiL"/>
-                                            <constraint firstAttribute="width" constant="37" id="NRK-Dn-0cy"/>
-                                        </constraints>
                                         <color key="color" systemColor="labelColor"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="結果がみつかりませんでした。" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14X-ZN-avM">
                                         <rect key="frame" x="64.5" y="300" width="285.5" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="PqQ-3M-Ll3"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="285.5" id="bd8-M7-7fv"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -135,6 +127,7 @@
                                     <constraint firstItem="14X-ZN-avM" firstAttribute="centerX" secondItem="zS5-Kj-DSu" secondAttribute="centerX" id="8nV-bt-riz"/>
                                     <constraint firstItem="14X-ZN-avM" firstAttribute="centerY" secondItem="zS5-Kj-DSu" secondAttribute="centerY" multiplier="0.9" id="aFc-Zq-UFP"/>
                                     <constraint firstItem="51X-Gw-He7" firstAttribute="centerX" secondItem="zS5-Kj-DSu" secondAttribute="centerX" id="as9-y1-Cjr"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="14X-ZN-avM" secondAttribute="trailing" constant="8" id="mAU-NJ-sc5"/>
                                     <constraint firstItem="51X-Gw-He7" firstAttribute="centerY" secondItem="zS5-Kj-DSu" secondAttribute="centerY" multiplier="0.9" id="r3k-rr-A0y"/>
                                 </constraints>
                             </view>
