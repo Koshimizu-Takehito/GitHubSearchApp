@@ -111,7 +111,7 @@ private extension GitHubSearchPresenter {
             case .empty:
                 view?.showEmptyMessage()
             case .error(let error):
-                view?.showErrorAlert(message: error.localizedDescription)
+                view?.showErrorAlert(error: error)
             }
         }
     }

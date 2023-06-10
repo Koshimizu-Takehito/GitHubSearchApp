@@ -88,10 +88,10 @@ extension GitHubSearchViewController: GitHubSearchView {
     }
 
     /// エラーアラートの表示
-    func showErrorAlert(message: String) {
+    func showErrorAlert(error: Error) {
         DispatchQueue.main.async { [self] in
             stopLoading()
-            errorAlert(message: message)
+            presentAlertController(error: error)
         }
     }
 
