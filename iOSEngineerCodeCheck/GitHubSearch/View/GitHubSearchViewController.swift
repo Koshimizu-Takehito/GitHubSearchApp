@@ -11,7 +11,7 @@ import UIKit
 final class GitHubSearchViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var notFoundLabel: UILabel!
+    @IBOutlet private weak var emptyDescriptionLabel: UILabel!
     @IBOutlet private weak var frontView: UIView!
     @IBOutlet private weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var starOderButton: UIButton! {
@@ -54,7 +54,7 @@ extension GitHubSearchViewController: GitHubSearchView {
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
-        notFoundLabel.text = nil
+        emptyDescriptionLabel.text = nil
         frontView.isHidden = true
         setupNavigationBar(title: "ホーム")
     }
@@ -64,7 +64,7 @@ extension GitHubSearchViewController: GitHubSearchView {
         DispatchQueue.main.async { [self] in
             frontView.isHidden = true
             indicatorView.isHidden = true
-            notFoundLabel.text = nil
+            emptyDescriptionLabel.text = nil
             tableView.reloadData()
         }
     }
@@ -100,7 +100,7 @@ extension GitHubSearchViewController: GitHubSearchView {
         DispatchQueue.main.async { [self] in
             frontView.isHidden = false
             indicatorView.isHidden = true
-            notFoundLabel.text = "結果が見つかりませんでした"
+            emptyDescriptionLabel.text = "結果が見つかりませんでした"
         }
     }
 
