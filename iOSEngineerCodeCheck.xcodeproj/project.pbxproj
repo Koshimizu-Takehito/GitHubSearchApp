@@ -190,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				FB1BA7622A3359A20003A317 /* Item.swift */,
+				FB3B0DB12A34239A009BE7D5 /* ItemID.swift */,
 				FB1BA7642A3359AE0003A317 /* Owner.swift */,
 				38F34E6929F91F7100120671 /* RepositoryItem.swift */,
 				388949C82A17E57100307A11 /* StarSortingOrder.swift */,
@@ -307,8 +308,6 @@
 			children = (
 				FB1BA7662A335BB30003A317 /* APIKit */,
 				385124C32A1C151B0093CFA8 /* ImageLoader */,
-				FB3B0DB12A34239A009BE7D5 /* ItemID.swift */,
-				38F34E6229F91E9400120671 /* Api */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
