@@ -1,20 +1,24 @@
 PODS:
+  - APIKit (5.4.0)
   - SwiftGen (6.6.2)
   - SwiftLint (0.51.0)
 
 DEPENDENCIES:
+  - APIKit (~> 5.0)
   - SwiftGen (~> 6.0)
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - APIKit
     - SwiftGen
     - SwiftLint
 
 SPEC CHECKSUMS:
+  APIKit: 0680e86d2e8abd5bc42e64963f5f89d209eb9271
   SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
   SwiftLint: 1b7561918a19e23bfed960e40759086e70f4dba5
 
-PODFILE CHECKSUM: 4bddcb765f2e0468c82ead33255aff6b653c4c99
+PODFILE CHECKSUM: d80a0a1de7b196ab7e3c29af68930ba233f897dd
 
 COCOAPODS: 1.11.3

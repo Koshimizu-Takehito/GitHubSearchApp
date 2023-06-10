@@ -27,7 +27,6 @@ extension GitHubSearchRouter: GitHubSearchWireFrame {
             router: router)
 
         view.presenter = presenter
-        interactor.presenter = presenter
         return view
     }
 

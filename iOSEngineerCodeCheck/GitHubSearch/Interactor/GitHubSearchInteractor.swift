@@ -7,18 +7,20 @@
 //
 
 import Foundation
+import APIKit
 
-final class GitHubSearchInteractor {
-    weak var presenter: GitHubSearchOutputUsecase?
-    let apiManager = ApiManager()
-}
-
-extension GitHubSearchInteractor: GitHubSearchInputUsecase {
-    /// データベースから GitHubデータを取得。
-    func fetch(word: String, orderType: Order) {
-        Task {
-            let result = await apiManager.fetch(word: word, orderType: orderType)
-            presenter?.didFetchResult(result: result)
+actor GitHubSearchInteractor: GitHubSearchInputUsecase {
+    func fetch(word: String, order: StarSortingOrder?) async -> GitHubSearchFetchResult {
+        do {
+            let request = GetSearchRepositoriesRequest(word: word, order: order)
+            let items = try await Session.shared.send(request).items
+            if items.isEmpty {
+                return .empty
+            } else {
+                return .items(items)
+            }
+        } catch {
+            return .error(error)
         }
     }
 }
