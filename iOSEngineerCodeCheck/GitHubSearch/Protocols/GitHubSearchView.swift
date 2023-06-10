@@ -13,8 +13,8 @@ protocol GitHubSearchView: AnyObject {
     func startLoading()
     func reloadTableView()
     func resetDisplay()
-    func appearErrorAlert(message: String)
-    func appearNotFound(message: String)
+    func showErrorAlert(message: String)
+    func showEmptyMessage()
     func configure(order: StarSortingOrder?)
     func configure(item: GitHubSearchViewItem, at index: Int)
 }

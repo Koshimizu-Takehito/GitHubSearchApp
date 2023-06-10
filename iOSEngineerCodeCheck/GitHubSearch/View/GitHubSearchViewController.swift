@@ -94,11 +94,11 @@ extension GitHubSearchViewController: GitHubSearchView {
     }
 
     /// GitHubデータの取得が0件の場合に表示
-    func appearNotFound(message: String) {
+    func showEmptyMessage() {
         DispatchQueue.main.async { [weak self] in
             self?.frontView.isHidden = false
             self?.indicatorView.isHidden = true
-            self?.notFoundLabel.text = message
+            self?.notFoundLabel.text = "結果が見つかりませんでした"
         }
     }
 

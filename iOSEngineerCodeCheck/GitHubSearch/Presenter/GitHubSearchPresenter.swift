@@ -109,9 +109,9 @@ private extension GitHubSearchPresenter {
                 self?.items = items
                 view?.reloadTableView()
             case .empty:
-                view?.appearNotFound(message: "結果が見つかりませんでした")
+                view?.showEmptyMessage()
             case .error(let error):
-                view?.appearErrorAlert(message: error.localizedDescription)
+                view?.showErrorAlert(message: error.localizedDescription)
             }
         }
     }
