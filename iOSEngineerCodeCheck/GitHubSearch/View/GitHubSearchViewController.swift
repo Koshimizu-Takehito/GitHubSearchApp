@@ -40,7 +40,7 @@ final class GitHubSearchViewController: UIViewController {
 
 private extension GitHubSearchViewController {
     @IBAction func starOrderButton(_ sender: Any) {
-        guard !indicatorView.isHidden else { return }
+        guard indicatorView.isHidden else { return }
         presenter.starOderButtonDidPush()
     }
 }
