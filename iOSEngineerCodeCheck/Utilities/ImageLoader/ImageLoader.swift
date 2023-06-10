@@ -9,6 +9,11 @@
 import Foundation
 import class UIKit.UIImage
 
+struct ImageLoadingError: Error {
+    let data: Data
+    let response: URLResponse
+}
+
 // MARK: - ImageLoadable
 protocol ImageLoadable {
     func load(url: URL) async throws -> UIImage
@@ -24,14 +29,12 @@ final class ImageLoader: ImageLoadable {
 
     /// GitHub APIから画像データの取得
     func load(url: URL) async throws -> UIImage {
-        let (data, _) = try await session.data(for: URLRequest(url: url))
+        let (data, response) = try await session.data(for: URLRequest(url: url))
         switch UIImage(data: data) {
         case let image?:
             return image
         case _:
-            // TODO: 実装
-            fatalError()
-//            throw ApiError.invalidData
+            throw ImageLoadingError(data: data, response: response)
         }
     }
 }
