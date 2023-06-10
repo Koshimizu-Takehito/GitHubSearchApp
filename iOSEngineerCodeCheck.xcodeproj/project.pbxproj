@@ -368,8 +368,8 @@
 		BFD945DD244DC5E80012785A /* iOSEngineerCodeCheck */ = {
 			isa = PBXGroup;
 			children = (
-				FB1BA75D2A3352C40003A317 /* Models */,
 				38789E3429FDAFC700732BE8 /* App */,
+				FB1BA75D2A3352C40003A317 /* Models */,
 				38F34E6429F91EE500120671 /* GitHubSearch */,
 				38F34E6F29F9200E00120671 /* GitHubDetail */,
 				38F34E8729FA432100120671 /* Extentions */,
