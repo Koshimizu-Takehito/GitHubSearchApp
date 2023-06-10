@@ -203,10 +203,6 @@ extension GitHubSearchViewController: UITableViewDelegate {
         presenter.didSelectRow(at: indexPath.row)
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
-    }
-
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         presenter.fetchImage(at: indexPath.row)
     }
