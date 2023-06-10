@@ -76,20 +76,19 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
 
     func item(at index: Int) -> GitHubSearchViewItem {
         let item = items[index]
-        let image = imageLoadable.image(id: item.id)
-        let viewItem = GitHubSearchViewItem(item: item, image: image)
-        return viewItem
+        let image = imageLoadable.retrieveImage(id: item.id)
+        return GitHubSearchViewItem(item: item, image: image)
     }
 
     func fetchImage(at index: Int) {
         Task { [weak self, weak view, loadable = imageLoadable, items] in
             let item = items[index]
             // 取得済みの場合はサムネイル取得処理をスキップ
-            guard loadable.image(id: item.id) == nil else {
+            guard loadable.retrieveImage(id: item.id) == nil else {
                 return
             }
             // サムネイル取得処理を実行
-            let image = (try? await loadable.load(item: item)) ?? Asset.untitled.image
+            let image = (try? await loadable.loadImage(id: item.id, url: item.owner.avatarUrl)) ?? Asset.untitled.image
             // 取得完了時の該当インデックスを探索
             guard let index = self?.items.firstIndex(where: { $0.id == item.id }) else {
                 return

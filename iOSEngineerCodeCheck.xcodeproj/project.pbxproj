@@ -51,6 +51,8 @@
 		FB1BA76A2A335BDC0003A317 /* SimpleDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA7692A335BDC0003A317 /* SimpleDataParser.swift */; };
 		FB1BA76C2A33644D0003A317 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA76B2A33644D0003A317 /* Session.swift */; };
 		FB3B0DB22A34239A009BE7D5 /* ItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B0DB12A34239A009BE7D5 /* ItemID.swift */; };
+		FB6CD1952A35366800F36BB6 /* ImageCachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CD1942A35366800F36BB6 /* ImageCachable.swift */; };
+		FB6CD1972A35368D00F36BB6 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CD1962A35368D00F36BB6 /* ImageCache.swift */; };
 		FB8D49282A3525AC00BE68FB /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D49272A3525AC00BE68FB /* Cancelable.swift */; };
 		FB8D492A2A352B0900BE68FB /* ImageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D49292A352B0900BE68FB /* ImageLoadable.swift */; };
 		FB8D492C2A352B4B00BE68FB /* KingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */; };
@@ -130,6 +132,8 @@
 		FB1BA7692A335BDC0003A317 /* SimpleDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDataParser.swift; sourceTree = "<group>"; };
 		FB1BA76B2A33644D0003A317 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		FB3B0DB12A34239A009BE7D5 /* ItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemID.swift; sourceTree = "<group>"; };
+		FB6CD1942A35366800F36BB6 /* ImageCachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCachable.swift; sourceTree = "<group>"; };
+		FB6CD1962A35368D00F36BB6 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		FB8D49272A3525AC00BE68FB /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		FB8D49292A352B0900BE68FB /* ImageLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadable.swift; sourceTree = "<group>"; };
 		FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherManager.swift; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8D49272A3525AC00BE68FB /* Cancelable.swift */,
+				FB6CD1942A35366800F36BB6 /* ImageCachable.swift */,
 				FB8D49292A352B0900BE68FB /* ImageLoadable.swift */,
 				FB1BA7662A335BB30003A317 /* APIKit */,
 				FB8D492D2A352B9700BE68FB /* Kingfisher */,
@@ -448,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */,
+				FB6CD1962A35368D00F36BB6 /* ImageCache.swift */,
 			);
 			path = Kingfisher;
 			sourceTree = "<group>";
@@ -743,6 +749,7 @@
 				38F34E7429F920A300120671 /* GitHubDetailPresenter.swift in Sources */,
 				FB1BA75B2A3333770003A317 /* Assets.swift in Sources */,
 				FB8D49282A3525AC00BE68FB /* Cancelable.swift in Sources */,
+				FB6CD1972A35368D00F36BB6 /* ImageCache.swift in Sources */,
 				38D37C6D2A1688B6005EA7C6 /* GitHubSearchPresentation.swift in Sources */,
 				38F34E8B29FA61BE00120671 /* UIViewController+Extension.swift in Sources */,
 				38F34E6629F91F3000120671 /* GitHubSearchInteractor.swift in Sources */,
@@ -758,6 +765,7 @@
 				38F34E6829F91F5400120671 /* GitHubSearchPresenter.swift in Sources */,
 				386069A029FC0CC400BCF6AE /* UIImageView+Extension.swift in Sources */,
 				38D37C652A168715005EA7C6 /* GitHubSearchView.swift in Sources */,
+				FB6CD1952A35366800F36BB6 /* ImageCachable.swift in Sources */,
 				38F34E6C29F91F8C00120671 /* GitHubSearchRouter.swift in Sources */,
 				FB1BA7682A335BBD0003A317 /* GithubRequest.swift in Sources */,
 				FB1BA7612A33534A0003A317 /* GetSearchRepositoriesRequest.swift in Sources */,
