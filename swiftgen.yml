@@ -7,7 +7,8 @@ storyboards:
       output: StoryBoards.swift
 xcassets:
   inputs:
-    - Resource/Assets.xcassets
+    - Resource/Images.xcassets
+    - Resource/Colors.xcassets
   outputs:
     - templateName: swift5
       output: Assets.swift
