@@ -103,12 +103,12 @@ private extension GitHubSearchPresenter {
     func fetch() {
         task = Task { [interactor, word, order, weak view, weak self] in
             switch await interactor.fetch(word: word, order: order) {
-            case .items(let items):
+            case .success(let items) where items.isEmpty:
+                view?.showEmptyMessage()
+            case .success(let items):
                 self?.items = items
                 view?.reloadTableView()
-            case .empty:
-                view?.showEmptyMessage()
-            case .error(let error):
+            case .failure(let error):
                 view?.showErrorAlert(error: error)
             }
         }

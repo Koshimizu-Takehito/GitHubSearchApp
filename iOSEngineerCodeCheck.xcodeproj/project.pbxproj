@@ -57,6 +57,7 @@
 		FB8D49282A3525AC00BE68FB /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D49272A3525AC00BE68FB /* Cancelable.swift */; };
 		FB8D492A2A352B0900BE68FB /* ImageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D49292A352B0900BE68FB /* ImageLoadable.swift */; };
 		FB8D492C2A352B4B00BE68FB /* KingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */; };
+		FB97A4992A36011F004C3A8E /* GitHubRepositoryListCachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97A4982A36011F004C3A8E /* GitHubRepositoryListCachedRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		FB8D49272A3525AC00BE68FB /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		FB8D49292A352B0900BE68FB /* ImageLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadable.swift; sourceTree = "<group>"; };
 		FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherManager.swift; sourceTree = "<group>"; };
+		FB97A4982A36011F004C3A8E /* GitHubRepositoryListCachedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepositoryListCachedRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +447,7 @@
 		FB6CD1932A352C1E00F36BB6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				FB97A4972A3600F8004C3A8E /* CachedRepository */,
 				FB6CD19A2A35EAAE00F36BB6 /* ImageManager */,
 			);
 			path = Service;
@@ -467,6 +470,14 @@
 				FB6CD1962A35368D00F36BB6 /* ImageCache.swift */,
 			);
 			path = Kingfisher;
+			sourceTree = "<group>";
+		};
+		FB97A4972A3600F8004C3A8E /* CachedRepository */ = {
+			isa = PBXGroup;
+			children = (
+				FB97A4982A36011F004C3A8E /* GitHubRepositoryListCachedRepository.swift */,
+			);
+			path = CachedRepository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -782,6 +793,7 @@
 				FB1BA7682A335BBD0003A317 /* GithubRequest.swift in Sources */,
 				FB1BA7612A33534A0003A317 /* GetSearchRepositoriesRequest.swift in Sources */,
 				38D37C692A16885A005EA7C6 /* GitHubSearchUsecase.swift in Sources */,
+				FB97A4992A36011F004C3A8E /* GitHubRepositoryListCachedRepository.swift in Sources */,
 				FB1BA76C2A33644D0003A317 /* Session.swift in Sources */,
 				38F34E8929FA43FF00120671 /* UIImage+Extension.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
