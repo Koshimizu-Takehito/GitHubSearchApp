@@ -72,18 +72,19 @@ extension GitHubSearchViewController: GitHubSearchView {
     /// ローディング中を表示
     func startLoading() {
         DispatchQueue.main.async { [self] in
-            indicatorView.startAnimating()
             frontView.isHidden = false
             indicatorView.isHidden = false
+            indicatorView.startAnimating()
+            tableView.reloadData()
         }
     }
 
     /// ローディング画面を停止
     func stopLoading() {
         DispatchQueue.main.async { [self] in
-            indicatorView.stopAnimating()
             frontView.isHidden = true
             indicatorView.isHidden = true
+            indicatorView.stopAnimating()
         }
     }
 

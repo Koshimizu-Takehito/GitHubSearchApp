@@ -70,7 +70,6 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
         order.toggle()
         view.configure(order: order)
         view.startLoading()
-        view.reloadTableView()
         fetch()
     }
 
