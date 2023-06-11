@@ -13,7 +13,7 @@ final class GitHubSearchPresenter {
     private weak var view: GitHubSearchView?
     private let interactor: GitHubSearchInputUsecase
     private let router: GitHubSearchWireFrame
-    private let imageLoadable: AvatarImageLoadable
+    private let imageLoadable: ImageManaging
     private var order: StarSortingOrder?
     private var word: String = ""
 
@@ -24,7 +24,7 @@ final class GitHubSearchPresenter {
         view: GitHubSearchView,
         interactor: GitHubSearchInputUsecase,
         router: GitHubSearchWireFrame,
-        imageLoadable: AvatarImageLoadable = AvatarImageLoader()
+        imageLoadable: ImageManaging = ImageManager()
     ) {
         self.view = view
         self.interactor = interactor
@@ -76,7 +76,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
 
     func item(at index: Int) -> GitHubSearchViewItem {
         let item = items[index]
-        let image = imageLoadable.retrieveImage(id: item.id)
+        let image = imageLoadable.cacheImage(forKey: item.owner.avatarUrl)
         return GitHubSearchViewItem(item: item, image: image)
     }
 
@@ -84,11 +84,11 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
         Task { [weak self, weak view, loadable = imageLoadable, items] in
             let item = items[index]
             // 取得済みの場合はサムネイル取得処理をスキップ
-            guard loadable.retrieveImage(id: item.id) == nil else {
+            guard loadable.cacheImage(forKey: item.owner.avatarUrl) == nil else {
                 return
             }
             // サムネイル取得処理を実行
-            let image = (try? await loadable.loadImage(id: item.id, url: item.owner.avatarUrl)) ?? Asset.untitled.image
+            let image = (try? await loadable.loadImage(with: item.owner.avatarUrl)) ?? Asset.untitled.image
             // 取得完了時の該当インデックスを探索
             guard let index = self?.items.firstIndex(where: { $0.id == item.id }) else {
                 return

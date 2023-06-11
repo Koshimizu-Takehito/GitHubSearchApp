@@ -11,16 +11,16 @@ import Kingfisher
 
 extension KingfisherManager: ImageLoadable {
     @discardableResult
-    func retrieveImage(with url: URL, completionHandler: @escaping ((Result<UIImage, Error>) -> Void)) -> any Cancelable {
+    func loadImage(with url: URL, completion: @escaping ((Result<UIImage, Error>) -> Void)) -> any Cancelable {
         retrieveImage(with: url) { result in
             let result = result
                 .map(\.image)
                 .mapError { $0 as Error }
-            completionHandler(result)
+            completion(result)
         }
     }
 
-    func loadImage(url: URL) async throws -> UIImage {
+    func loadImage(with url: URL) async throws -> UIImage {
         let cancelable = AnonymousCancelable()
         return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in
@@ -39,14 +39,6 @@ extension KingfisherManager: ImageLoadable {
 
 private final class AnonymousCancelable: @unchecked Sendable, Cancelable {
     var wrapped: (any Cancelable)?
-
-    init(cancelable: some Cancelable) {
-        self.wrapped = cancelable
-    }
-
-    init() {
-        self.wrapped = nil
-    }
 
     func cancel() {
         wrapped?.cancel()

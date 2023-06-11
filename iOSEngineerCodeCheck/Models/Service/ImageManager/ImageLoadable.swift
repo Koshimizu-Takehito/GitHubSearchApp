@@ -12,6 +12,6 @@ import class UIKit.UIImage
 // MARK: - ImageLoadable
 protocol ImageLoadable {
     @discardableResult
-    func retrieveImage(with url: URL, completionHandler: @escaping ((Result<UIImage, Error>) -> Void)) -> any Cancelable
-    func loadImage(url: URL) async throws -> UIImage
+    func loadImage(with url: URL, completion: @escaping ((Result<UIImage, Error>) -> Void)) -> any Cancelable
+    func loadImage(with url: URL) async throws -> UIImage
 }
