@@ -70,7 +70,6 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
         order.toggle()
         view.configure(order: order)
         view.startLoading()
-        view.reloadTableView()
         fetch()
     }
 
@@ -88,7 +87,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
                 return
             }
             // サムネイル取得処理を実行
-            let image = (try? await loadable.loadImage(with: item.owner.avatarUrl)) ?? Asset.untitled.image
+            let image = (try? await loadable.loadImage(with: item.owner.avatarUrl)) ?? Asset.Images.untitled.image
             // 取得完了時の該当インデックスを探索
             guard let index = self?.items.firstIndex(where: { $0.id == item.id }) else {
                 return
