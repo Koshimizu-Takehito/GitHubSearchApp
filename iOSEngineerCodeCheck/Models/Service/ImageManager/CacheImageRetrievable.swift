@@ -1,5 +1,5 @@
 //
-//  ImageCachable.swift
+//  CacheImageRetrievable.swift
 //  iOSEngineerCodeCheck
 //
 //  Created by Takehito Koshimizu on 2023/06/11.
@@ -9,7 +9,6 @@
 import Foundation
 import class UIKit.UIImage
 
-// MARK: - ImageCachable
-protocol ImageCachable {
-    func retrieveImage(forKey url: URL) -> UIImage?
+protocol CacheImageRetrievable {
+    func cacheImage(forKey url: URL) -> UIImage?
 }
