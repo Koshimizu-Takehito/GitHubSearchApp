@@ -135,8 +135,7 @@ extension GitHubSearchViewController: GitHubSearchView {
 // MARK: - UISearchBarDelegate
 extension GitHubSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let isEmptyText = searchBar.text?.isEmpty else { return }
-        if isEmptyText {
+        if searchText.isEmpty {
             // テキストが空になった事を通知。テーブルビューをリセットするため。
             presenter.searchTextDidChange()
         }
