@@ -21,11 +21,7 @@ extension GitHubSearchRouter: GitHubSearchWireFrame {
         let view = StoryboardScene.GitHubSearch.initialScene.instantiate()
         let interactor = GitHubSearchInteractor()
         let router = GitHubSearchRouter(viewController: view)
-        let presenter = GitHubSearchPresenter(
-            view: view,
-            interactor: interactor,
-            router: router)
-
+        let presenter = GitHubSearchPresenter(view: view, usecase: interactor, wireFrame: router)
         view.presenter = presenter
         return view
     }

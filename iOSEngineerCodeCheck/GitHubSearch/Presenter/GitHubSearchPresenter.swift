@@ -11,7 +11,7 @@ import class UIKit.UIImage
 
 final class GitHubSearchPresenter {
     private weak var view: GitHubSearchView?
-    private let interactor: GitHubSearchInputUsecase
+    private let usecase: GitHubSearchInputUsecase
     private let router: GitHubSearchWireFrame
     private let imageLoadable: ImageManaging
     private var order: StarSortingOrder?
@@ -22,13 +22,13 @@ final class GitHubSearchPresenter {
 
     init(
         view: GitHubSearchView,
-        interactor: GitHubSearchInputUsecase,
-        router: GitHubSearchWireFrame,
+        usecase: GitHubSearchInputUsecase,
+        wireFrame: GitHubSearchWireFrame,
         imageLoadable: ImageManaging = ImageManager()
     ) {
         self.view = view
-        self.interactor = interactor
-        self.router = router
+        self.usecase = usecase
+        self.router = wireFrame
         self.imageLoadable = imageLoadable
     }
 }
@@ -101,8 +101,8 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
 
 private extension GitHubSearchPresenter {
     func fetch() {
-        task = Task { [interactor, word, order, weak view, weak self] in
-            switch await interactor.fetch(word: word, order: order) {
+        task = Task { [usecase, word, order, weak view, weak self] in
+            switch await usecase.fetch(word: word, order: order) {
             case .success(let items) where items.isEmpty:
                 view?.showEmptyMessage()
             case .success(let items):
