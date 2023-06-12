@@ -28,7 +28,7 @@ actor GitHubSearchInteractor: GitHubSearchInputUsecase {
     func fetch(word: String, order: StarSortingOrder?) async -> Result<[Item], Error> {
         do {
             let request = GetSearchRepositoriesRequest(word: word, order: order)
-            let items = try await Session.shared.send(request).items
+            let items = try await session.send(request).items
             repositiry.save(items: items, for: .init(word: word, order: order))
             return .success(items)
         } catch {
