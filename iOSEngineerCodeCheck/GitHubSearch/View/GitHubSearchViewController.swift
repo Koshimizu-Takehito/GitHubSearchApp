@@ -12,7 +12,6 @@ final class GitHubSearchViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var emptyDescriptionLabel: UILabel!
-    @IBOutlet private weak var frontView: UIView!
     @IBOutlet private weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var starOderButton: UIButton! {
         didSet {
@@ -56,14 +55,12 @@ extension GitHubSearchViewController: GitHubSearchView {
         tableView.dataSource = self
         tableView.delegate = self
         emptyDescriptionLabel.text = nil
-        frontView.isHidden = true
         setupNavigationBar(title: "ホーム")
     }
 
     /// 画面の状態をリセットする
     func resetDisplay() {
         DispatchQueue.main.async { [self] in
-            frontView.isHidden = true
             indicatorView.isHidden = true
             emptyDescriptionLabel.text = nil
             tableView.reloadData()
@@ -73,7 +70,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     /// ローディング中を表示
     func startLoading() {
         DispatchQueue.main.async { [self] in
-            frontView.isHidden = false
             indicatorView.isHidden = false
             indicatorView.startAnimating()
             tableView.reloadData()
@@ -83,7 +79,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     /// ローディング画面を停止
     func stopLoading() {
         DispatchQueue.main.async { [self] in
-            frontView.isHidden = true
             indicatorView.isHidden = true
             indicatorView.stopAnimating()
         }
@@ -100,7 +95,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     /// GitHubデータの取得が0件の場合に表示
     func showEmptyMessage() {
         DispatchQueue.main.async { [self] in
-            frontView.isHidden = false
             indicatorView.isHidden = true
             emptyDescriptionLabel.text = "結果が見つかりませんでした"
         }
