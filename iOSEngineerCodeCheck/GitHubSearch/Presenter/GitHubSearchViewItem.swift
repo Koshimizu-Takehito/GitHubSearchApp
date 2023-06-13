@@ -2,30 +2,71 @@
 //  GitHubSearchViewItem.swift
 //  iOSEngineerCodeCheck
 //
-//  Created by 日高隼人 on 2023/06/04.
+//  Created by Takehito Koshimizu on 2023/06/14.
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
 import Foundation
-import class UIKit.UIImage
 
-/// テーブルビューセルへ表示するデータ構造
 struct GitHubSearchViewItem {
-    let id: ItemID
-    let fullName: String
-    let language: String?
-    let stars: String
-    let avatarImageView: UIImage?
+    var loading: Loading
+    var emptyDescription: EmptyDescription
+    var table: Table
 }
 
 extension GitHubSearchViewItem {
-    init(item: Item, image: UIImage?) {
-        self.init(
-            id: item.id,
-            fullName: item.fullName,
-            language: "言語 \(item.language ?? "")",
-            stars: "☆ \(item.stargazersCount.decimal())",
-            avatarImageView: image
+    struct Loading {
+        var isAnimating: Bool
+    }
+
+    struct EmptyDescription {
+        var isHidden: Bool
+    }
+
+    struct Table {
+        var items: [GitHubSearchViewRowItem]?
+    }
+}
+
+extension GitHubSearchViewItem {
+    /// 初期状態を表現した ViewItem
+    static var initial: Self {
+        .init(
+            loading: .init(isAnimating: false),
+            emptyDescription: .init(isHidden: true),
+            table: .empty
         )
+    }
+
+    /// エンプティステイトを表現した ViewItem
+    static var empty: Self {
+        .init(
+            loading: .init(isAnimating: false),
+            emptyDescription: .init(isHidden: false),
+            table: .empty
+        )
+    }
+
+    /// ローディング状態を表現した ViewItem
+    static var loading: Self {
+        .init(
+            loading: .init(isAnimating: true),
+            emptyDescription: .init(isHidden: true),
+            table: .empty
+        )
+    }
+
+    /// 検索結果のリストを表現した ViewItem
+    static func list(items entities: [Item], imageLoader: ImageManaging) -> Self {
+        var item = GitHubSearchViewItem.initial
+        item.table.items = .init(items: entities, imageLoader: imageLoader)
+        return item
+    }
+}
+
+extension GitHubSearchViewItem.Table {
+    /// エンプティステイト
+    static var empty: Self {
+        .init(items: [])
     }
 }

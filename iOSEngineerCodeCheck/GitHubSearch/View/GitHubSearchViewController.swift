@@ -2,13 +2,16 @@
 //  ViewController.swift
 //  iOSEngineerCodeCheck
 //
-//  Created by 史 翔新 on 2020/04/20.
-//  Copyright © 2020 YUMEMI Inc. All rights reserved.
+//  Created by Takehito Koshimizu on 2023/06/16.
+//  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
 import UIKit
 
 final class GitHubSearchViewController: UIViewController {
+    var presenter: GitHubSearchPresentation!
+    private lazy var dataSource = GitHubSearchTableViewDataSource(tableView: tableView)
+
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var emptyDescriptionLabel: UILabel!
@@ -19,11 +22,8 @@ final class GitHubSearchViewController: UIViewController {
             starOderButton.layer.cornerRadius = 8
             starOderButton.clipsToBounds = true
             starOderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            configure(order: .none)
         }
     }
-
-    var presenter: GitHubSearchPresentation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,84 +39,45 @@ final class GitHubSearchViewController: UIViewController {
 }
 
 private extension GitHubSearchViewController {
+    func setUp() {
+        tableView.dataSource = dataSource
+        configure(order: .none)
+        configure(item: .initial)
+        setupNavigationBar(title: "ホーム")
+    }
+
     @IBAction func starOrderButton(_ sender: Any) {
         guard indicatorView.isHidden else { return }
         presenter.didTapStarOderButton()
     }
 }
 
-// MARK: - GitHubSearchViewプロトコルに関する -
+// MARK: - GitHubSearchView
 extension GitHubSearchViewController: GitHubSearchView {
-    /// 初期画面の構成
-    func setUp() {
-        indicatorView.stopAnimating()
-        emptyDescriptionLabel.isHidden = true
-        setupNavigationBar(title: "ホーム")
+    func configure(order: StarSortingOrder?) {
+        starOderButton.setTitle(order.text, for: .normal)
+        starOderButton.setBackgroundImage(.image(color: order.buttonColor))
     }
 
-    /// 画面の状態をリセットする
-    func resetDisplay() {
+    func configure(item: GitHubSearchViewItem) {
         DispatchQueue.main.async { [self] in
-            indicatorView.stopAnimating()
-            emptyDescriptionLabel.isHidden = true
-            tableView.reloadData()
-        }
-    }
-
-    /// ローディング中を表示
-    func startLoading() {
-        DispatchQueue.main.async { [self] in
-            indicatorView.startAnimating()
-            tableView.reloadData()
-        }
-    }
-
-    /// ローディング画面を停止
-    func stopLoading() {
-        DispatchQueue.main.async { [self] in
-            indicatorView.stopAnimating()
-        }
-    }
-
-    /// エラーアラートの表示
-    func showErrorAlert(error: Error) {
-        DispatchQueue.main.async { [self] in
-            stopLoading()
-            presentAlertController(error: error)
-        }
-    }
-
-    /// GitHubデータの取得が0件の場合に表示
-    func showEmptyMessage() {
-        DispatchQueue.main.async { [self] in
-            indicatorView.isHidden = true
-            emptyDescriptionLabel.isHidden = false
-        }
-    }
-
-    func reloadTableView() {
-        DispatchQueue.main.async { [self] in
-            stopLoading()
-            tableView.reloadData()
-        }
-    }
-
-    func configure(item: GitHubSearchViewItem, at index: Int) {
-        DispatchQueue.main.async { [tableView = tableView!] in
-            if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? GitHubSearchTableViewCell {
-                cell.configure(item: item)
+            indicatorView.set(isAnimating: item.loading.isAnimating)
+            emptyDescriptionLabel.isHidden = item.emptyDescription.isHidden
+            if let items = item.table.items {
+                dataSource.reload(with: items)
             }
         }
     }
 
-    /// ボタンの見た目を変更する
-    func configure(order: StarSortingOrder?) {
-        let color = order.buttonColor
-        starOderButton.setTitle(order.text, for: .normal)
-        starOderButton.setBackgroundImage(.image(color: color), for: .normal)
-        starOderButton.setBackgroundImage(.image(color: color), for: .highlighted)
-        starOderButton.setBackgroundImage(.image(color: color), for: .selected)
-        starOderButton.setBackgroundImage(.image(color: color), for: [.selected, .highlighted])
+    func configure(row: GitHubSearchViewRowItem, at index: Int) {
+        DispatchQueue.main.async { [dataSource] in
+            dataSource.replace(item: row, at: index)
+        }
+    }
+
+    func showErrorAlert(error: Error) {
+        configure(item: .initial)
+        presentAlertController(error: error)
     }
 }
 
@@ -147,22 +108,6 @@ extension GitHubSearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension GitHubSearchViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfRow
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GitHubSearchTableViewCell.identifier) as? GitHubSearchTableViewCell else { return UITableViewCell() } // swiftlint:disable:this all
-
-        let item = presenter.item(at: indexPath.row)
-
-        cell.configure(item: item)
-        return cell
     }
 }
 

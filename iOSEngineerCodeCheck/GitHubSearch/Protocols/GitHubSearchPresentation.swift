@@ -20,7 +20,4 @@ protocol GitHubSearchPresentation: AnyObject {
     func didTapStarOderButton()
     /// セルの表示直前であることを通知
     func willDisplayRow(at index: Int)
-
-    var numberOfRow: Int { get }
-    func item(at index: Int) -> GitHubSearchViewItem
 }

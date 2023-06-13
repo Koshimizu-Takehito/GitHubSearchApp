@@ -18,7 +18,7 @@ final class GitHubSearchPresenter {
     private var word: String = ""
 
     private var items: [Item] = []
-    private var task: Task<Void, Never>?
+    private var task: (any Cancelable)?
 
     init(
         view: GitHubSearchView,
@@ -34,27 +34,23 @@ final class GitHubSearchPresenter {
 }
 // MARK: - GitHubSearchPresentationプロトコルに関する -
 extension GitHubSearchPresenter: GitHubSearchPresentation {
-    var numberOfRow: Int {
-        items.count
-    }
-
     /// 検索ボタンのタップを検知。 GitHubデータのリセット。ローディングの開始。GitHubデータの取得を通知。
     func didTapSearchButton(word: String) {
         guard let view else { return }
+        self.task?.cancel()
         self.items = []
         self.word = word
-        view.resetDisplay()
-        view.startLoading()
+        view.configure(item: .loading)
         fetch()
     }
 
     /// テキスト変更を検知。GitHubデータと画面の状態をリセット。タスクのキャンセル
     func didClearSearchText() {
         guard let view else { return }
-        task?.cancel()
-        items = []
-        word = ""
-        view.resetDisplay()
+        self.task?.cancel()
+        self.items = []
+        self.word = ""
+        view.configure(item: .initial)
     }
 
     /// セルタップの検知。DetailVCへ画面遷移通知。
@@ -66,17 +62,12 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
     /// スター数順の変更ボタンのタップを検知。(スター数で降順・昇順を切り替え)
     func didTapStarOderButton() {
         guard let view else { return }
-        items = []
+        self.task?.cancel()
+        self.items = []
         order.toggle()
         view.configure(order: order)
-        view.startLoading()
+        view.configure(item: .loading)
         fetch()
-    }
-
-    func item(at index: Int) -> GitHubSearchViewItem {
-        let item = items[index]
-        let image = imageLoadable.cacheImage(forKey: item.owner.avatarUrl)
-        return GitHubSearchViewItem(item: item, image: image)
     }
 
     func willDisplayRow(at index: Int) {
@@ -93,21 +84,21 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
                 return
             }
             // ビューを更新
-            let viewItem = GitHubSearchViewItem(item: item, image: image)
-            view?.configure(item: viewItem, at: index)
+            let viewItem = GitHubSearchViewRowItem(item: item, image: image)
+            view?.configure(row: viewItem, at: index)
         }
     }
 }
 
 private extension GitHubSearchPresenter {
     func fetch() {
-        task = Task { [usecase, word, order, weak view, weak self] in
+        task = Task { [usecase, imageLoadable, word, order, weak view, weak self] in
             switch await usecase.fetch(word: word, order: order) {
             case .success(let items) where items.isEmpty:
-                view?.showEmptyMessage()
+                view?.configure(item: .empty)
             case .success(let items):
                 self?.items = items
-                view?.reloadTableView()
+                view?.configure(item: .list(items: items, imageLoader: imageLoadable))
             case .failure(let error):
                 view?.showErrorAlert(error: error)
             }
