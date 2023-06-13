@@ -42,7 +42,7 @@ final class GitHubSearchViewController: UIViewController {
 private extension GitHubSearchViewController {
     @IBAction func starOrderButton(_ sender: Any) {
         guard indicatorView.isHidden else { return }
-        presenter.starOderButtonDidPush()
+        presenter.didTapStarOderButton()
     }
 }
 
@@ -137,7 +137,7 @@ extension GitHubSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             // テキストが空になった事を通知。テーブルビューをリセットするため。
-            presenter.searchTextDidChange()
+            presenter.didClearSearchText()
         }
     }
 
@@ -145,7 +145,7 @@ extension GitHubSearchViewController: UISearchBarDelegate {
         // テキストが空、もしくはローディング中はタップ無効。
         guard let text = searchBar.text, !text.isEmpty, indicatorView.isHidden else { return }
         // 検索ボタンのタップを通知。 GitHubデータを取得の指示。
-        presenter.searchButtonDidPush(word: text)
+        presenter.didTapSearchButton(word: text)
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
     }
@@ -186,7 +186,7 @@ extension GitHubSearchViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        presenter.fetchImage(at: indexPath.row)
+        presenter.willDisplayRow(at: indexPath.row)
     }
 }
 

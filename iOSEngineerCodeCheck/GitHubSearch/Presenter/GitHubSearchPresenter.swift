@@ -39,7 +39,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
     }
 
     /// 検索ボタンのタップを検知。 GitHubデータのリセット。ローディングの開始。GitHubデータの取得を通知。
-    func searchButtonDidPush(word: String) {
+    func didTapSearchButton(word: String) {
         guard let view else { return }
         self.items = []
         self.word = word
@@ -49,7 +49,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
     }
 
     /// テキスト変更を検知。GitHubデータと画面の状態をリセット。タスクのキャンセル
-    func searchTextDidChange() {
+    func didClearSearchText() {
         guard let view else { return }
         task?.cancel()
         items = []
@@ -64,7 +64,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
     }
 
     /// スター数順の変更ボタンのタップを検知。(スター数で降順・昇順を切り替え)
-    func starOderButtonDidPush() {
+    func didTapStarOderButton() {
         guard let view else { return }
         items = []
         order.toggle()
@@ -79,7 +79,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
         return GitHubSearchViewItem(item: item, image: image)
     }
 
-    func fetchImage(at index: Int) {
+    func willDisplayRow(at index: Int) {
         Task { [weak self, weak view, loadable = imageLoadable, items] in
             let item = items[index]
             // 取得済みの場合はサムネイル取得処理をスキップ
