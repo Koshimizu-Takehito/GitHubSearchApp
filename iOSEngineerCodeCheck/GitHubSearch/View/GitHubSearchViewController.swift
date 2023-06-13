@@ -49,20 +49,16 @@ private extension GitHubSearchViewController {
 extension GitHubSearchViewController: GitHubSearchView {
     /// 初期画面の構成
     func setUp() {
-        indicatorView.isHidden = true
-        searchBar.placeholder = "GitHub リポジトリを検索"
-        searchBar.delegate = self
-        tableView.dataSource = self
-        tableView.delegate = self
-        emptyDescriptionLabel.text = nil
+        indicatorView.stopAnimating()
+        emptyDescriptionLabel.isHidden = true
         setupNavigationBar(title: "ホーム")
     }
 
     /// 画面の状態をリセットする
     func resetDisplay() {
         DispatchQueue.main.async { [self] in
-            indicatorView.isHidden = true
-            emptyDescriptionLabel.text = nil
+            indicatorView.stopAnimating()
+            emptyDescriptionLabel.isHidden = true
             tableView.reloadData()
         }
     }
@@ -70,7 +66,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     /// ローディング中を表示
     func startLoading() {
         DispatchQueue.main.async { [self] in
-            indicatorView.isHidden = false
             indicatorView.startAnimating()
             tableView.reloadData()
         }
@@ -79,7 +74,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     /// ローディング画面を停止
     func stopLoading() {
         DispatchQueue.main.async { [self] in
-            indicatorView.isHidden = true
             indicatorView.stopAnimating()
         }
     }
@@ -96,7 +90,7 @@ extension GitHubSearchViewController: GitHubSearchView {
     func showEmptyMessage() {
         DispatchQueue.main.async { [self] in
             indicatorView.isHidden = true
-            emptyDescriptionLabel.text = "結果が見つかりませんでした"
+            emptyDescriptionLabel.isHidden = false
         }
     }
 

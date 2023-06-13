@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Nhh-bC-RlQ">
+                            <searchBar contentMode="redraw" placeholder="GitHub リポジトリを検索" translatesAutoresizingMaskIntoConstraints="NO" id="Nhh-bC-RlQ">
                                 <rect key="frame" x="0.0" y="113" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -107,11 +107,15 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mWg-7I-heg" id="q3D-ra-EFx"/>
+                                    <outlet property="delegate" destination="mWg-7I-heg" id="AaG-VK-u0N"/>
+                                </connections>
                             </tableView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zS5-Kj-DSu">
                                 <rect key="frame" x="0.0" y="169" width="414" height="693"/>
                                 <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="51X-Gw-He7">
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="51X-Gw-He7">
                                         <rect key="frame" x="188.5" y="293.5" width="37" height="37"/>
                                         <color key="color" systemColor="labelColor"/>
                                     </activityIndicatorView>
