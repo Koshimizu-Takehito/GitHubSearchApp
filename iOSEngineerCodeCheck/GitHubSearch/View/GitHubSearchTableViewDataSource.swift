@@ -35,7 +35,7 @@ final class GitHubSearchTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = GitHubSearchTableViewCell.identifier
         let item = items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? GitHubSearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? GitHubSearchTableViewCell
         cell?.configure(item: item)
         return cell!
     }
