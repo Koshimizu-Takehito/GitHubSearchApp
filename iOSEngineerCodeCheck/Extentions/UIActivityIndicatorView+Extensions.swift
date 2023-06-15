@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIActivityIndicatorView {
-    func set(isAnimating: Bool) {
+    func setIsAnimating(_ isAnimating: Bool) {
         if isAnimating {
             startAnimating()
         } else {
