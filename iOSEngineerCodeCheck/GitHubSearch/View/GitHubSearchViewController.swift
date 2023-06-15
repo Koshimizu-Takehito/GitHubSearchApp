@@ -123,6 +123,7 @@ extension GitHubSearchViewController: UITableViewDelegate {
     }
 }
 
+// TODO: プレゼンテーションロジックとして実装する
 // MARK: - StarSortingOrder
 private extension Optional<StarSortingOrder> {
     var text: String {
