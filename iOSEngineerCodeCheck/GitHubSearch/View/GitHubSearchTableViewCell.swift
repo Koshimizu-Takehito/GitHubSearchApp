@@ -14,8 +14,6 @@ final class GitHubSearchTableViewCell: UITableViewCell {
     @IBOutlet private weak var fullNameLabel: UILabel!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var starsLabel: UILabel!
-    /// テーブルビューセルのID名
-    static let identifier = "GitHubSearchCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()

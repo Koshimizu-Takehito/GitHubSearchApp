@@ -23,7 +23,8 @@ final class GitHubSearchTableViewDataSource: NSObject, UITableViewDataSource {
 
     func replace(item: GitHubSearchViewRowItem, at index: Int) {
         self.items[index] = item
-        if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? GitHubSearchTableViewCell {
+        let indexPath = IndexPath(row: index, section: 0)
+        if let cell: GitHubSearchTableViewCell = tableView.cellForRow(at: indexPath) {
             cell.configure(item: item)
         }
     }
@@ -33,10 +34,9 @@ final class GitHubSearchTableViewDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = GitHubSearchTableViewCell.identifier
         let item = items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? GitHubSearchTableViewCell
-        cell?.configure(item: item)
-        return cell!
+        let cell: GitHubSearchTableViewCell = tableView.dequeue(for: indexPath)
+        cell.configure(item: item)
+        return cell
     }
 }
