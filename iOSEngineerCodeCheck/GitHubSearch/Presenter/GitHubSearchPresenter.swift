@@ -65,7 +65,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
         self.task?.cancel()
         self.items = []
         order.toggle()
-        view.configure(order: order)
+        view.configure(order: .init(order: order))
         view.configure(item: .loading)
         fetch()
     }

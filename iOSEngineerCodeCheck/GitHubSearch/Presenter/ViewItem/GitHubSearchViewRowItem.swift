@@ -2,7 +2,7 @@
 //  GitHubSearchViewRowItem.swift
 //  iOSEngineerCodeCheck
 //
-//  Created by 日高隼人 on 2023/06/04.
+//  Created by Takehito Koshimizu on 2023/06/14.
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
@@ -32,10 +32,7 @@ extension GitHubSearchViewRowItem {
 extension Array where Element == GitHubSearchViewRowItem {
     init(items: [Item], imageLoader loder: ImageManaging) {
         self = items.map { item in
-            .init(
-                item: item,
-                image: loder.cacheImage(forKey: item.owner.avatarUrl)
-            )
+            .init(item: item, image: loder.cacheImage(forKey: item.owner.avatarUrl))
         }
     }
 }

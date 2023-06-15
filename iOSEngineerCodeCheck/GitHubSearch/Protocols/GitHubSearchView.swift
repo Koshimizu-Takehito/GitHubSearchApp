@@ -10,7 +10,7 @@ import Foundation
 
 // View
 protocol GitHubSearchView: AnyObject {
-    func configure(order: StarSortingOrder?)
+    func configure(order: GitHubSearchViewItem.StarSortingOrder)
     func configure(item: GitHubSearchViewItem)
     func configure(row: GitHubSearchViewRowItem, at index: Int)
     func showErrorAlert(error: Error)

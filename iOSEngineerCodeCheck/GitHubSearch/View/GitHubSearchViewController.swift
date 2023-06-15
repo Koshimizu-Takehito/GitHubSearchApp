@@ -54,9 +54,9 @@ private extension GitHubSearchViewController {
 
 // MARK: - GitHubSearchView
 extension GitHubSearchViewController: GitHubSearchView {
-    func configure(order: StarSortingOrder?) {
-        starOderButton.setTitle(order.text, for: .normal)
-        starOderButton.setBackgroundImage(.image(color: order.buttonColor))
+    func configure(order: GitHubSearchViewItem.StarSortingOrder) {
+        starOderButton.setTitle(order.title, for: .normal)
+        starOderButton.setBackgroundImage(order.image)
     }
 
     func configure(item: GitHubSearchViewItem) {
@@ -120,24 +120,5 @@ extension GitHubSearchViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         presenter.willDisplayRow(at: indexPath.row)
-    }
-}
-
-// TODO: プレゼンテーションロジックとして実装する
-// MARK: - StarSortingOrder
-private extension Optional<StarSortingOrder> {
-    var text: String {
-        switch self {
-        case .none:
-            return "☆ Star数 "
-        case .asc:
-            return "☆ Star数 ⍒"
-        case .desc:
-            return "☆ Star数 ⍋"
-        }
-    }
-
-    var buttonColor: UIColor {
-        UIColor(named: "\(Wrapped.self).\(self?.rawValue ?? "none")")!
     }
 }
