@@ -23,30 +23,31 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
     }
 
     func didTapSearchButton(word: String) async {
+        guard self.word != word else { return }
         self.word = word
         await view?.configure(item: .loading)
         fetch()
     }
 
     func didSelectRow(at index: Int) async {
-        let items = usecase.restore(word: word, order: order)
+        let items = usecase.cached(word: word, order: order)
         await router.showGitHubDetailViewController(item: items[index])
     }
 
     func didTapStarOderButton() async {
-        order.toggle()
+        self.order = order.toggled()
         await view?.configure(item: .loading, order: .init(order))
         fetch()
     }
 
     func willDisplayRow(at index: Int) async {
-        let items = usecase.restore(word: word, order: order)
+        let items = usecase.cached(word: word, order: order)
         guard index < items.count else {
             return
         }
         let item = items[index]
         let url = item.owner.avatarUrl
-        guard imageManaging.cacheImage(forKey: url) == nil else {
+        guard imageManaging.cachedImage(forKey: url) == nil else {
             return
         }
         let image = (try? await imageManaging.loadImage(with: url))
@@ -54,7 +55,10 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
         guard let index = items.firstIndex(where: { $0.id == item.id }) else {
             return
         }
-        await view?.configure(row: .init(item: item, image: image), at: index)
+        await view?.configure(
+            row: .init(item: item, image: image),
+            at: index
+        )
     }
 }
 
@@ -77,14 +81,14 @@ private extension GitHubSearchPresenter {
 
 // MARK: - StarSortingOrder
 private extension StarSortingOrder? {
-    mutating func toggle() {
+    func toggled() -> Self {
         switch self {
         case .none:
-            self = .desc
+            return .desc
         case .desc:
-            self = .asc
+            return .asc
         case .asc:
-            self = .none
+            return .none
         }
     }
 }

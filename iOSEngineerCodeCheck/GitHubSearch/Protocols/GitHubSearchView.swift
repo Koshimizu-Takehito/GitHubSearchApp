@@ -16,8 +16,15 @@ protocol GitHubSearchView: AnyObject {
     typealias TableRow = GitHubSearchViewItem.TableRow
     typealias Order = GitHubSearchViewItem.StarSortingOrder
 
+    func configure(order: Order)
     func configure(item: ViewItem)
-    func configure(item: ViewItem, order: Order)
     func configure(row: TableRow, at index: Int)
     func showAlert(error: Error)
+}
+
+extension GitHubSearchView {
+    func configure(item: ViewItem, order: Order) {
+        configure(item: item)
+        configure(order: order)
+    }
 }

@@ -11,6 +11,6 @@ import Foundation
 // MARK: - Usecase
 /// Usecase
 protocol GitHubSearchInputUsecase: AnyObject {
-    func restore(word: String, order: StarSortingOrder?) -> [Item]
+    func cached(word: String, order: StarSortingOrder?) -> [Item]
     func fetch(word: String, order: StarSortingOrder?) async -> Result<[Item], Error>
 }

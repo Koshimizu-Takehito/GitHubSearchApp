@@ -10,7 +10,7 @@ import Foundation
 import Kingfisher
 
 extension ImageCache: ImageCachable {
-    func cacheImage(forKey url: URL) -> UIImage? {
+    func cachedImage(forKey url: URL) -> UIImage? {
         retrieveImageInMemoryCache(forKey: url.cacheKey)
     }
 }

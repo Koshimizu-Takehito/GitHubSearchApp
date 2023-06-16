@@ -10,5 +10,5 @@ import Foundation
 import class UIKit.UIImage
 
 protocol ImageCachable {
-    func cacheImage(forKey url: URL) -> UIImage?
+    func cachedImage(forKey url: URL) -> UIImage?
 }

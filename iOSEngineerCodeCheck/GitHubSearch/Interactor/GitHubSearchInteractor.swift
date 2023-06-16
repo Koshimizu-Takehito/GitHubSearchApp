@@ -13,7 +13,7 @@ actor GitHubSearchInteractor: GitHubSearchInputUsecase {
     let session = Session.shared
     let repositiry = GitHubItemsOnMemoryRepositiry.shared
 
-    nonisolated func restore(word: String, order: StarSortingOrder?) -> [Item] {
+    nonisolated func cached(word: String, order: StarSortingOrder?) -> [Item] {
         repositiry.restore(for: .init(word: word, order: order)) ?? []
     }
 

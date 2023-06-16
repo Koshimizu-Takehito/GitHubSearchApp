@@ -46,24 +46,17 @@ private extension GitHubSearchViewController {
         setupNavigationBar(title: "ホーム")
     }
 
-    private func configure(order: Order) {
-        starOderButton.setTitle(order.title, for: .normal)
-        starOderButton.setBackgroundImage(order.image)
-    }
-
     @IBAction private func starOrderButton(_ sender: Any) {
         guard indicatorView.isHidden else { return }
-        Task { [weak presenter] in
-            await presenter?.didTapStarOderButton()
-        }
+        presenter.didTapStarOderButton()
     }
 }
 
 // MARK: - GitHubSearchView
 extension GitHubSearchViewController: GitHubSearchView {
-    func configure(item: ViewItem, order: Order) {
-        configure(item: item)
-        configure(order: order)
+    func configure(order: Order) {
+        starOderButton.setTitle(order.title, for: .normal)
+        starOderButton.setBackgroundImage(order.image)
     }
 
     func configure(item: ViewItem) {
@@ -97,9 +90,7 @@ extension GitHubSearchViewController: UISearchBarDelegate {
         guard let text = searchBar.text, !text.isEmpty, indicatorView.isHidden else { return }
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
-        Task { [weak presenter] in
-            await presenter?.didTapSearchButton(word: text)
-        }
+        presenter.didTapSearchButton(word: text)
     }
 
     // キャンセルボタンを表示
@@ -117,14 +108,10 @@ extension GitHubSearchViewController: UISearchBarDelegate {
 // MARK: - UITableViewDelegate
 extension GitHubSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Task { [weak presenter] in
-            await presenter?.didSelectRow(at: indexPath.row)
-        }
+        presenter.didSelectRow(at: indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        Task { [weak presenter] in
-            await presenter?.willDisplayRow(at: indexPath.row)
-        }
+        presenter.willDisplayRow(at: indexPath.row)
     }
 }

@@ -22,8 +22,8 @@ final class ImageManager: ImageManaging {
         self.cachable = cachable
     }
 
-    func cacheImage(forKey url: URL) -> UIImage? {
-        cachable.cacheImage(forKey: url)
+    func cachedImage(forKey url: URL) -> UIImage? {
+        cachable.cachedImage(forKey: url)
     }
 
     @discardableResult
