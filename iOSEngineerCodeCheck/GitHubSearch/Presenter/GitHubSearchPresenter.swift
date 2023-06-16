@@ -6,7 +6,7 @@
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
-final class GitHubSearchPresenter: GitHubSearchPresentation {
+actor GitHubSearchPresenter: GitHubSearchPresentation {
     private weak var view: GitHubSearchView?
     private let usecase: GitHubSearchInputUsecase
     private let router: GitHubSearchWireFrame
