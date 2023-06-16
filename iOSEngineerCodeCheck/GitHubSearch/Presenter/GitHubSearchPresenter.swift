@@ -41,6 +41,7 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
     }
 
     func willDisplayRow(at index: Int) async {
+        // TODO: Github画像用のサービスクラスを実装する
         let items = await usecase.cached(for: parameters)
         guard index < items.count else {
             return
