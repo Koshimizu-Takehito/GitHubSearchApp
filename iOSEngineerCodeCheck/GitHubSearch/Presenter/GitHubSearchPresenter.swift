@@ -84,7 +84,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
                 return
             }
             // ビューを更新
-            let viewItem = GitHubSearchViewRowItem(item: item, image: image)
+            let viewItem = GitHubSearchViewItem.TableRow(item: item, image: image)
             view?.configure(row: viewItem, at: index)
         }
     }

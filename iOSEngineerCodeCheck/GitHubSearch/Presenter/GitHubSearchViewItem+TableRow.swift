@@ -1,5 +1,5 @@
 //
-//  GitHubSearchViewRowItem.swift
+//  GitHubSearchViewItem+TableRow.swift
 //  iOSEngineerCodeCheck
 //
 //  Created by Takehito Koshimizu on 2023/06/14.
@@ -9,15 +9,17 @@
 import Foundation
 import class UIKit.UIImage
 
-struct GitHubSearchViewRowItem: Hashable, Identifiable {
-    let id: ItemID
-    let fullName: String
-    let language: String?
-    let stars: String
-    let avatarImage: UIImage?
+extension GitHubSearchViewItem {
+    struct TableRow: Hashable, Identifiable {
+        let id: ItemID
+        let fullName: String
+        let language: String?
+        let stars: String
+        let avatarImage: UIImage?
+    }
 }
 
-extension GitHubSearchViewRowItem {
+extension GitHubSearchViewItem.TableRow {
     init(item: Item, image: UIImage?) {
         self.init(
             id: item.id,
@@ -29,7 +31,7 @@ extension GitHubSearchViewRowItem {
     }
 }
 
-extension Array where Element == GitHubSearchViewRowItem {
+extension Array where Element == GitHubSearchViewItem.TableRow {
     init(items: [Item], imageLoader loder: ImageManaging) {
         self = items.map { item in
             .init(item: item, image: loder.cacheImage(forKey: item.owner.avatarUrl))

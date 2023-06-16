@@ -24,7 +24,7 @@ extension GitHubSearchViewItem {
     }
 
     struct Table {
-        var items: [GitHubSearchViewRowItem]?
+        var items: [TableRow]?
     }
 }
 

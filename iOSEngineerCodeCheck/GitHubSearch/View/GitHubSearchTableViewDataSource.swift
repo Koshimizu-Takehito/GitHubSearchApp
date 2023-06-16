@@ -10,18 +10,18 @@ import UIKit
 
 final class GitHubSearchTableViewDataSource: NSObject, UITableViewDataSource {
     private unowned let tableView: UITableView
-    private var items: [GitHubSearchViewRowItem] = []
+    private var items: [GitHubSearchViewItem.TableRow] = []
 
     init(tableView: UITableView) {
         self.tableView = tableView
     }
 
-    func reload(with items: [GitHubSearchViewRowItem]) {
+    func reload(with items: [GitHubSearchViewItem.TableRow]) {
         self.items = items
         self.tableView.reloadData()
     }
 
-    func replace(item: GitHubSearchViewRowItem, at index: Int) {
+    func replace(item: GitHubSearchViewItem.TableRow, at index: Int) {
         self.items[index] = item
         let indexPath = IndexPath(row: index, section: 0)
         if let cell: GitHubSearchTableViewCell = tableView.cellForRow(at: indexPath) {

@@ -54,11 +54,6 @@ private extension GitHubSearchViewController {
 
 // MARK: - GitHubSearchView
 extension GitHubSearchViewController: GitHubSearchView {
-    func configure(order: GitHubSearchViewItem.StarSortingOrder) {
-        starOderButton.setTitle(order.title, for: .normal)
-        starOderButton.setBackgroundImage(order.image)
-    }
-
     func configure(item: GitHubSearchViewItem) {
         DispatchQueue.main.async { [self] in
             indicatorView.setIsAnimating(item.loading.isAnimating)
@@ -69,10 +64,15 @@ extension GitHubSearchViewController: GitHubSearchView {
         }
     }
 
-    func configure(row: GitHubSearchViewRowItem, at index: Int) {
+    func configure(row: GitHubSearchViewItem.TableRow, at index: Int) {
         DispatchQueue.main.async { [dataSource] in
             dataSource.replace(item: row, at: index)
         }
+    }
+
+    func configure(order: GitHubSearchViewItem.StarSortingOrder) {
+        starOderButton.setTitle(order.title, for: .normal)
+        starOderButton.setBackgroundImage(order.image)
     }
 
     func showErrorAlert(error: Error) {
