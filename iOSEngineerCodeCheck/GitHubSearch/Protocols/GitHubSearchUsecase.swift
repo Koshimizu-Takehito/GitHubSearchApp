@@ -6,8 +6,6 @@
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
-import Foundation
-
 // MARK: - Usecase
 /// Usecase
 protocol GitHubSearchInputUsecase: AnyObject {

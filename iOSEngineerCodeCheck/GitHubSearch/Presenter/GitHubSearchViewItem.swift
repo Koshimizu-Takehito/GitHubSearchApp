@@ -6,8 +6,6 @@
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
-import Foundation
-
 struct GitHubSearchViewItem {
     var loading: Loading
     var emptyDescription: EmptyDescription

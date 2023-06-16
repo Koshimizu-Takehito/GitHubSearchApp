@@ -6,7 +6,6 @@
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
-import Foundation
 import Kingfisher
 import class UIKit.UIImage
 
