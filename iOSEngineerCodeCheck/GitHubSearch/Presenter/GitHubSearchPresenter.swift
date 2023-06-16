@@ -41,7 +41,7 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
 
     func didSelectRow(at index: Int) async {
         let items = usecase.restore(word: word, order: order)
-        router.showGitHubDetailViewController(item: items[index])
+        await router.showGitHubDetailViewController(item: items[index])
     }
 
     func didTapStarOderButton() async {
