@@ -8,13 +8,8 @@
 
 import Foundation
 
-struct GitHubItemsRepositiryKey: Hashable {
-    let word: String
-    let order: StarSortingOrder?
-}
-
 protocol GitHubItemsRepositiry {
-    typealias Key = GitHubItemsRepositiryKey
+    typealias Key = SearchParameters
     func save(items: [Item], for key: Key) async
     func restore(for key: Key) async -> [Item]?
 }

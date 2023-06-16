@@ -60,6 +60,7 @@
 		FB8628D82A3BC94E00F0AF4D /* UIButton+Extenisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8628D72A3BC94E00F0AF4D /* UIButton+Extenisons.swift */; };
 		FB8628DA2A3BD46300F0AF4D /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8628D92A3BD46300F0AF4D /* UITableView+Extensions.swift */; };
 		FB8628DD2A3BDA2400F0AF4D /* GitHubSearchViewItem+StarSortingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8628DC2A3BDA2400F0AF4D /* GitHubSearchViewItem+StarSortingOrder.swift */; };
+		FB8628DF2A3D1E9200F0AF4D /* SearchParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8628DE2A3D1E9200F0AF4D /* SearchParameters.swift */; };
 		FB8D49282A3525AC00BE68FB /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D49272A3525AC00BE68FB /* Cancelable.swift */; };
 		FB8D492A2A352B0900BE68FB /* ImageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D49292A352B0900BE68FB /* ImageLoadable.swift */; };
 		FB8D492C2A352B4B00BE68FB /* KingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */; };
@@ -149,6 +150,7 @@
 		FB8628D72A3BC94E00F0AF4D /* UIButton+Extenisons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extenisons.swift"; sourceTree = "<group>"; };
 		FB8628D92A3BD46300F0AF4D /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		FB8628DC2A3BDA2400F0AF4D /* GitHubSearchViewItem+StarSortingOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubSearchViewItem+StarSortingOrder.swift"; sourceTree = "<group>"; };
+		FB8628DE2A3D1E9200F0AF4D /* SearchParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParameters.swift; sourceTree = "<group>"; };
 		FB8D49272A3525AC00BE68FB /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		FB8D49292A352B0900BE68FB /* ImageLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadable.swift; sourceTree = "<group>"; };
 		FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherManager.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				FB3B0DB12A34239A009BE7D5 /* ItemID.swift */,
 				FB1BA7642A3359AE0003A317 /* Owner.swift */,
 				38F34E6929F91F7100120671 /* RepositoryItems.swift */,
+				FB8628DE2A3D1E9200F0AF4D /* SearchParameters.swift */,
 				388949C82A17E57100307A11 /* StarSortingOrder.swift */,
 			);
 			path = Entity;
@@ -786,6 +789,7 @@
 				38D37C732A168B88005EA7C6 /* GitHubDetailWireFrame.swift in Sources */,
 				38D37C712A168AE8005EA7C6 /* GitHubDetailPresentation.swift in Sources */,
 				3882C69A2A31D6B100FF5B9A /* GitHubDetailViewItem.swift in Sources */,
+				FB8628DF2A3D1E9200F0AF4D /* SearchParameters.swift in Sources */,
 				38F34E7429F920A300120671 /* GitHubDetailPresenter.swift in Sources */,
 				FB1BA75B2A3333770003A317 /* Assets.swift in Sources */,
 				FB8D49282A3525AC00BE68FB /* Cancelable.swift in Sources */,

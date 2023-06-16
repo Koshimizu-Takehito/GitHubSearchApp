@@ -9,6 +9,6 @@
 // MARK: - Usecase
 /// Usecase
 protocol GitHubSearchInputUsecase: AnyObject {
-    func cached(word: String, order: StarSortingOrder?) async -> [Item]
-    func fetch(word: String, order: StarSortingOrder?) async -> Result<[Item], Error>
+    func cached(for parameters: SearchParameters) async -> [Item]
+    func fetch(with parameters: SearchParameters) async -> Result<[Item], Error>
 }

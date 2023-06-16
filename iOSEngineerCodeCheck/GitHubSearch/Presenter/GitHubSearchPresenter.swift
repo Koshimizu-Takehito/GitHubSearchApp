@@ -7,41 +7,41 @@
 //
 
 actor GitHubSearchPresenter: GitHubSearchPresentation {
+    private var task: (any Cancelable)?
+    private var parameters = SearchParameters()
+
     private weak var view: GitHubSearchView?
     private let usecase: GitHubSearchInputUsecase
-    private let router: GitHubSearchWireFrame
+    private let wireFrame: GitHubSearchWireFrame
     private let imageManaging: ImageManaging
-    private var order: StarSortingOrder?
-    private var word = ""
-    private var task: (any Cancelable)?
 
     init(view: GitHubSearchView, usecase: GitHubSearchInputUsecase, wireFrame: GitHubSearchWireFrame, imageManaging: ImageManaging) {
         self.view = view
         self.usecase = usecase
-        self.router = wireFrame
+        self.wireFrame = wireFrame
         self.imageManaging = imageManaging
     }
 
     func didTapSearchButton(word: String) async {
-        guard self.word != word else { return }
-        self.word = word
+        guard parameters.word != word else { return }
+        parameters.word = word
         await view?.configure(item: .loading)
         fetch()
     }
 
     func didSelectRow(at index: Int) async {
-        let items = await usecase.cached(word: word, order: order)
-        await router.showGitHubDetailViewController(item: items[index])
+        let items = await usecase.cached(for: parameters)
+        await wireFrame.showGitHubDetailViewController(item: items[index])
     }
 
     func didTapStarOderButton() async {
-        self.order = order.toggled()
-        await view?.configure(item: .loading, order: .init(order))
+        parameters.order.toggle()
+        await view?.configure(item: .loading, order: .init(parameters.order))
         fetch()
     }
 
     func willDisplayRow(at index: Int) async {
-        let items = await usecase.cached(word: word, order: order)
+        let items = await usecase.cached(for: parameters)
         guard index < items.count else {
             return
         }
@@ -66,8 +66,8 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
 private extension GitHubSearchPresenter {
     func fetch() {
         task?.cancel()
-        task = Task { [usecase, imageManaging, word, order, weak view] in
-            switch await usecase.fetch(word: word, order: order) {
+        task = Task { [usecase, imageManaging, parameters, weak view] in
+            switch await usecase.fetch(with: parameters) {
             case .success(let items) where items.isEmpty:
                 await view?.configure(item: .empty)
             case .success(let items):
@@ -81,14 +81,14 @@ private extension GitHubSearchPresenter {
 
 // MARK: - StarSortingOrder
 private extension StarSortingOrder? {
-    func toggled() -> Self {
+    mutating func toggle() {
         switch self {
         case .none:
-            return .desc
+            self = .desc
         case .desc:
-            return .asc
+            self = .asc
         case .asc:
-            return .none
+            self = .none
         }
     }
 }
