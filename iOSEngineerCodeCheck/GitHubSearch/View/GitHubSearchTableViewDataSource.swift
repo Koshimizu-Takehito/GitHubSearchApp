@@ -8,6 +8,7 @@
 
 import UIKit
 
+@MainActor
 final class GitHubSearchTableViewDataSource: NSObject, UITableViewDataSource {
     private unowned let tableView: UITableView
     private var items: [GitHubSearchViewItem.TableRow] = []

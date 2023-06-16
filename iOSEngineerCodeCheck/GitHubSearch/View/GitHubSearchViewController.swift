@@ -71,8 +71,10 @@ extension GitHubSearchViewController: GitHubSearchView {
     }
 
     func configure(order: GitHubSearchViewItem.StarSortingOrder) {
-        starOderButton.setTitle(order.title, for: .normal)
-        starOderButton.setBackgroundImage(order.image)
+        DispatchQueue.main.async { [self] in
+            starOderButton.setTitle(order.title, for: .normal)
+            starOderButton.setBackgroundImage(order.image)
+        }
     }
 
     func showErrorAlert(error: Error) {
