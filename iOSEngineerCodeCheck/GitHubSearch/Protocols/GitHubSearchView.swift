@@ -9,6 +9,7 @@
 import Foundation
 
 // MARK: - View
+@MainActor
 protocol GitHubSearchView: AnyObject {
     func configure(item: GitHubSearchViewItem)
     func configure(row: GitHubSearchViewItem.TableRow, at index: Int)

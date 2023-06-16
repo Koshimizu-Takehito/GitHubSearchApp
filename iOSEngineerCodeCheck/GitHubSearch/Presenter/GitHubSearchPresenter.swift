@@ -32,61 +32,45 @@ final class GitHubSearchPresenter {
         self.imageLoadable = imageLoadable
     }
 }
-// MARK: - GitHubSearchPresentationプロトコルに関する -
+// MARK: - GitHubSearchPresentation
 extension GitHubSearchPresenter: GitHubSearchPresentation {
-    /// 検索ボタンのタップを検知。 GitHubデータのリセット。ローディングの開始。GitHubデータの取得を通知。
-    func didTapSearchButton(word: String) {
+    func didTapSearchButton(word: String) async {
         guard let view else { return }
         self.task?.cancel()
         self.items = []
         self.word = word
-        view.configure(item: .loading)
+        await view.configure(item: .loading)
         fetch()
     }
 
-    /// テキスト変更を検知。GitHubデータと画面の状態をリセット。タスクのキャンセル
-    func didClearSearchText() {
-        guard let view else { return }
-        self.task?.cancel()
-        self.items = []
-        self.word = ""
-        view.configure(item: .initial)
+    func didClearSearchText() async {
+        task?.cancel()
+        items = []
+        word = ""
+        await view?.configure(item: .initial)
     }
 
-    /// セルタップの検知。DetailVCへ画面遷移通知。
-    func didSelectRow(at index: Int) {
+    func didSelectRow(at index: Int) async {
         let item = items[index]
         router.showGitHubDetailViewController(item: item)
     }
 
-    /// スター数順の変更ボタンのタップを検知。(スター数で降順・昇順を切り替え)
-    func didTapStarOderButton() {
-        guard let view else { return }
-        self.task?.cancel()
-        self.items = []
+    func didTapStarOderButton() async {
+        task?.cancel()
+        items = []
         order.toggle()
-        view.configure(order: .init(order))
-        view.configure(item: .loading)
+        await view?.configure(order: .init(order))
+        await view?.configure(item: .loading)
         fetch()
     }
 
-    func willDisplayRow(at index: Int) {
-        Task { [weak self, weak view, loadable = imageLoadable, items] in
-            let item = items[index]
-            // 取得済みの場合はサムネイル取得処理をスキップ
-            guard loadable.cacheImage(forKey: item.owner.avatarUrl) == nil else {
-                return
-            }
-            // サムネイル取得処理を実行
-            let image = (try? await loadable.loadImage(with: item.owner.avatarUrl)) ?? Asset.Images.untitled.image
-            // 取得完了時の該当インデックスを探索
-            guard let index = self?.items.firstIndex(where: { $0.id == item.id }) else {
-                return
-            }
-            // ビューを更新
-            let viewItem = GitHubSearchViewItem.TableRow(item: item, image: image)
-            view?.configure(row: viewItem, at: index)
-        }
+    func willDisplayRow(at index: Int) async {
+        let item = items[index]
+        guard imageLoadable.cacheImage(forKey: item.owner.avatarUrl) == nil else { return }
+        let image = (try? await imageLoadable.loadImage(with: item.owner.avatarUrl)) ?? Asset.Images.untitled.image
+        guard let index = items.firstIndex(where: { $0.id == item.id }) else { return }
+        let viewItem = GitHubSearchViewItem.TableRow(item: item, image: image)
+        await view?.configure(row: viewItem, at: index)
     }
 }
 
@@ -95,19 +79,19 @@ private extension GitHubSearchPresenter {
         task = Task { [usecase, imageLoadable, word, order, weak view, weak self] in
             switch await usecase.fetch(word: word, order: order) {
             case .success(let items) where items.isEmpty:
-                view?.configure(item: .empty)
+                await view?.configure(item: .empty)
             case .success(let items):
                 self?.items = items
-                view?.configure(item: .list(items: items, imageLoader: imageLoadable))
+                await view?.configure(item: .list(items: items, imageLoader: imageLoadable))
             case .failure(let error):
-                view?.showErrorAlert(error: error)
+                await view?.showErrorAlert(error: error)
             }
         }
     }
 }
 
 // MARK: - StarSortingOrder
-private extension Optional<StarSortingOrder> {
+private extension StarSortingOrder? {
     mutating func toggle() {
         switch self {
         case .none:
