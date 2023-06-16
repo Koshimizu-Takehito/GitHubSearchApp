@@ -23,7 +23,6 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
     }
 
     func didTapSearchButton(word: String) async {
-        self.task?.cancel()
         self.word = word
         await view?.configure(item: .loading)
         fetch()
