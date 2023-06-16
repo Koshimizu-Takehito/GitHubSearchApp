@@ -29,7 +29,7 @@ extension GitHubSearchRouter: GitHubSearchWireFrame {
         return view
     }
 
-    func showGitHubDetailViewController(item: Item) {
+    func showDetail(item: Item) {
         let destination = GitHubDetailRouter.assembleModules(item: item)
         viewController?.navigationController?.pushViewController(destination, animated: true)
     }

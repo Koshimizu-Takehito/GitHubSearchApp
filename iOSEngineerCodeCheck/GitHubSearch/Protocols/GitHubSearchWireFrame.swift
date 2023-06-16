@@ -12,5 +12,5 @@ import class UIKit.UIViewController
 /// Router
 @MainActor
 protocol GitHubSearchWireFrame: AnyObject {
-    func showGitHubDetailViewController(item: Item)
+    func showDetail(item: Item)
 }
