@@ -10,16 +10,14 @@ import Foundation
 
 // Presenter
 protocol GitHubSearchPresentation: AnyObject {
-    var numberOfRow: Int { get }
     /// サーチボタンのタップ通知
-    func searchButtonDidPush(word: String)
-    /// 検索テキストの変更を通知
-    func searchTextDidChange()
+    func didTapSearchButton(word: String)
+    /// 検索テキストの削除を通知
+    func didClearSearchText()
     /// セルタップを通知
     func didSelectRow(at index: Int)
     /// お気に入り順のボタンタップを通知
-    func starOderButtonDidPush()
-
-    func item(at index: Int) -> GitHubSearchViewItem
-    func fetchImage(at index: Int)
+    func didTapStarOderButton()
+    /// セルの表示直前であることを通知
+    func willDisplayRow(at index: Int)
 }

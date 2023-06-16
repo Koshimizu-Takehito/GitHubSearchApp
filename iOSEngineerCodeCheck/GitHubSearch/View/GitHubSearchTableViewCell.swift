@@ -14,8 +14,6 @@ final class GitHubSearchTableViewCell: UITableViewCell {
     @IBOutlet private weak var fullNameLabel: UILabel!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var starsLabel: UILabel!
-    /// テーブルビューセルのID名
-    static let identifier = "GitHubSearchCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,8 +23,8 @@ final class GitHubSearchTableViewCell: UITableViewCell {
 
 extension GitHubSearchTableViewCell {
     /// 初期画面の構成
-    func configure(item: GitHubSearchViewItem) {
-        avatarImageView.setImageWithAnimation(item.avatarImageView)
+    func configure(item: GitHubSearchViewItem.TableRow) {
+        avatarImageView.setImageWithAnimation(item.avatarImage)
         fullNameLabel.text = item.fullName
         languageLabel.text = item.language
         starsLabel.text = item.stars

@@ -21,14 +21,17 @@ actor GitHubSearchInteractor: GitHubSearchInputUsecase {
             .firstIndex(of: id)
     }
 
-    nonisolated func restore(word: String, order: StarSortingOrder?) -> [Item]? {
-        repositiry.restore(for: .init(word: word, order: order))
+    nonisolated func restore(word: String, order: StarSortingOrder?) -> [Item] {
+        repositiry.restore(for: .init(word: word, order: order)) ?? []
     }
 
     func fetch(word: String, order: StarSortingOrder?) async -> Result<[Item], Error> {
         do {
-            let request = GetSearchRepositoriesRequest(word: word, order: order)
-            let items = try await session.send(request).items
+            var items: [Item] = []
+            if !word.isEmpty {
+                let request = GetSearchRepositoriesRequest(word: word, order: order)
+                items = try await session.send(request).items
+            }
             repositiry.save(items: items, for: .init(word: word, order: order))
             return .success(items)
         } catch {

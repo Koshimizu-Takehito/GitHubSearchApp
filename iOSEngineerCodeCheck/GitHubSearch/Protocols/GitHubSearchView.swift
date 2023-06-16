@@ -8,13 +8,10 @@
 
 import Foundation
 
-// View
+// MARK: - View
 protocol GitHubSearchView: AnyObject {
-    func startLoading()
-    func reloadTableView()
-    func resetDisplay()
+    func configure(item: GitHubSearchViewItem)
+    func configure(row: GitHubSearchViewItem.TableRow, at index: Int)
+    func configure(order: GitHubSearchViewItem.StarSortingOrder)
     func showErrorAlert(error: Error)
-    func showEmptyMessage()
-    func configure(order: StarSortingOrder?)
-    func configure(item: GitHubSearchViewItem, at index: Int)
 }

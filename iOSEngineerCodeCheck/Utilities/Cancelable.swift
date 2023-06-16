@@ -20,3 +20,6 @@ extension Optional: Cancelable where Wrapped: Cancelable {
 
 extension URLSessionTask: Cancelable {
 }
+
+extension Task: Cancelable {
+}
