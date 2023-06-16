@@ -1,5 +1,5 @@
 //
-//  GitHubRepositoryListCachedRepository.swift
+//  GitHubItemsOnMemoryRepositiry.swift
 //  iOSEngineerCodeCheck
 //
 //  Created by akio0911 on 2023/06/10.
