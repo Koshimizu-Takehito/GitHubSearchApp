@@ -39,14 +39,19 @@ final class GitHubSearchViewController: UIViewController {
 }
 
 private extension GitHubSearchViewController {
-    func setUp() {
+    private func setUp() {
         tableView.dataSource = dataSource
         configure(order: .none)
         configure(item: .initial)
         setupNavigationBar(title: "ホーム")
     }
 
-    @IBAction func starOrderButton(_ sender: Any) {
+    private func configure(order: Order) {
+        starOderButton.setTitle(order.title, for: .normal)
+        starOderButton.setBackgroundImage(order.image)
+    }
+
+    @IBAction private func starOrderButton(_ sender: Any) {
         guard indicatorView.isHidden else { return }
         Task { [weak presenter] in
             await presenter?.didTapStarOderButton()
@@ -56,7 +61,12 @@ private extension GitHubSearchViewController {
 
 // MARK: - GitHubSearchView
 extension GitHubSearchViewController: GitHubSearchView {
-    func configure(item: GitHubSearchViewItem) {
+    func configure(item: ViewItem, order: Order) {
+        configure(item: item)
+        configure(order: order)
+    }
+
+    func configure(item: ViewItem) {
         indicatorView.setIsAnimating(item.loading.isAnimating)
         emptyDescriptionLabel.isHidden = item.emptyDescription.isHidden
         if let items = item.table.items {
@@ -64,13 +74,8 @@ extension GitHubSearchViewController: GitHubSearchView {
         }
     }
 
-    func configure(row: GitHubSearchViewItem.TableRow, at index: Int) {
+    func configure(row: TableRow, at index: Int) {
         dataSource.replace(item: row, at: index)
-    }
-
-    func configure(order: GitHubSearchViewItem.StarSortingOrder) {
-        starOderButton.setTitle(order.title, for: .normal)
-        starOderButton.setBackgroundImage(order.image)
     }
 
     func showErrorAlert(error: Error) {

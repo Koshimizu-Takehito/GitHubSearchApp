@@ -11,8 +11,12 @@ import Foundation
 // MARK: - View
 @MainActor
 protocol GitHubSearchView: AnyObject {
-    func configure(item: GitHubSearchViewItem)
-    func configure(row: GitHubSearchViewItem.TableRow, at index: Int)
-    func configure(order: GitHubSearchViewItem.StarSortingOrder)
+    typealias ViewItem = GitHubSearchViewItem
+    typealias TableRow = GitHubSearchViewItem.TableRow
+    typealias Order = GitHubSearchViewItem.StarSortingOrder
+
+    func configure(item: ViewItem)
+    func configure(item: ViewItem, order: Order)
+    func configure(row: TableRow, at index: Int)
     func showErrorAlert(error: Error)
 }

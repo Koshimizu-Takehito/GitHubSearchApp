@@ -46,8 +46,7 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
 
     func didTapStarOderButton() async {
         order.toggle()
-        await view?.configure(order: .init(order))
-        await view?.configure(item: .loading)
+        await view?.configure(item: .loading, order: .init(order))
         fetch()
     }
 
