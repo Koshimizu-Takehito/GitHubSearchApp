@@ -16,15 +16,15 @@ final class GitHubSearchRouter {
     }
 }
 
-extension GitHubSearchRouter: GitHubSearchWireFrame {
+extension GitHubSearchRouter: GitHubSearchRouting {
     static func assembleModules() -> UIViewController {
         let view = StoryboardScene.GitHubSearch.initialScene.instantiate()
         let router = GitHubSearchRouter(viewController: view)
         view.presenter = GitHubSearchPresenter(
             view: view,
             usecase: GitHubSearchInteractor(),
-            wireFrame: router,
-            imageManaging: ImageManager()
+            router: router,
+            imageManager: ImageManager()
         )
         return view
     }

@@ -12,14 +12,14 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
 
     private weak var view: GitHubSearchView?
     private let usecase: GitHubSearchInputUsecase
-    private let wireFrame: GitHubSearchWireFrame
-    private let imageManaging: ImageManaging
+    private let router: GitHubSearchRouting
+    private let imageManager: ImageManaging
 
-    init(view: GitHubSearchView, usecase: GitHubSearchInputUsecase, wireFrame: GitHubSearchWireFrame, imageManaging: ImageManaging) {
+    init(view: GitHubSearchView, usecase: GitHubSearchInputUsecase, router: GitHubSearchRouting, imageManager: ImageManaging) {
         self.view = view
         self.usecase = usecase
-        self.wireFrame = wireFrame
-        self.imageManaging = imageManaging
+        self.router = router
+        self.imageManager = imageManager
     }
 
     func didTapSearchButton(word: String) async {
@@ -31,7 +31,7 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
 
     func didSelectRow(at index: Int) async {
         let items = await usecase.cached(for: parameters)
-        await wireFrame.showDetail(item: items[index])
+        await router.showDetail(item: items[index])
     }
 
     func didTapStarOderButton() async {
@@ -48,18 +48,15 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
         }
         let item = items[index]
         let url = item.owner.avatarUrl
-        guard imageManaging.cachedImage(forKey: url) == nil else {
+        guard imageManager.cachedImage(forKey: url) == nil else {
             return
         }
-        let image = (try? await imageManaging.loadImage(with: url))
+        let image = (try? await imageManager.loadImage(with: url))
             ?? Asset.Images.untitled.image
         guard let index = items.firstIndex(where: { $0.id == item.id }) else {
             return
         }
-        await view?.configure(
-            row: .init(item: item, image: image),
-            at: index
-        )
+        await view?.configure(row: .init(item: item, image: image), at: index)
     }
 }
 
@@ -67,12 +64,12 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
 private extension GitHubSearchPresenter {
     func fetch() {
         task?.cancel()
-        task = Task { [usecase, imageManaging, parameters, weak view] in
+        task = Task { [usecase, imageManager, parameters, weak view] in
             switch await usecase.fetch(with: parameters) {
             case .success(let items) where items.isEmpty:
                 await view?.configure(item: .empty)
             case .success(let items):
-                await view?.configure(item: .list(items: items, cachable: imageManaging))
+                await view?.configure(item: .list(items: items, cachable: imageManager))
             case .failure(let error):
                 await view?.showAlert(error: error)
             }

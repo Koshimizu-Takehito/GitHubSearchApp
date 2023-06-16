@@ -1,5 +1,5 @@
 //
-//  GitHubSearchWireFrame.swift
+//  GitHubSearchRouting.swift
 //  iOSEngineerCodeCheck
 //
 //  Created by 日高隼人 on 2023/05/19.
@@ -11,6 +11,6 @@ import class UIKit.UIViewController
 // MARK: - Router
 /// Router
 @MainActor
-protocol GitHubSearchWireFrame: AnyObject {
+protocol GitHubSearchRouting: AnyObject {
     func showDetail(item: Item)
 }
