@@ -10,21 +10,16 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
     private weak var view: GitHubSearchView?
     private let usecase: GitHubSearchInputUsecase
     private let router: GitHubSearchWireFrame
-    private let imageLoadable: ImageManaging
+    private let imageManaging: ImageManaging
     private var order: StarSortingOrder?
-    private var word: String = ""
+    private var word = ""
     private var task: (any Cancelable)?
 
-    init(
-        view: GitHubSearchView,
-        usecase: GitHubSearchInputUsecase,
-        wireFrame: GitHubSearchWireFrame,
-        imageLoadable: ImageManaging = ImageManager()
-    ) {
+    init(view: GitHubSearchView, usecase: GitHubSearchInputUsecase, wireFrame: GitHubSearchWireFrame, imageManaging: ImageManaging) {
         self.view = view
         self.usecase = usecase
         self.router = wireFrame
-        self.imageLoadable = imageLoadable
+        self.imageManaging = imageManaging
     }
 
     func didTapSearchButton(word: String) async {
@@ -52,11 +47,19 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
 
     func willDisplayRow(at index: Int) async {
         let items = usecase.restore(word: word, order: order)
-        guard index < items.count else { return }
+        guard index < items.count else {
+            return
+        }
         let item = items[index]
-        guard imageLoadable.cacheImage(forKey: item.owner.avatarUrl) == nil else { return }
-        let image = (try? await imageLoadable.loadImage(with: item.owner.avatarUrl)) ?? Asset.Images.untitled.image
-        guard let index = items.firstIndex(where: { $0.id == item.id }) else { return }
+        let url = item.owner.avatarUrl
+        guard imageManaging.cacheImage(forKey: url) == nil else {
+            return
+        }
+        let image = (try? await imageManaging.loadImage(with: url))
+            ?? Asset.Images.untitled.image
+        guard let index = items.firstIndex(where: { $0.id == item.id }) else {
+            return
+        }
         await view?.configure(row: .init(item: item, image: image), at: index)
     }
 }
@@ -65,14 +68,14 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
 private extension GitHubSearchPresenter {
     func fetch() {
         task?.cancel()
-        task = Task { [usecase, imageLoadable, word, order, weak view] in
+        task = Task { [usecase, imageManaging, word, order, weak view] in
             switch await usecase.fetch(word: word, order: order) {
             case .success(let items) where items.isEmpty:
                 await view?.configure(item: .empty)
             case .success(let items):
-                await view?.configure(item: .list(items: items, imageLoader: imageLoadable))
+                await view?.configure(item: .list(items: items, cachable: imageManaging))
             case .failure(let error):
-                await view?.showErrorAlert(error: error)
+                await view?.showAlert(error: error)
             }
         }
     }

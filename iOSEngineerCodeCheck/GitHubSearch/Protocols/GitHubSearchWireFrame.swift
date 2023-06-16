@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - Router
 /// Router
 @MainActor
 protocol GitHubSearchWireFrame: AnyObject {

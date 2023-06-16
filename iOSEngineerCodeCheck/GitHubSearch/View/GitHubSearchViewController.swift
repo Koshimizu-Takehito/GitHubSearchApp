@@ -78,7 +78,7 @@ extension GitHubSearchViewController: GitHubSearchView {
         dataSource.replace(item: row, at: index)
     }
 
-    func showErrorAlert(error: Error) {
+    func showAlert(error: Error) {
         configure(item: .initial)
         presentAlertController(error: error)
     }

@@ -57,9 +57,9 @@ extension GitHubSearchViewItem {
     }
 
     /// 検索結果のリストを表現した ViewItem
-    static func list(items entities: [Item], imageLoader: ImageManaging) -> Self {
+    static func list(items entities: [Item], cachable: ImageCachable) -> Self {
         var item = GitHubSearchViewItem.initial
-        item.table.items = .init(items: entities, imageLoader: imageLoader)
+        item.table.items = .init(items: entities, cachable: cachable)
         return item
     }
 }

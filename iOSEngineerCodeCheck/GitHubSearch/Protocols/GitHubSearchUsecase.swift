@@ -8,8 +8,9 @@
 
 import Foundation
 
-// Interactor インプット
+// MARK: - Usecase
+/// Usecase
 protocol GitHubSearchInputUsecase: AnyObject {
-    func fetch(word: String, order: StarSortingOrder?) async -> Result<[Item], Error>
     func restore(word: String, order: StarSortingOrder?) -> [Item]
+    func fetch(word: String, order: StarSortingOrder?) async -> Result<[Item], Error>
 }

@@ -8,7 +8,8 @@
 
 import Foundation
 
-// Presenter
+// MARK: - Presenter
+/// Presenter
 protocol GitHubSearchPresentation: AnyObject {
     /// サーチボタンのタップ通知
     func didTapSearchButton(word: String) async
