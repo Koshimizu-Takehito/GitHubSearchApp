@@ -23,7 +23,8 @@ final class GitHubSearchTableViewDataSource: NSObject, UITableViewDataSource {
     }
 
     func replace(item: GitHubSearchViewItem.TableRow, at index: Int) {
-        self.items[index] = item
+        guard index < items.count, items[index].id == item.id else { return }
+        items[index] = item
         let indexPath = IndexPath(row: index, section: 0)
         if let cell: GitHubSearchTableViewCell = tableView.cellForRow(at: indexPath) {
             cell.configure(item: item)

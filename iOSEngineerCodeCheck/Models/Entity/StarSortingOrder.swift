@@ -10,6 +10,6 @@ import Foundation
 
 /// Githubスター数のソート順
 enum StarSortingOrder: String {
-    case desc
     case asc
+    case desc
 }
