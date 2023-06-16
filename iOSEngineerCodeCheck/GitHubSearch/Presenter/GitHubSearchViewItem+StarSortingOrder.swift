@@ -18,12 +18,12 @@ extension GitHubSearchViewItem {
 }
 
 extension GitHubSearchViewItem.StarSortingOrder {
-    init(order: StarSortingOrder?) {
+    init(_ order: StarSortingOrder?) {
         self.init(title: order.title, image: .image(color: order.color))
     }
 
     static var none: Self {
-        self.init(order: .none)
+        self.init(.none)
     }
 }
 

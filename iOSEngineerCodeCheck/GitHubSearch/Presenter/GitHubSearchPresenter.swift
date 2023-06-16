@@ -17,7 +17,7 @@ final class GitHubSearchPresenter {
     private var order: StarSortingOrder?
     private var word: String = ""
 
-    private var items: [Item] = []
+    private var items: [Item] = [] // TODO: 削除
     private var task: (any Cancelable)?
 
     init(
@@ -65,7 +65,7 @@ extension GitHubSearchPresenter: GitHubSearchPresentation {
         self.task?.cancel()
         self.items = []
         order.toggle()
-        view.configure(order: .init(order: order))
+        view.configure(order: .init(order))
         view.configure(item: .loading)
         fetch()
     }
