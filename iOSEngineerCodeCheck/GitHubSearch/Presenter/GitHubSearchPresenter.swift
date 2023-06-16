@@ -53,6 +53,7 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
 
     func willDisplayRow(at index: Int) async {
         let items = usecase.restore(word: word, order: order)
+        guard index < items.count else { return }
         let item = items[index]
         guard imageLoadable.cacheImage(forKey: item.owner.avatarUrl) == nil else { return }
         let image = (try? await imageLoadable.loadImage(with: item.owner.avatarUrl)) ?? Asset.Images.untitled.image
