@@ -10,20 +10,20 @@ import Foundation
 import Kingfisher
 import class UIKit.UIImage
 
-protocol ImageManaging: ImageLoadable, CacheImageRetrievable {
+protocol ImageManaging: ImageLoadable, ImageCachable {
 }
 
 final class ImageManager: ImageManaging {
     let loadable: any ImageLoadable
-    let cachable: any CacheImageRetrievable
+    let cachable: any ImageCachable
 
-    init(loadable: any ImageLoadable = KingfisherManager.shared, cachable: any CacheImageRetrievable = ImageCache.default) {
+    init(loadable: any ImageLoadable = KingfisherManager.shared, cachable: any ImageCachable = ImageCache.default) {
         self.loadable = loadable
         self.cachable = cachable
     }
 
-    func cacheImage(forKey url: URL) -> UIImage? {
-        cachable.cacheImage(forKey: url)
+    func cachedImage(forKey url: URL) -> UIImage? {
+        cachable.cachedImage(forKey: url)
     }
 
     @discardableResult

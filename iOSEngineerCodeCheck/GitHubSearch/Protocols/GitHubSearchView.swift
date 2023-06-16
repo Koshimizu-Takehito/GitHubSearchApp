@@ -9,10 +9,22 @@
 import Foundation
 
 // MARK: - View
+/// View
 @MainActor
 protocol GitHubSearchView: AnyObject {
-    func configure(item: GitHubSearchViewItem)
-    func configure(row: GitHubSearchViewItem.TableRow, at index: Int)
-    func configure(order: GitHubSearchViewItem.StarSortingOrder)
-    func showErrorAlert(error: Error)
+    typealias ViewItem = GitHubSearchViewItem
+    typealias TableRow = GitHubSearchViewItem.TableRow
+    typealias Order = GitHubSearchViewItem.StarSortingOrder
+
+    func configure(order: Order)
+    func configure(item: ViewItem)
+    func configure(row: TableRow, at index: Int)
+    func showAlert(error: Error)
+}
+
+extension GitHubSearchView {
+    func configure(item: ViewItem, order: Order) {
+        configure(item: item)
+        configure(order: order)
+    }
 }

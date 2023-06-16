@@ -8,7 +8,9 @@
 
 import UIKit
 
-// Router
+// MARK: - Router
+/// Router
+@MainActor
 protocol GitHubSearchWireFrame: AnyObject {
     static func assembleModules() -> UIViewController
     func showGitHubDetailViewController(item: Item)

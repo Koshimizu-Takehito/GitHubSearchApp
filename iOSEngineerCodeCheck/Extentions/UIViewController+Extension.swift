@@ -10,12 +10,11 @@ import UIKit
 
 extension UIViewController {
     ///  API通信。失敗した場合のエラーのアラート
+    @MainActor
     func presentAlertController(error: Error) {
-        DispatchQueue.main.async { [weak self] in
-            let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self?.present(alert, animated: true, completion: nil)
-        }
+        let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(.init(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 
     /// GitHubSearchViewControllerで使用する

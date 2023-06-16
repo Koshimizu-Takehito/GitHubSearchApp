@@ -19,16 +19,18 @@ final class GitHubSearchRouter {
 extension GitHubSearchRouter: GitHubSearchWireFrame {
     static func assembleModules() -> UIViewController {
         let view = StoryboardScene.GitHubSearch.initialScene.instantiate()
-        let interactor = GitHubSearchInteractor()
         let router = GitHubSearchRouter(viewController: view)
-        let presenter = GitHubSearchPresenter(view: view, usecase: interactor, wireFrame: router)
-        view.presenter = presenter
+        view.presenter = GitHubSearchPresenter(
+            view: view,
+            usecase: GitHubSearchInteractor(),
+            wireFrame: router,
+            imageManaging: ImageManager()
+        )
         return view
     }
 
     func showGitHubDetailViewController(item: Item) {
-        // GitHubのデータはここで持たせて次の画面に渡します。
-        let gitHubDetailRouterViewController = GitHubDetailRouter.assembleModules(item: item)
-        viewController?.navigationController?.pushViewController(gitHubDetailRouterViewController, animated: true)
+        let destination = GitHubDetailRouter.assembleModules(item: item)
+        viewController?.navigationController?.pushViewController(destination, animated: true)
     }
 }

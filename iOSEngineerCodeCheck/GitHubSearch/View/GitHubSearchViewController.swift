@@ -39,24 +39,27 @@ final class GitHubSearchViewController: UIViewController {
 }
 
 private extension GitHubSearchViewController {
-    func setUp() {
+    private func setUp() {
         tableView.dataSource = dataSource
         configure(order: .none)
         configure(item: .initial)
         setupNavigationBar(title: "ホーム")
     }
 
-    @IBAction func starOrderButton(_ sender: Any) {
+    @IBAction private func starOrderButton(_ sender: Any) {
         guard indicatorView.isHidden else { return }
-        Task { [weak presenter] in
-            await presenter?.didTapStarOderButton()
-        }
+        presenter.didTapStarOderButton()
     }
 }
 
 // MARK: - GitHubSearchView
 extension GitHubSearchViewController: GitHubSearchView {
-    func configure(item: GitHubSearchViewItem) {
+    func configure(order: Order) {
+        starOderButton.setTitle(order.title, for: .normal)
+        starOderButton.setBackgroundImage(order.image)
+    }
+
+    func configure(item: ViewItem) {
         indicatorView.setIsAnimating(item.loading.isAnimating)
         emptyDescriptionLabel.isHidden = item.emptyDescription.isHidden
         if let items = item.table.items {
@@ -64,16 +67,11 @@ extension GitHubSearchViewController: GitHubSearchView {
         }
     }
 
-    func configure(row: GitHubSearchViewItem.TableRow, at index: Int) {
+    func configure(row: TableRow, at index: Int) {
         dataSource.replace(item: row, at: index)
     }
 
-    func configure(order: GitHubSearchViewItem.StarSortingOrder) {
-        starOderButton.setTitle(order.title, for: .normal)
-        starOderButton.setBackgroundImage(order.image)
-    }
-
-    func showErrorAlert(error: Error) {
+    func showAlert(error: Error) {
         configure(item: .initial)
         presentAlertController(error: error)
     }
@@ -83,9 +81,7 @@ extension GitHubSearchViewController: GitHubSearchView {
 extension GitHubSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            Task { [weak presenter] in
-                await presenter?.didClearSearchText()
-            }
+            configure(item: .initial)
         }
     }
 
@@ -94,9 +90,7 @@ extension GitHubSearchViewController: UISearchBarDelegate {
         guard let text = searchBar.text, !text.isEmpty, indicatorView.isHidden else { return }
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
-        Task { [weak presenter] in
-            await presenter?.didTapSearchButton(word: text)
-        }
+        presenter.didTapSearchButton(word: text)
     }
 
     // キャンセルボタンを表示
@@ -114,14 +108,10 @@ extension GitHubSearchViewController: UISearchBarDelegate {
 // MARK: - UITableViewDelegate
 extension GitHubSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Task { [weak presenter] in
-            await presenter?.didSelectRow(at: indexPath.row)
-        }
+        presenter.didSelectRow(at: indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        Task { [weak presenter] in
-            await presenter?.willDisplayRow(at: indexPath.row)
-        }
+        presenter.willDisplayRow(at: indexPath.row)
     }
 }

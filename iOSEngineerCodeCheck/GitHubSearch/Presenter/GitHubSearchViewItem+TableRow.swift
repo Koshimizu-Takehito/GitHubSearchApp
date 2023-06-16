@@ -32,9 +32,9 @@ extension GitHubSearchViewItem.TableRow {
 }
 
 extension Array where Element == GitHubSearchViewItem.TableRow {
-    init(items: [Item], imageLoader loder: ImageManaging) {
+    init(items: [Item], cachable: ImageCachable) {
         self = items.map { item in
-            .init(item: item, image: loder.cacheImage(forKey: item.owner.avatarUrl))
+            .init(item: item, image: cachable.cachedImage(forKey: item.owner.avatarUrl))
         }
     }
 }

@@ -50,7 +50,7 @@
 		FB1BA76A2A335BDC0003A317 /* SimpleDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA7692A335BDC0003A317 /* SimpleDataParser.swift */; };
 		FB1BA76C2A33644D0003A317 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA76B2A33644D0003A317 /* Session.swift */; };
 		FB3B0DB22A34239A009BE7D5 /* ItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B0DB12A34239A009BE7D5 /* ItemID.swift */; };
-		FB6CD1952A35366800F36BB6 /* CacheImageRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CD1942A35366800F36BB6 /* CacheImageRetrievable.swift */; };
+		FB6CD1952A35366800F36BB6 /* ImageCachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CD1942A35366800F36BB6 /* ImageCachable.swift */; };
 		FB6CD1972A35368D00F36BB6 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CD1962A35368D00F36BB6 /* ImageCache.swift */; };
 		FB6CD1992A35669500F36BB6 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6CD1982A35669500F36BB6 /* ImageManager.swift */; };
 		FB6CD19C2A35F40800F36BB6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6CD19B2A35F40800F36BB6 /* Colors.xcassets */; };
@@ -139,7 +139,7 @@
 		FB1BA7692A335BDC0003A317 /* SimpleDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDataParser.swift; sourceTree = "<group>"; };
 		FB1BA76B2A33644D0003A317 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		FB3B0DB12A34239A009BE7D5 /* ItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemID.swift; sourceTree = "<group>"; };
-		FB6CD1942A35366800F36BB6 /* CacheImageRetrievable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImageRetrievable.swift; sourceTree = "<group>"; };
+		FB6CD1942A35366800F36BB6 /* ImageCachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCachable.swift; sourceTree = "<group>"; };
 		FB6CD1962A35368D00F36BB6 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		FB6CD1982A35669500F36BB6 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		FB6CD19B2A35F40800F36BB6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -474,7 +474,7 @@
 		FB6CD19A2A35EAAE00F36BB6 /* ImageManager */ = {
 			isa = PBXGroup;
 			children = (
-				FB6CD1942A35366800F36BB6 /* CacheImageRetrievable.swift */,
+				FB6CD1942A35366800F36BB6 /* ImageCachable.swift */,
 				FB8D49292A352B0900BE68FB /* ImageLoadable.swift */,
 				FB6CD1982A35669500F36BB6 /* ImageManager.swift */,
 			);
@@ -809,7 +809,7 @@
 				38F34E6829F91F5400120671 /* GitHubSearchPresenter.swift in Sources */,
 				386069A029FC0CC400BCF6AE /* UIImageView+Extension.swift in Sources */,
 				38D37C652A168715005EA7C6 /* GitHubSearchView.swift in Sources */,
-				FB6CD1952A35366800F36BB6 /* CacheImageRetrievable.swift in Sources */,
+				FB6CD1952A35366800F36BB6 /* ImageCachable.swift in Sources */,
 				38F34E6C29F91F8C00120671 /* GitHubSearchRouter.swift in Sources */,
 				FB6CD1992A35669500F36BB6 /* ImageManager.swift in Sources */,
 				FB1BA7682A335BBD0003A317 /* GithubRequest.swift in Sources */,
