@@ -15,21 +15,21 @@ struct GitHubItemsRepositiryKey: Hashable {
 
 protocol GitHubItemsRepositiry {
     typealias Key = GitHubItemsRepositiryKey
-    func save(items: [Item], for key: Key)
-    func restore(for key: Key) -> [Item]?
+    func save(items: [Item], for key: Key) async
+    func restore(for key: Key) async -> [Item]?
 }
 
-class GitHubItemsOnMemoryRepositiry: GitHubItemsRepositiry {
-    private let queue = DispatchQueue(label: #function)
+actor GitHubItemsOnMemoryRepositiry: GitHubItemsRepositiry {
     private var cache: [Key: [Item]] = [:]
-
     static let shared = GitHubItemsOnMemoryRepositiry()
 
-    func save(items: [Item], for key: Key) {
-        queue.sync { cache[key] = items }
+    private init() {}
+
+    func save(items: [Item], for key: Key) async {
+        cache[key] = items
     }
 
-    func restore(for key: Key) -> [Item]? {
-        queue.sync { cache[key] }
+    func restore(for key: Key) async -> [Item]? {
+        cache[key]
     }
 }

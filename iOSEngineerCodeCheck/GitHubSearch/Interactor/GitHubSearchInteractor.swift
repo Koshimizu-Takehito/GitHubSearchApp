@@ -12,8 +12,8 @@ actor GitHubSearchInteractor: GitHubSearchInputUsecase {
     let session = Session.shared
     let repositiry = GitHubItemsOnMemoryRepositiry.shared
 
-    nonisolated func cached(word: String, order: StarSortingOrder?) -> [Item] {
-        repositiry.restore(for: .init(word: word, order: order)) ?? []
+    func cached(word: String, order: StarSortingOrder?) async -> [Item] {
+        await repositiry.restore(for: .init(word: word, order: order)) ?? []
     }
 
     func fetch(word: String, order: StarSortingOrder?) async -> Result<[Item], Error> {
@@ -23,10 +23,10 @@ actor GitHubSearchInteractor: GitHubSearchInputUsecase {
                 let request = GetSearchRepositoriesRequest(word: word, order: order)
                 items = try await session.send(request).items
             }
-            repositiry.save(items: items, for: .init(word: word, order: order))
+            await repositiry.save(items: items, for: .init(word: word, order: order))
             return .success(items)
         } catch {
-            if let items = repositiry.restore(for: .init(word: word, order: order)) {
+            if let items = await repositiry.restore(for: .init(word: word, order: order)) {
                 return .success(items)
             } else {
                 return .failure(error)

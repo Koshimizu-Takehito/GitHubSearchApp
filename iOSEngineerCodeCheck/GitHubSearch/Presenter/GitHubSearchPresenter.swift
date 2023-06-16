@@ -30,7 +30,7 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
     }
 
     func didSelectRow(at index: Int) async {
-        let items = usecase.cached(word: word, order: order)
+        let items = await usecase.cached(word: word, order: order)
         await router.showGitHubDetailViewController(item: items[index])
     }
 
@@ -41,7 +41,7 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
     }
 
     func willDisplayRow(at index: Int) async {
-        let items = usecase.cached(word: word, order: order)
+        let items = await usecase.cached(word: word, order: order)
         guard index < items.count else {
             return
         }
