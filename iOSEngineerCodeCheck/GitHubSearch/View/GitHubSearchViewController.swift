@@ -88,9 +88,7 @@ extension GitHubSearchViewController: GitHubSearchView {
 extension GitHubSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            Task { [weak presenter] in
-                await presenter?.didClearSearchText()
-            }
+            configure(item: .initial)
         }
     }
 

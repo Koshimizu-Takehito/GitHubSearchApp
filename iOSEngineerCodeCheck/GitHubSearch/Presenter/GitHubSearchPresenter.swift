@@ -28,11 +28,6 @@ final class GitHubSearchPresenter: GitHubSearchPresentation {
         fetch()
     }
 
-    func didClearSearchText() async {
-        self.word = ""
-        await view?.configure(item: .initial)
-    }
-
     func didSelectRow(at index: Int) async {
         let items = usecase.restore(word: word, order: order)
         await router.showGitHubDetailViewController(item: items[index])
