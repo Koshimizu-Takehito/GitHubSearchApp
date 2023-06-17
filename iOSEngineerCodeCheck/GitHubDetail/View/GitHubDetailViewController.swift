@@ -21,18 +21,23 @@ final class GitHubDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
         presenter.viewDidLoad()
     }
 }
 
-extension GitHubDetailViewController: GitHubDetailView {
-    /// 初期画面の構成
-    func configure(item: GitHubDetailViewItem) {
+private extension GitHubDetailViewController {
+    func setUp() {
         setupNavigationBar(
             title: "リポジトリ",
             buttonImage: UIImage(systemName: "safari")!,
             rightBarButtonAction: #selector(tapSafariIcon(sender:))
         )
+    }
+}
+
+extension GitHubDetailViewController: GitHubDetailView {
+    func configure(item: GitHubDetailViewItem) {
         imageView.image = item.avatarImage
         fullNameLabel.text = item.fullName
         languageLabel.text = item.language

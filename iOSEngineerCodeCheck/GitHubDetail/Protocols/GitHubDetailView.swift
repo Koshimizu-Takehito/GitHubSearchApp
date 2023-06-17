@@ -11,5 +11,6 @@ import Foundation
 // View
 @MainActor
 protocol GitHubDetailView: AnyObject {
+    /// 詳細表示データを設定する
     func configure(item: GitHubDetailViewItem)
 }
