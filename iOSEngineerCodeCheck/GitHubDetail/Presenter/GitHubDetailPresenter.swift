@@ -10,7 +10,7 @@ import Foundation
 
 actor GitHubDetailPresenter: GitHubDetailPresentation {
     private weak var view: GitHubDetailView?
-    private let router: GitHubDetailRouter!
+    private let router: GitHubDetailRouter
     private let viewItem: GitHubDetailViewItem!
     private let item: Item
 
