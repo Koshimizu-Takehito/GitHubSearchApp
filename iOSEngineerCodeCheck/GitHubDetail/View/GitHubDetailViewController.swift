@@ -21,7 +21,7 @@ final class GitHubDetailViewController: UIViewController {
     @IBOutlet private weak var forksLabel: UILabel!
     @IBOutlet private weak var issuesLabel: UILabel!
 
-    var presenter: GitHubDetailPresenter!
+    var presenter: GitHubDetailPresentation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
