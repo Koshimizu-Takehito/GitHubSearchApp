@@ -31,14 +31,13 @@ final class GitHubDetailViewController: UIViewController {
 
 extension GitHubDetailViewController: GitHubDetailView {
     /// 初期画面の構成
-    func configure(item: GitHubDetailViewItem, avatarUrl: URL) {
+    func configure(item: GitHubDetailViewItem) {
         setupNavigationBar(
             title: "リポジトリ",
             buttonImage: UIImage(systemName: "safari")!,
             rightBarButtonAction: #selector(safari(_:))
         )
-
-        imageView.loadImageAsynchronous(url: avatarUrl)
+        imageView.image = item.avatarImage
         fullNameLabel.text = item.fullName
         languageLabel.text = item.language
         starsLabel.text = item.stars

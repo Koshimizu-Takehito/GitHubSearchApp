@@ -13,20 +13,22 @@ actor GitHubDetailPresenter: GitHubDetailPresentation {
     private weak var view: GitHubDetailView?
     private let useCase: GitHubDetailUseCase
     private let router: GitHubDetailRouter
+    private let imageManager: ImageManaging
 
-    init(id: ItemID, view: GitHubDetailView, useCase: GitHubDetailUseCase, router: GitHubDetailRouter) {
+    init(id: ItemID, view: GitHubDetailView, useCase: GitHubDetailUseCase, router: GitHubDetailRouter, imageManager: ImageManaging) {
         self.id = id
         self.view = view
         self.useCase = useCase
         self.router = router
+        self.imageManager = imageManager
     }
 
     func viewDidLoad() async {
         guard let item = await useCase.cached(for: id) else {
             return
         }
-        let viewItem = GitHubDetailViewItem(item: item)
-        await view?.configure(item: viewItem, avatarUrl: item.owner.avatarUrl)
+        let image = imageManager.cachedImage(forKey: item.owner.avatarUrl)
+        await view?.configure(item: .init(item: item, avatarImage: image))
     }
 
     func safariButtoDidPush() async {

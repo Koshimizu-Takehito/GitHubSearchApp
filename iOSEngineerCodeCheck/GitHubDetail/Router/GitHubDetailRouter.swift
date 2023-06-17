@@ -24,7 +24,8 @@ extension GitHubDetailRouter: GitHubDetailWireFrame {
             id: id,
             view: view,
             useCase: GitHubDetailInteractor(),
-            router: router
+            router: router,
+            imageManager: ImageManager()
         )
         return view
     }
