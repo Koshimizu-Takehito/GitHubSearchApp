@@ -33,7 +33,6 @@ actor GitHubDetailPresenter: GitHubDetailPresentation {
     }
 
     func safariButtoDidPush() async {
-        guard let url = URL(string: item.owner.htmlUrl) else { return }
-        await router.showGitHubPage(url: url)
+        await router.showGitHubPage(url: item.owner.htmlUrl)
     }
 }
