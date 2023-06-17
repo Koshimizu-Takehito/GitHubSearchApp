@@ -65,7 +65,7 @@ private extension GitHubSearchPresenter {
         task?.cancel()
         task = Task { [usecase, imageManager, parameters, weak view, weak router] in
             let result = await usecase.fetch(with: parameters)
-            Task { @MainActor [weak view, weak router] in
+            await MainActor.run { [weak view, weak router] in
                 switch result {
                 case .success(let items) where items.isEmpty:
                     view?.configure(item: .empty)
