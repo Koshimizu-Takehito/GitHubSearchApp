@@ -9,30 +9,30 @@
 import Foundation
 
 actor GitHubDetailPresenter: GitHubDetailPresentation {
+    private let id: ItemID
     private weak var view: GitHubDetailView?
+    private let useCase: GitHubDetailUseCase
     private let router: GitHubDetailRouter
-    private let viewItem: GitHubDetailViewItem!
-    private let item: Item
 
-    init(
-        item: Item,
-        view: GitHubDetailView,
-        router: GitHubDetailRouter,
-        viewItem: GitHubDetailViewItem) {
-        self.item = item
+    init(id: ItemID, view: GitHubDetailView, useCase: GitHubDetailUseCase, router: GitHubDetailRouter) {
+        self.id = id
         self.view = view
+        self.useCase = useCase
         self.router = router
-        self.viewItem = viewItem
     }
 
     func viewDidLoad() async {
-        await view?.configure(
-            item: viewItem,
-            avatarUrl: item.owner.avatarUrl
-        )
+        guard let item = await useCase.cached(for: id) else {
+            return
+        }
+        let viewItem = GitHubDetailViewItem(item: item)
+        await view?.configure(item: viewItem, avatarUrl: item.owner.avatarUrl)
     }
 
     func safariButtoDidPush() async {
+        guard let item = await useCase.cached(for: id) else {
+            return
+        }
         await router.showGitHubPage(url: item.owner.htmlUrl)
     }
 }
