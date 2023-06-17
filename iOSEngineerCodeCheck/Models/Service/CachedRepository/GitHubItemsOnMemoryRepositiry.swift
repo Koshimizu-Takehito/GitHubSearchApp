@@ -8,23 +8,29 @@
 
 import Foundation
 
+/// 「GitHubリポジトリ」のリストを提供するRepositiry
 protocol GitHubItemsRepositiry {
-    typealias Key = SearchParameters
-    func save(items: [Item], for key: Key) async
-    func restore(for key: Key) async -> [Item]?
+    /// 検索パラメータをキーとして保存
+    func save(items: [Item], for key: SearchParameters) async
+    /// 検索パラメータをキーとして復元
+    func restore(for key: SearchParameters) async -> [Item]?
 }
 
-actor GitHubItemsOnMemoryRepositiry: GitHubItemsRepositiry {
-    private var cache: [Key: [Item]] = [:]
+/// 「GitHubリポジトリ」をメモリ上にキャッシュする実装を提供する
+actor GitHubItemsOnMemoryRepositiry {
+    /// 検索パラメータをキーとしたキャッシュ
+    private var responseCache: [SearchParameters: [Item]] = [:]
     static let shared = GitHubItemsOnMemoryRepositiry()
 
     private init() {}
+}
 
-    func save(items: [Item], for key: Key) async {
-        cache[key] = items
+extension GitHubItemsOnMemoryRepositiry: GitHubItemsRepositiry {
+    func save(items: [Item], for key: SearchParameters) async {
+        responseCache[key] = items
     }
 
-    func restore(for key: Key) async -> [Item]? {
-        cache[key]
+    func restore(for key: SearchParameters) async -> [Item]? {
+        responseCache[key]
     }
 }
