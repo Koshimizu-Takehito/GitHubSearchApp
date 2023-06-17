@@ -17,7 +17,6 @@ protocol GitHubSearchView: AnyObject {
     func configure(order: Order)
     func configure(item: ViewItem)
     func configure(row: TableRow, at index: Int)
-    func showAlert(error: Error)
 }
 
 extension GitHubSearchView {

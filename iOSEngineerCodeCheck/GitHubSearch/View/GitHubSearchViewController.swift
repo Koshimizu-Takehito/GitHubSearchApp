@@ -41,8 +41,7 @@ final class GitHubSearchViewController: UIViewController {
 private extension GitHubSearchViewController {
     private func setUp() {
         tableView.dataSource = dataSource
-        configure(order: .none)
-        configure(item: .initial)
+        configure(item: .initial, order: .none)
         setupNavigationBar(title: "ホーム")
     }
 
@@ -69,11 +68,6 @@ extension GitHubSearchViewController: GitHubSearchView {
 
     func configure(row: TableRow, at index: Int) {
         dataSource.replace(item: row, at: index)
-    }
-
-    func showAlert(error: Error) {
-        configure(item: .initial)
-        presentAlertController(error: error)
     }
 }
 

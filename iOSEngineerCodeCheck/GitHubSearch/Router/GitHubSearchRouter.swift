@@ -33,4 +33,8 @@ extension GitHubSearchRouter: GitHubSearchRouting {
         let destination = GitHubDetailRouter.assembleModules(item: item)
         viewController?.navigationController?.pushViewController(destination, animated: true)
     }
+
+    func showAlert(error: Error) {
+        viewController?.presentAlertController(error: error)
+    }
 }
