@@ -8,7 +8,7 @@
 
 import APIKit
 
-actor GitHubSearchInteractor: GitHubSearchInputUsecase {
+actor GitHubSearchInteractor: GitHubSearchUseCase {
     let session: any RequestSendable
     let repositiry: any GitHubItemsRepositiry
 

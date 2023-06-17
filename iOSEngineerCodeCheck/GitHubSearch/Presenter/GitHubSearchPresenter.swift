@@ -11,11 +11,11 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
     private var parameters = SearchParameters()
 
     private weak var view: GitHubSearchView?
-    private let usecase: GitHubSearchInputUsecase
+    private let usecase: GitHubSearchUseCase
     private let router: GitHubSearchRouting
     private let imageManager: ImageManaging
 
-    init(view: GitHubSearchView, usecase: GitHubSearchInputUsecase, router: GitHubSearchRouting, imageManager: ImageManaging) {
+    init(view: GitHubSearchView, usecase: GitHubSearchUseCase, router: GitHubSearchRouting, imageManager: ImageManaging) {
         self.view = view
         self.usecase = usecase
         self.router = router
