@@ -10,5 +10,4 @@ import UIKit
 
 // Router
 protocol GitHubDetailWireFrame: AnyObject {
-    static func assembleModules(item: Item) -> UIViewController
 }
