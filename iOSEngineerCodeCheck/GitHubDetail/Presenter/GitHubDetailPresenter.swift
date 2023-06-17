@@ -11,25 +11,25 @@ import Foundation
 final class GitHubDetailPresenter {
     private weak var view: GitHubDetailView?
     private let router: GitHubDetailRouter!
-    private let gitHubDetailViewItem: GitHubDetailViewItem!
+    private let viewItem: GitHubDetailViewItem!
     var item: Item!
 
     init(
         item: Item,
         view: GitHubDetailView,
         router: GitHubDetailRouter,
-        gitHubDetailViewItem: GitHubDetailViewItem) {
+        viewItem: GitHubDetailViewItem) {
         self.item = item
         self.view = view
         self.router = router
-        self.gitHubDetailViewItem = gitHubDetailViewItem
+        self.viewItem = viewItem
     }
 }
 
 extension GitHubDetailPresenter: GitHubDetailPresentation {
     func viewDidLoad() {
         view?.configure(
-            item: gitHubDetailViewItem,
+            item: viewItem,
             avatarUrl: item.owner.avatarUrl
         )
     }
