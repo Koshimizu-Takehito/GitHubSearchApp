@@ -468,7 +468,7 @@
 		FB6CD1932A352C1E00F36BB6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				FB97A4972A3600F8004C3A8E /* CachedRepository */,
+				FB97A4972A3600F8004C3A8E /* Repositiries */,
 				FB6CD19A2A35EAAE00F36BB6 /* ImageManager */,
 			);
 			path = Service;
@@ -493,12 +493,12 @@
 			path = Kingfisher;
 			sourceTree = "<group>";
 		};
-		FB97A4972A3600F8004C3A8E /* CachedRepository */ = {
+		FB97A4972A3600F8004C3A8E /* Repositiries */ = {
 			isa = PBXGroup;
 			children = (
 				FB97A4982A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift */,
 			);
-			path = CachedRepository;
+			path = Repositiries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
