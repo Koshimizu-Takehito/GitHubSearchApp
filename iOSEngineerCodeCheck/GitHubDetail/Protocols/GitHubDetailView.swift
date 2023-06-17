@@ -8,7 +8,8 @@
 
 import Foundation
 
-// View
+// MARK: - View
+/// View
 @MainActor
 protocol GitHubDetailView: AnyObject {
     /// 詳細表示データを設定する

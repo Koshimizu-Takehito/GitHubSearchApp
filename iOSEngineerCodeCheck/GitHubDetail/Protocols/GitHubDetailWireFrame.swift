@@ -8,8 +8,10 @@
 
 import UIKit
 
-// Router
+// MARK: - Router
+/// Router
 @MainActor
 protocol GitHubDetailWireFrame: AnyObject {
+    /// GitHubリポジトリのWebページを表示する
     func showGitHubPage(url: URL)
 }

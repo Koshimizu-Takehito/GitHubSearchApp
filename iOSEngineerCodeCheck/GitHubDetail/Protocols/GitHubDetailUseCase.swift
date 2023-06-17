@@ -9,5 +9,9 @@
 // MARK: - Usecase
 /// Usecase
 protocol GitHubDetailUseCase: AnyObject {
+    /// 一意識別子をもとにキャッシュ済みのGitHubリポジトリのエンティティを取得する
+    ///
+    /// - Parameter id: GitHubリポジトリの一意識別子
+    /// - Returns: GitHubリポジトリのエンティティ
     func cached(for id: ItemID) async -> Item?
 }

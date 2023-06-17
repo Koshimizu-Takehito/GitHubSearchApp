@@ -8,9 +8,12 @@
 
 import Foundation
 
-// Presentation
+// MARK: - Presentation
+/// Presentation
 protocol GitHubDetailPresentation: AnyObject {
+    /// 画面のロード完了時にコールバックされる
     func viewDidLoad() async
+    /// Sfariアイコンのタップ時にコールバックされる
     func safariButtoDidPush() async
 }
 
