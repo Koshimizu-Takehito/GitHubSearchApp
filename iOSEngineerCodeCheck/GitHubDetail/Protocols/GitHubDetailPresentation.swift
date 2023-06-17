@@ -10,6 +10,20 @@ import Foundation
 
 // Presentation
 protocol GitHubDetailPresentation: AnyObject {
-    func viewDidLoad()
-    func safariButtoDidPush()
+    func viewDidLoad() async
+    func safariButtoDidPush() async
+}
+
+extension GitHubDetailPresentation {
+    func viewDidLoad() {
+        Task { [weak self] in
+            await self?.viewDidLoad()
+        }
+    }
+
+    func safariButtoDidPush() {
+        Task { [weak self] in
+            await self?.safariButtoDidPush()
+        }
+    }
 }

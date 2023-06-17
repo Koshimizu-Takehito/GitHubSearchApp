@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class GitHubDetailPresenter {
+actor GitHubDetailPresenter: GitHubDetailPresentation {
     private weak var view: GitHubDetailView?
     private let router: GitHubDetailRouter!
     private let viewItem: GitHubDetailViewItem!
@@ -24,18 +24,16 @@ final class GitHubDetailPresenter {
         self.router = router
         self.viewItem = viewItem
     }
-}
 
-extension GitHubDetailPresenter: GitHubDetailPresentation {
-    func viewDidLoad() {
-        view?.configure(
+    func viewDidLoad() async {
+        await view?.configure(
             item: viewItem,
             avatarUrl: item.owner.avatarUrl
         )
     }
 
-    func safariButtoDidPush() {
+    func safariButtoDidPush() async {
         guard let url = URL(string: item.owner.htmlUrl) else { return }
-        router.showGitHubPage(url: url)
+        await router.showGitHubPage(url: url)
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 // Router
+@MainActor
 protocol GitHubDetailWireFrame: AnyObject {
     func showGitHubPage(url: URL)
 }

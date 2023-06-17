@@ -9,6 +9,7 @@
 import Foundation
 
 // View
+@MainActor
 protocol GitHubDetailView: AnyObject {
     func configure(item: GitHubDetailViewItem, avatarUrl: URL)
 }
