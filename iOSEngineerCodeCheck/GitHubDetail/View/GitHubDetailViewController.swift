@@ -9,11 +9,7 @@
 import UIKit
 
 final class GitHubDetailViewController: UIViewController {
-    @IBOutlet private weak var imageView: UIImageView! {
-        didSet {
-            imageView.layer.cornerRadius = 7
-        }
-    }
+    @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var fullNameLabel: UILabel!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var starsLabel: UILabel!
@@ -21,24 +17,28 @@ final class GitHubDetailViewController: UIViewController {
     @IBOutlet private weak var forksLabel: UILabel!
     @IBOutlet private weak var issuesLabel: UILabel!
 
-    var presenter: GitHubDetailPresenter!
+    var presenter: GitHubDetailPresentation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
         presenter.viewDidLoad()
     }
 }
 
-extension GitHubDetailViewController: GitHubDetailView {
-    /// 初期画面の構成
-    func configure(item: GitHubDetailViewItem, avatarUrl: URL) {
+private extension GitHubDetailViewController {
+    func setUp() {
         setupNavigationBar(
             title: "リポジトリ",
             buttonImage: UIImage(systemName: "safari")!,
-            rightBarButtonAction: #selector(safari(_:))
+            rightBarButtonAction: #selector(tapSafariIcon(sender:))
         )
+    }
+}
 
-        imageView.loadImageAsynchronous(url: avatarUrl)
+extension GitHubDetailViewController: GitHubDetailView {
+    func configure(item: GitHubDetailViewItem) {
+        imageView.image = item.avatarImage
         fullNameLabel.text = item.fullName
         languageLabel.text = item.language
         starsLabel.text = item.stars
@@ -47,13 +47,7 @@ extension GitHubDetailViewController: GitHubDetailView {
         issuesLabel.text = item.issues
     }
 
-    @objc func safari (_ sender: UIBarButtonItem) {
+    @objc func tapSafariIcon(sender: Any) {
         presenter.safariButtoDidPush()
-    }
-}
-
-extension GitHubDetailViewController {
-    func showGitHubSite(url: URL) {
-        UIApplication.shared.open(url)
     }
 }

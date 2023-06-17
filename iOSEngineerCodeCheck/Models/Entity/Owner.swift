@@ -10,5 +10,5 @@ import Foundation
 
 struct Owner: Decodable, Hashable {
     let avatarUrl: URL
-    let htmlUrl: String
+    let htmlUrl: URL
 }

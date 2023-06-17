@@ -13,7 +13,7 @@ import class UIKit.UIViewController
 @MainActor
 protocol GitHubSearchRouting: AnyObject {
     /// 詳細画面を表示
-    func showDetail(item: Item)
+    func showDetail(id: ItemID)
     /// アラートを表示
     func showAlert(error: Error)
 }

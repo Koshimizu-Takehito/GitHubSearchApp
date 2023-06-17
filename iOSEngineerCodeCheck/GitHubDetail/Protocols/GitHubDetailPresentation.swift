@@ -8,8 +8,25 @@
 
 import Foundation
 
-// Presentation
+// MARK: - Presentation
+/// Presentation
 protocol GitHubDetailPresentation: AnyObject {
-    func viewDidLoad()
-    func safariButtoDidPush()
+    /// 画面のロード完了時にコールバックされる
+    func viewDidLoad() async
+    /// Sfariアイコンのタップ時にコールバックされる
+    func safariButtoDidPush() async
+}
+
+extension GitHubDetailPresentation {
+    func viewDidLoad() {
+        Task { [weak self] in
+            await self?.viewDidLoad()
+        }
+    }
+
+    func safariButtoDidPush() {
+        Task { [weak self] in
+            await self?.safariButtoDidPush()
+        }
+    }
 }

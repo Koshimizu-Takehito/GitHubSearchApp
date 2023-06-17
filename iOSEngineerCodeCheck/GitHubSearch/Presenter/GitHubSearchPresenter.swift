@@ -11,11 +11,11 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
     private var parameters = SearchParameters()
 
     private weak var view: GitHubSearchView?
-    private let usecase: GitHubSearchInputUsecase
+    private let usecase: GitHubSearchUseCase
     private let router: GitHubSearchRouting
     private let imageManager: ImageManaging
 
-    init(view: GitHubSearchView, usecase: GitHubSearchInputUsecase, router: GitHubSearchRouting, imageManager: ImageManaging) {
+    init(view: GitHubSearchView, usecase: GitHubSearchUseCase, router: GitHubSearchRouting, imageManager: ImageManaging) {
         self.view = view
         self.usecase = usecase
         self.router = router
@@ -31,7 +31,7 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
 
     func didSelectRow(at index: Int) async {
         let items = await usecase.cached(for: parameters)
-        await router.showDetail(item: items[index])
+        await router.showDetail(id: items[index].id)
     }
 
     func didTapStarOderButton() async {

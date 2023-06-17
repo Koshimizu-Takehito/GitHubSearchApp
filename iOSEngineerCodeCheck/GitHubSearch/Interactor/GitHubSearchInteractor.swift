@@ -8,9 +8,17 @@
 
 import APIKit
 
-actor GitHubSearchInteractor: GitHubSearchInputUsecase {
-    let session = Session.shared
-    let repositiry = GitHubItemsOnMemoryRepositiry.shared
+actor GitHubSearchInteractor: GitHubSearchUseCase {
+    private let session: any RequestSendable
+    private let repositiry: any GitHubItemsRepositiry
+
+    init(
+        session: any RequestSendable = Session.shared,
+        repositiry: any GitHubItemsRepositiry = GitHubItemsOnMemoryRepositiry.shared
+    ) {
+        self.session = session
+        self.repositiry = repositiry
+    }
 
     func cached(for parameters: SearchParameters) async -> [Item] {
         await repositiry.restore(for: parameters) ?? []

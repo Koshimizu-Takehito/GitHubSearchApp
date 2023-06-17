@@ -8,8 +8,10 @@
 
 import Foundation
 
-// View
+// MARK: - View
+/// View
+@MainActor
 protocol GitHubDetailView: AnyObject {
-    func configure(item: GitHubDetailViewItem, avatarUrl: URL)
-    func showGitHubSite(url: URL)
+    /// 詳細表示データを設定する
+    func configure(item: GitHubDetailViewItem)
 }

@@ -8,34 +8,33 @@
 
 import Foundation
 
-final class GitHubDetailPresenter {
+actor GitHubDetailPresenter: GitHubDetailPresentation {
+    private let id: ItemID
     private weak var view: GitHubDetailView?
-    private let router: GitHubDetailRouter!
-    private let gitHubDetailViewItem: GitHubDetailViewItem!
-    var item: Item!
+    private let useCase: GitHubDetailUseCase
+    private let router: GitHubDetailRouter
+    private let imageManager: ImageManaging
 
-    init(
-        item: Item,
-        view: GitHubDetailView,
-        router: GitHubDetailRouter,
-        gitHubDetailViewItem: GitHubDetailViewItem) {
-        self.item = item
+    init(id: ItemID, view: GitHubDetailView, useCase: GitHubDetailUseCase, router: GitHubDetailRouter, imageManager: ImageManaging) {
+        self.id = id
         self.view = view
+        self.useCase = useCase
         self.router = router
-        self.gitHubDetailViewItem = gitHubDetailViewItem
-    }
-}
-
-extension GitHubDetailPresenter: GitHubDetailPresentation {
-    func viewDidLoad() {
-        view?.configure(
-            item: gitHubDetailViewItem,
-            avatarUrl: item.owner.avatarUrl
-        )
+        self.imageManager = imageManager
     }
 
-    func safariButtoDidPush() {
-        guard let url = URL(string: item.owner.htmlUrl) else { return }
-        view?.showGitHubSite(url: url)
+    func viewDidLoad() async {
+        guard let item = await useCase.cached(for: id) else {
+            return
+        }
+        let image = imageManager.cachedImage(forKey: item.owner.avatarUrl)
+        await view?.configure(item: .init(item: item, avatarImage: image))
+    }
+
+    func safariButtoDidPush() async {
+        guard let item = await useCase.cached(for: id) else {
+            return
+        }
+        await router.showGitHubPage(url: item.owner.htmlUrl)
     }
 }
