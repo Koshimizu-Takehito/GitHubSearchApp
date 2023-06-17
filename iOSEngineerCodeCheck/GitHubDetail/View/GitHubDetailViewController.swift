@@ -35,7 +35,7 @@ extension GitHubDetailViewController: GitHubDetailView {
         setupNavigationBar(
             title: "リポジトリ",
             buttonImage: UIImage(systemName: "safari")!,
-            rightBarButtonAction: #selector(safari(_:))
+            rightBarButtonAction: #selector(tapSafariIcon(sender:))
         )
         imageView.image = item.avatarImage
         fullNameLabel.text = item.fullName
@@ -46,7 +46,7 @@ extension GitHubDetailViewController: GitHubDetailView {
         issuesLabel.text = item.issues
     }
 
-    @objc func safari (_ sender: UIBarButtonItem) {
+    @objc func tapSafariIcon(sender: Any) {
         presenter.safariButtoDidPush()
     }
 }
