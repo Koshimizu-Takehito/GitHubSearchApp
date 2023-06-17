@@ -16,6 +16,14 @@ protocol GitHubItemsRepositiry {
     func restore(for key: SearchParameters) async -> [Item]?
 }
 
+/// 「GitHubリポジトリ」を提供するRepositiry
+protocol GitHubItemRepositiry {
+    /// 識別子をキーとして保存
+    func save(item: Item, for key: ItemID) async
+    /// 識別子をキーとして復元
+    func restore(for key: ItemID) async -> Item?
+}
+
 /// 「GitHubリポジトリ」をメモリ上にキャッシュする実装を提供する
 actor GitHubItemsOnMemoryRepositiry {
     /// 検索パラメータをキーとしたキャッシュ
