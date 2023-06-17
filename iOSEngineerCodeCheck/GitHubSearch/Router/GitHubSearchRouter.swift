@@ -8,15 +8,14 @@
 
 import UIKit
 
-final class GitHubSearchRouter {
+final class GitHubSearchRouter: GitHubSearchRouting {
     private weak var viewController: UIViewController?
 
     private init(viewController: UIViewController) {
         self.viewController = viewController
     }
-}
 
-extension GitHubSearchRouter: GitHubSearchRouting {
+    /// 検索画面のビューコントローラを生成
     static func assembleModules() -> UIViewController {
         let view = StoryboardScene.GitHubSearch.initialScene.instantiate()
         let router = GitHubSearchRouter(viewController: view)
