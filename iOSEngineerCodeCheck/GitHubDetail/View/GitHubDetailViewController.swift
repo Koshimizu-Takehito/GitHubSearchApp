@@ -53,7 +53,7 @@ extension GitHubDetailViewController: GitHubDetailView {
 }
 
 extension GitHubDetailViewController {
-    func showGitHubSite(url: URL) {
+    func showGitHubPage(url: URL) {
         UIApplication.shared.open(url)
     }
 }

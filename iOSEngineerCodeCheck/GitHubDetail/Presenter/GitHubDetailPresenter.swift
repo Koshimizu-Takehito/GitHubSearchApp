@@ -36,6 +36,6 @@ extension GitHubDetailPresenter: GitHubDetailPresentation {
 
     func safariButtoDidPush() {
         guard let url = URL(string: item.owner.htmlUrl) else { return }
-        view?.showGitHubSite(url: url)
+        view?.showGitHubPage(url: url)
     }
 }
