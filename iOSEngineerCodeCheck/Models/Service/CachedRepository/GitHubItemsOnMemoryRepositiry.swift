@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - GitHubItemsRepositiry
 /// 「GitHubリポジトリ」のリストを提供するRepositiry
 protocol GitHubItemsRepositiry {
     /// 検索パラメータをキーとして保存
@@ -16,6 +17,7 @@ protocol GitHubItemsRepositiry {
     func restore(for key: SearchParameters) async -> [Item]?
 }
 
+// MARK: - GitHubItemRepositiry
 /// 「GitHubリポジトリ」を提供するRepositiry
 protocol GitHubItemRepositiry {
     /// 識別子をキーとして保存
@@ -24,6 +26,7 @@ protocol GitHubItemRepositiry {
     func restore(for key: ItemID) async -> Item?
 }
 
+// MARK: - GitHubItemsOnMemoryRepositiry
 /// 「GitHubリポジトリ」をメモリ上にキャッシュする実装を提供する
 actor GitHubItemsOnMemoryRepositiry {
     /// 検索パラメータをキーとしたキャッシュ
