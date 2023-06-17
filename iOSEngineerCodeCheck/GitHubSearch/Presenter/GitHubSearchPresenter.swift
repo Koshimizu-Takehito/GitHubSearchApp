@@ -31,7 +31,7 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
 
     func didSelectRow(at index: Int) async {
         let items = await usecase.cached(for: parameters)
-        await router.showDetail(item: items[index])
+        await router.showDetail(id: items[index].id)
     }
 
     func didTapStarOderButton() async {

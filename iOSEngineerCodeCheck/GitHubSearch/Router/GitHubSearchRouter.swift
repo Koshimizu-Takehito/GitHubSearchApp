@@ -28,8 +28,8 @@ final class GitHubSearchRouter: GitHubSearchRouting {
         return view
     }
 
-    func showDetail(item: Item) {
-        let destination = GitHubDetailRouter.assembleModules(item: item)
+    func showDetail(id: ItemID) {
+        let destination = GitHubDetailRouter.assembleModules(id: id)
         viewController?.navigationController?.pushViewController(destination, animated: true)
     }
 

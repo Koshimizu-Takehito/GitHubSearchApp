@@ -17,12 +17,11 @@ final class GitHubDetailRouter {
 }
 
 extension GitHubDetailRouter: GitHubDetailWireFrame {
-    // TODO: ItemID で復元できるようにする
-    static func assembleModules(item: Item) -> UIViewController {
+    static func assembleModules(id: ItemID) -> UIViewController {
         let view = StoryboardScene.GitHubDetail.initialScene.instantiate()
         let router = GitHubDetailRouter(viewController: view)
         view.presenter = GitHubDetailPresenter(
-            id: item.id,
+            id: id,
             view: view,
             useCase: GitHubDetailInteractor(),
             router: router
