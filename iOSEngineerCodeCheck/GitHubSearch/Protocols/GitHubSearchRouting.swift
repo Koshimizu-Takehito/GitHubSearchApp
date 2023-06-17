@@ -12,6 +12,8 @@ import class UIKit.UIViewController
 /// Router
 @MainActor
 protocol GitHubSearchRouting: AnyObject {
+    /// 詳細画面を表示
     func showDetail(item: Item)
+    /// アラートを表示
     func showAlert(error: Error)
 }
