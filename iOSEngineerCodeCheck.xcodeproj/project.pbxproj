@@ -66,6 +66,7 @@
 		FB97A4992A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97A4982A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift */; };
 		FBC8F7D32A3E6498006A96A8 /* GitHubDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8F7D22A3E6498006A96A8 /* GitHubDetailUseCase.swift */; };
 		FBC8F7D62A3E6E8E006A96A8 /* GitHubDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8F7D52A3E6E8E006A96A8 /* GitHubDetailInteractor.swift */; };
+		FBC8F7D82A3E7C78006A96A8 /* UINavigationBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8F7D72A3E7C78006A96A8 /* UINavigationBar+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		FB97A4982A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubItemsOnMemoryRepositiry.swift; sourceTree = "<group>"; };
 		FBC8F7D22A3E6498006A96A8 /* GitHubDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubDetailUseCase.swift; sourceTree = "<group>"; };
 		FBC8F7D52A3E6E8E006A96A8 /* GitHubDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubDetailInteractor.swift; sourceTree = "<group>"; };
+		FBC8F7D72A3E7C78006A96A8 /* UINavigationBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +348,7 @@
 				FB8628D52A3BC93500F0AF4D /* UIActivityIndicatorView+Extensions.swift */,
 				FB8628D72A3BC94E00F0AF4D /* UIButton+Extenisons.swift */,
 				38F34E8829FA43FF00120671 /* UIImage+Extension.swift */,
+				FBC8F7D72A3E7C78006A96A8 /* UINavigationBar+Extensions.swift */,
 				FB8628D92A3BD46300F0AF4D /* UITableView+Extensions.swift */,
 				38F34E8A29FA61BE00120671 /* UIViewController+Extension.swift */,
 			);
@@ -836,6 +839,7 @@
 				FB1BA76C2A33644D0003A317 /* Session.swift in Sources */,
 				38F34E8929FA43FF00120671 /* UIImage+Extension.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
+				FBC8F7D82A3E7C78006A96A8 /* UINavigationBar+Extensions.swift in Sources */,
 				FB1BA7632A3359A20003A317 /* Item.swift in Sources */,
 				38F34E8029F9574F00120671 /* GitHubSearchTableViewCell.swift in Sources */,
 				FB1BA7652A3359AE0003A317 /* Owner.swift in Sources */,
