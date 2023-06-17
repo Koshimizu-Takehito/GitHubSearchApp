@@ -30,4 +30,8 @@ extension GitHubDetailRouter: GitHubDetailWireFrame {
         view.presenter = presenter
         return view
     }
+
+    func showGitHubPage(url: URL) {
+        UIApplication.shared.open(url)
+    }
 }

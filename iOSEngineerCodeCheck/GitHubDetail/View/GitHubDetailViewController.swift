@@ -51,9 +51,3 @@ extension GitHubDetailViewController: GitHubDetailView {
         presenter.safariButtoDidPush()
     }
 }
-
-extension GitHubDetailViewController {
-    func showGitHubPage(url: URL) {
-        UIApplication.shared.open(url)
-    }
-}

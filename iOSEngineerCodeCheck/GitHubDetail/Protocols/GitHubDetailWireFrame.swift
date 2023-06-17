@@ -10,4 +10,5 @@ import UIKit
 
 // Router
 protocol GitHubDetailWireFrame: AnyObject {
+    func showGitHubPage(url: URL)
 }
