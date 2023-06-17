@@ -41,8 +41,7 @@ final class GitHubSearchViewController: UIViewController {
 private extension GitHubSearchViewController {
     private func setUp() {
         tableView.dataSource = dataSource
-        configure(order: .none)
-        configure(item: .initial)
+        configure(item: .initial, order: .none)
         setupNavigationBar(title: "ホーム")
     }
 
