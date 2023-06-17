@@ -66,6 +66,7 @@
 		FB8D492C2A352B4B00BE68FB /* KingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */; };
 		FB97A4992A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97A4982A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift */; };
 		FBC8F7D32A3E6498006A96A8 /* GitHubDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8F7D22A3E6498006A96A8 /* GitHubDetailUseCase.swift */; };
+		FBC8F7D62A3E6E8E006A96A8 /* GitHubDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8F7D52A3E6E8E006A96A8 /* GitHubDetailInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherManager.swift; sourceTree = "<group>"; };
 		FB97A4982A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubItemsOnMemoryRepositiry.swift; sourceTree = "<group>"; };
 		FBC8F7D22A3E6498006A96A8 /* GitHubDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubDetailUseCase.swift; sourceTree = "<group>"; };
+		FBC8F7D52A3E6E8E006A96A8 /* GitHubDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubDetailInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 		38F34E6F29F9200E00120671 /* GitHubDetail */ = {
 			isa = PBXGroup;
 			children = (
+				FBC8F7D42A3E691F006A96A8 /* Interactor */,
 				38B77F592A1C1A5E006E5640 /* Protocols */,
 				38F34E7029F9202A00120671 /* View */,
 				38F34E7229F9207400120671 /* Presenter */,
@@ -502,6 +505,14 @@
 				FB97A4982A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift */,
 			);
 			path = Repositiries;
+			sourceTree = "<group>";
+		};
+		FBC8F7D42A3E691F006A96A8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FBC8F7D52A3E6E8E006A96A8 /* GitHubDetailInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -799,6 +810,7 @@
 				FB8D49282A3525AC00BE68FB /* Cancelable.swift in Sources */,
 				FB8628D42A3BC8C700F0AF4D /* GitHubSearchTableViewDataSource.swift in Sources */,
 				FB6CD1972A35368D00F36BB6 /* ImageCache.swift in Sources */,
+				FBC8F7D62A3E6E8E006A96A8 /* GitHubDetailInteractor.swift in Sources */,
 				FB8628D82A3BC94E00F0AF4D /* UIButton+Extenisons.swift in Sources */,
 				38D37C6D2A1688B6005EA7C6 /* GitHubSearchPresentation.swift in Sources */,
 				FB8628D62A3BC93500F0AF4D /* UIActivityIndicatorView+Extensions.swift in Sources */,
