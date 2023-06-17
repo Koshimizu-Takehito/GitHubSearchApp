@@ -64,14 +64,18 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
 private extension GitHubSearchPresenter {
     func fetch() {
         task?.cancel()
-        task = Task { [usecase, imageManager, parameters, weak view] in
-            switch await usecase.fetch(with: parameters) {
-            case .success(let items) where items.isEmpty:
-                await view?.configure(item: .empty)
-            case .success(let items):
-                await view?.configure(item: .list(items: items, cachable: imageManager))
-            case .failure(let error):
-                await view?.showAlert(error: error)
+        task = Task { [usecase, imageManager, parameters, weak view, weak router] in
+            let result = await usecase.fetch(with: parameters)
+            Task { @MainActor [weak view, weak router] in
+                switch result {
+                case .success(let items) where items.isEmpty:
+                    view?.configure(item: .empty)
+                case .success(let items):
+                    view?.configure(item: .list(items: items, cachable: imageManager))
+                case .failure(let error):
+                    view?.configure(item: .initial)
+                    router?.showAlert(error: error)
+                }
             }
         }
     }

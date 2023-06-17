@@ -69,11 +69,6 @@ extension GitHubSearchViewController: GitHubSearchView {
     func configure(row: TableRow, at index: Int) {
         dataSource.replace(item: row, at: index)
     }
-
-    func showAlert(error: Error) {
-        configure(item: .initial)
-        presentAlertController(error: error)
-    }
 }
 
 // MARK: - UISearchBarDelegate

@@ -13,4 +13,5 @@ import class UIKit.UIViewController
 @MainActor
 protocol GitHubSearchRouting: AnyObject {
     func showDetail(item: Item)
+    func showAlert(error: Error)
 }
