@@ -65,6 +65,7 @@
 		FB8D492A2A352B0900BE68FB /* ImageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D49292A352B0900BE68FB /* ImageLoadable.swift */; };
 		FB8D492C2A352B4B00BE68FB /* KingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */; };
 		FB97A4992A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97A4982A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift */; };
+		FBC8F7D32A3E6498006A96A8 /* GitHubDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8F7D22A3E6498006A96A8 /* GitHubDetailUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +156,7 @@
 		FB8D49292A352B0900BE68FB /* ImageLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadable.swift; sourceTree = "<group>"; };
 		FB8D492B2A352B4B00BE68FB /* KingfisherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherManager.swift; sourceTree = "<group>"; };
 		FB97A4982A36011F004C3A8E /* GitHubItemsOnMemoryRepositiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubItemsOnMemoryRepositiry.swift; sourceTree = "<group>"; };
+		FBC8F7D22A3E6498006A96A8 /* GitHubDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubDetailUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,8 +233,9 @@
 		38B77F592A1C1A5E006E5640 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				38D37C6E2A168AAD005EA7C6 /* GitHubDetailView.swift */,
 				38D37C702A168AE8005EA7C6 /* GitHubDetailPresentation.swift */,
+				FBC8F7D22A3E6498006A96A8 /* GitHubDetailUseCase.swift */,
+				38D37C6E2A168AAD005EA7C6 /* GitHubDetailView.swift */,
 				38D37C722A168B88005EA7C6 /* GitHubDetailWireFrame.swift */,
 			);
 			path = Protocols;
@@ -786,6 +789,7 @@
 				38F34E6A29F91F7100120671 /* RepositoryItems.swift in Sources */,
 				BFD945E3244DC5E80012785A /* GitHubSearchViewController.swift in Sources */,
 				FB3B0DB22A34239A009BE7D5 /* ItemID.swift in Sources */,
+				FBC8F7D32A3E6498006A96A8 /* GitHubDetailUseCase.swift in Sources */,
 				38D37C732A168B88005EA7C6 /* GitHubDetailWireFrame.swift in Sources */,
 				38D37C712A168AE8005EA7C6 /* GitHubDetailPresentation.swift in Sources */,
 				3882C69A2A31D6B100FF5B9A /* GitHubDetailViewItem.swift in Sources */,
