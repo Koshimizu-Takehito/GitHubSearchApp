@@ -12,7 +12,7 @@ final class GitHubDetailPresenter {
     private weak var view: GitHubDetailView?
     private let router: GitHubDetailRouter!
     private let viewItem: GitHubDetailViewItem!
-    var item: Item!
+    private var item: Item!
 
     init(
         item: Item,
