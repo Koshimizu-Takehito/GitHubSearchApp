@@ -9,8 +9,8 @@
 import APIKit
 
 actor GitHubSearchInteractor: GitHubSearchUseCase {
-    let session: any RequestSendable
-    let repositiry: any GitHubItemsRepositiry
+    private let session: any RequestSendable
+    private let repositiry: any GitHubItemsRepositiry
 
     init(
         session: any RequestSendable = Session.shared,
