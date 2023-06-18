@@ -15,17 +15,16 @@ actor GitHubSearchInteractor: GitHubSearchUseCase {
     }
 
     func fetch(with parameters: SearchParameters) async -> Result<[Item], Error> {
-        let (word, order) = (parameters.word, parameters.order)
         do {
             var items: [Item] = []
-            if !word.isEmpty {
-                let request = GetSearchRepositoriesRequest(word: word, order: order)
+            if !parameters.word.isEmpty {
+                let request = GetSearchRepositoriesRequest(parameters)
                 items = try await session.send(request).items
             }
-            await repositiry.save(items: items, for: .init(word: word, order: order))
+            await repositiry.save(items: items, for: parameters)
             return .success(items)
         } catch {
-            if let items = await repositiry.restore(for: .init(word: word, order: order)) {
+            if let items = await repositiry.restore(for: parameters) {
                 return .success(items)
             } else {
                 return .failure(error)

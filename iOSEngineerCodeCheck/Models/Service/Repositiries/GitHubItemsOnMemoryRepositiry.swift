@@ -20,8 +20,6 @@ protocol GitHubItemsRepositiry {
 // MARK: - GitHubItemRepositiry
 /// 「GitHubリポジトリ」を提供するRepositiry
 protocol GitHubItemRepositiry {
-    /// 識別子をキーとして保存
-    func save(item: Item, for key: ItemID) async
     /// 識別子をキーとして復元
     func restore(for key: ItemID) async -> Item?
 }

@@ -17,6 +17,12 @@ struct GetSearchRepositoriesRequest {
     let order: StarSortingOrder?
 }
 
+extension GetSearchRepositoriesRequest {
+    init(_ parameters: SearchParameters) {
+        self.init(word: parameters.word, order: parameters.order)
+    }
+}
+
 extension GetSearchRepositoriesRequest: GithubRequest {
     typealias Response = RepositoryItems
 
