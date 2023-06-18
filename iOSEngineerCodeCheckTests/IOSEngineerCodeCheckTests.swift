@@ -12,12 +12,6 @@ import XCTest
 // MARK: - SchemeをiOSEngineerCodeCheckに変更するとテスト可能です。 -
 // 新しく作ったスキームからテストコードを動かす事が出来ませんでした。
 final class IOSEngineerCodeCheckTests: XCTestCase {
-    var apiManager: ApiManager!
-
-    override func setUpWithError() throws {
-        apiManager = ApiManager()
-    }
-
     ///  API通信。実行されているかテスト。データの取得が出来ているかテスト。
     func testFetchApi() throws {
 //        let expectation = XCTestExpectation(description: "fetch data")
