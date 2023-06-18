@@ -9,7 +9,7 @@
 import UIKit
 
 final class GitHubSearchViewController: UIViewController {
-    var presenter: GitHubSearchPresentation!
+    var presenter: (any GitHubSearchPresentation)!
     private lazy var dataSource = GitHubSearchTableViewDataSource(tableView: tableView)
 
     @IBOutlet private weak var searchBar: UISearchBar!

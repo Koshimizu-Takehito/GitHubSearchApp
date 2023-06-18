@@ -10,12 +10,17 @@ actor GitHubSearchPresenter: GitHubSearchPresentation {
     private var task: (any Cancelable)?
     private var parameters = SearchParameters()
 
-    private weak var view: GitHubSearchView?
-    private let usecase: GitHubSearchUseCase
-    private let router: GitHubSearchRouting
-    private let imageManager: ImageManaging
+    private weak var view: (any GitHubSearchView)?
+    private let usecase: any GitHubSearchUseCase
+    private let router: any GitHubSearchRouting
+    private let imageManager: any ImageManaging
 
-    init(view: GitHubSearchView, usecase: GitHubSearchUseCase, router: GitHubSearchRouting, imageManager: ImageManaging) {
+    init(
+        view: any GitHubSearchView,
+        usecase: any GitHubSearchUseCase,
+        router: any GitHubSearchRouting,
+        imageManager: any ImageManaging
+    ) {
         self.view = view
         self.usecase = usecase
         self.router = router
