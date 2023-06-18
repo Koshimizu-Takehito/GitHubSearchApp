@@ -30,10 +30,10 @@ final class GitHubSearchRouter: GitHubSearchRouting {
 
     func showDetail(id: ItemID) {
         let destination = GitHubDetailRouter.assembleModules(id: id)
-        viewController?.navigationController?.pushViewController(destination, animated: true)
+        viewController?.push(destination)
     }
 
     func showAlert(error: Error) {
-        viewController?.presentAlertController(error: error)
+        viewController?.present(.alert(error))
     }
 }
