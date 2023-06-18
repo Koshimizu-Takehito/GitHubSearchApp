@@ -10,12 +10,18 @@ import Foundation
 
 actor GitHubDetailPresenter: GitHubDetailPresentation {
     private let id: ItemID
-    private weak var view: GitHubDetailView?
-    private let useCase: GitHubDetailUseCase
-    private let router: GitHubDetailRouter
-    private let imageManager: ImageManaging
+    private weak var view: (any GitHubDetailView)?
+    private let useCase: any GitHubDetailUseCase
+    private let router: any GitHubDetailRouting
+    private let imageManager: any ImageManaging
 
-    init(id: ItemID, view: GitHubDetailView, useCase: GitHubDetailUseCase, router: GitHubDetailRouter, imageManager: ImageManaging) {
+    init(
+        id: ItemID,
+        view: any GitHubDetailView,
+        useCase: any GitHubDetailUseCase,
+        router: any GitHubDetailRouting,
+        imageManager: any ImageManaging
+    ) {
         self.id = id
         self.view = view
         self.useCase = useCase
