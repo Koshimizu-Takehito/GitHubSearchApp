@@ -7,14 +7,14 @@
 //
 
 struct GitHubSearchViewItem {
-    var loading: Loading
+    var indicator: ActivityIndicator
     var emptyDescription: EmptyDescription
     var table: Table
 }
 
 extension GitHubSearchViewItem {
-    struct Loading {
-        var isAnimating: Bool
+    struct ActivityIndicator {
+        var state: ActivityIndicatorState
     }
 
     struct EmptyDescription {
@@ -30,7 +30,7 @@ extension GitHubSearchViewItem {
     /// 初期状態を表現した ViewItem
     static var initial: Self {
         .init(
-            loading: .init(isAnimating: false),
+            indicator: .init(state: .stopped),
             emptyDescription: .init(isHidden: true),
             table: .empty
         )
@@ -39,7 +39,7 @@ extension GitHubSearchViewItem {
     /// エンプティステイトを表現した ViewItem
     static var empty: Self {
         .init(
-            loading: .init(isAnimating: false),
+            indicator: .init(state: .stopped),
             emptyDescription: .init(isHidden: false),
             table: .empty
         )
@@ -48,7 +48,7 @@ extension GitHubSearchViewItem {
     /// ローディング状態を表現した ViewItem
     static var loading: Self {
         .init(
-            loading: .init(isAnimating: true),
+            indicator: .init(state: .started),
             emptyDescription: .init(isHidden: true),
             table: .empty
         )

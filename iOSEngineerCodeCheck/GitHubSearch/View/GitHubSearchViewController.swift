@@ -59,7 +59,7 @@ extension GitHubSearchViewController: GitHubSearchView {
     }
 
     func configure(item: ViewItem) {
-        indicatorView.setIsAnimating(item.loading.isAnimating)
+        indicatorView.state = item.indicator.state
         emptyDescriptionLabel.isHidden = item.emptyDescription.isHidden
         if let items = item.table.items {
             dataSource.reload(with: items)

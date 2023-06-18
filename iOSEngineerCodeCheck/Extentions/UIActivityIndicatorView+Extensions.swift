@@ -8,12 +8,23 @@
 
 import UIKit
 
+enum ActivityIndicatorState {
+    case started
+    case stopped
+}
+
 extension UIActivityIndicatorView {
-    func setIsAnimating(_ isAnimating: Bool) {
-        if isAnimating {
-            startAnimating()
-        } else {
-            stopAnimating()
+    var state: ActivityIndicatorState {
+        get {
+            isAnimating ? .started : .stopped
+        }
+        set {
+            switch newValue {
+            case .started:
+                startAnimating()
+            case .stopped:
+                stopAnimating()
+            }
         }
     }
 }
