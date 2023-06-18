@@ -40,6 +40,8 @@
 		BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */; };
 		BFD945F6244DC5EB0012785A /* IOSEngineerCodeCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945F5244DC5EB0012785A /* IOSEngineerCodeCheckTests.swift */; };
 		BFD94601244DC5EC0012785A /* IOSEngineerCodeCheckUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD94600244DC5EC0012785A /* IOSEngineerCodeCheckUITests.swift */; };
+		FB194E542A3ED5940038CCF6 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB194E532A3ED5940038CCF6 /* Assembler.swift */; };
+		FB194E562A3ED8FF0038CCF6 /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB194E552A3ED8FF0038CCF6 /* Injected.swift */; };
 		FB1BA75B2A3333770003A317 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA7592A3333770003A317 /* Assets.swift */; };
 		FB1BA75C2A3333770003A317 /* StoryBoards.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA75A2A3333770003A317 /* StoryBoards.swift */; };
 		FB1BA7612A33534A0003A317 /* GetSearchRepositoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA7602A33534A0003A317 /* GetSearchRepositoriesRequest.swift */; };
@@ -132,6 +134,8 @@
 		BFD94602244DC5EC0012785A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F86BDEDB1277B8E6E201CA3B /* Pods-iOSEngineerCodeCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheckTests/Pods-iOSEngineerCodeCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FAB670FE5EDD6EAECE417B6A /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FB194E532A3ED5940038CCF6 /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		FB194E552A3ED8FF0038CCF6 /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
 		FB1BA7592A3333770003A317 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		FB1BA75A2A3333770003A317 /* StoryBoards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoards.swift; sourceTree = "<group>"; };
 		FB1BA7602A33534A0003A317 /* GetSearchRepositoriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSearchRepositoriesRequest.swift; sourceTree = "<group>"; };
@@ -404,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				38789E3429FDAFC700732BE8 /* App */,
+				FB194E522A3ED57F0038CCF6 /* DI */,
 				FB1BA75D2A3352C40003A317 /* Models */,
 				38F34E6429F91EE500120671 /* GitHubSearch */,
 				38F34E6F29F9200E00120671 /* GitHubDetail */,
@@ -432,6 +437,15 @@
 				BFD94602244DC5EC0012785A /* Info.plist */,
 			);
 			path = iOSEngineerCodeCheckUITests;
+			sourceTree = "<group>";
+		};
+		FB194E522A3ED57F0038CCF6 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				FB194E532A3ED5940038CCF6 /* Assembler.swift */,
+				FB194E552A3ED8FF0038CCF6 /* Injected.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		FB1BA7582A3332F40003A317 /* Generated */ = {
@@ -839,9 +853,11 @@
 				FB1BA76C2A33644D0003A317 /* Session.swift in Sources */,
 				38F34E8929FA43FF00120671 /* UIImage+Extension.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
+				FB194E562A3ED8FF0038CCF6 /* Injected.swift in Sources */,
 				FBC8F7D82A3E7C78006A96A8 /* UINavigationBar+Extensions.swift in Sources */,
 				FB1BA7632A3359A20003A317 /* Item.swift in Sources */,
 				38F34E8029F9574F00120671 /* GitHubSearchTableViewCell.swift in Sources */,
+				FB194E542A3ED5940038CCF6 /* Assembler.swift in Sources */,
 				FB1BA7652A3359AE0003A317 /* Owner.swift in Sources */,
 				38D37C6F2A168AAD005EA7C6 /* GitHubDetailView.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,

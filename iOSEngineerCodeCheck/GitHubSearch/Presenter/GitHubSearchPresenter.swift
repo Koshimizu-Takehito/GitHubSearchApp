@@ -9,22 +9,14 @@
 actor GitHubSearchPresenter: GitHubSearchPresentation {
     private var task: (any Cancelable)?
     private var parameters = SearchParameters()
-
     private weak var view: (any GitHubSearchView)?
-    private let usecase: any GitHubSearchUseCase
     private let router: any GitHubSearchRouting
-    private let imageManager: any ImageManaging
+    @Injected var usecase: any GitHubSearchUseCase
+    @Injected var imageManager: any ImageManaging
 
-    init(
-        view: any GitHubSearchView,
-        usecase: any GitHubSearchUseCase,
-        router: any GitHubSearchRouting,
-        imageManager: any ImageManaging
-    ) {
+    init(view: any GitHubSearchView, router: any GitHubSearchRouting) {
         self.view = view
-        self.usecase = usecase
         self.router = router
-        self.imageManager = imageManager
     }
 
     func didTapSearchButton(word: String) async {

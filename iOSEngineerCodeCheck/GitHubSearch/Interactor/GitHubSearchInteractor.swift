@@ -6,19 +6,9 @@
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
-import APIKit
-
 actor GitHubSearchInteractor: GitHubSearchUseCase {
-    private let session: any RequestSendable
-    private let repositiry: any GitHubItemsRepositiry
-
-    init(
-        session: any RequestSendable = Session.shared,
-        repositiry: any GitHubItemsRepositiry = GitHubItemsOnMemoryRepositiry.shared
-    ) {
-        self.session = session
-        self.repositiry = repositiry
-    }
+    @Injected var session: any RequestSendable
+    @Injected var repositiry: any GitHubItemsRepositiry
 
     func cached(for parameters: SearchParameters) async -> [Item] {
         await repositiry.restore(for: parameters) ?? []
