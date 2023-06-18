@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Git Hub Search View Controller-->
+        <!--ホーム-->
         <scene sceneID="bnp-OC-hXZ">
             <objects>
                 <viewController storyboardIdentifier="GitHubSearchID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mWg-7I-heg" customClass="GitHubSearchViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
@@ -220,7 +220,11 @@
                             <constraint firstItem="ZxL-Dc-iWN" firstAttribute="top" secondItem="o1j-4d-bjU" secondAttribute="top" id="tbR-6h-v91"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="33R-Tc-5jc"/>
+                    <navigationItem key="navigationItem" title="ホーム" largeTitleDisplayMode="never" id="33R-Tc-5jc">
+                        <barButtonItem key="backBarButtonItem" title=" " style="plain" id="oFC-nZ-WuC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emptyDescriptionLabel" destination="14X-ZN-avM" id="D0V-Ox-bGZ"/>
                         <outlet property="indicatorView" destination="51X-Gw-He7" id="Wxu-BB-IN5"/>

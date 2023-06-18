@@ -42,7 +42,6 @@ private extension GitHubSearchViewController {
     private func setUp() {
         tableView.dataSource = dataSource
         configure(item: .initial, order: .none)
-        setupNavigationBar(title: "ホーム")
     }
 
     @IBAction private func starOrderButton(_ sender: Any) {

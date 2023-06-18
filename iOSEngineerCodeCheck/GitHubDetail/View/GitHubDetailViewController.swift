@@ -21,18 +21,7 @@ final class GitHubDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
         presenter.viewDidLoad()
-    }
-}
-
-private extension GitHubDetailViewController {
-    func setUp() {
-        setupNavigationBar(
-            title: "リポジトリ",
-            buttonImage: UIImage(systemName: "safari")!,
-            rightBarButtonAction: #selector(tapSafariIcon(sender:))
-        )
     }
 }
 
@@ -47,7 +36,7 @@ extension GitHubDetailViewController: GitHubDetailView {
         issuesLabel.text = item.issues
     }
 
-    @objc func tapSafariIcon(sender: Any) {
+    @IBAction private func open(sender: Any) {
         presenter.safariButtoDidPush()
     }
 }
