@@ -33,7 +33,13 @@ actor GitHubDetailPresenter: GitHubDetailPresentation {
         guard let item = await useCase.cached(for: id) else {
             return
         }
-        let image = imageManager.cachedImage(forKey: item.owner.avatarUrl)
+        let avatarURL = item.owner.avatarUrl
+        // キャッシュ画像を表示
+        var image = imageManager.cachedImage(forKey: avatarURL)
+        await view?.configure(item: .init(item: item, avatarImage: image))
+
+        // 画像再取得
+        image = (try? await imageManager.loadImage(with: avatarURL)) ?? image
         await view?.configure(item: .init(item: item, avatarImage: image))
     }
 
