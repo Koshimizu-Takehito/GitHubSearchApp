@@ -31,7 +31,7 @@ protocol GitHubItemRepositiry {
 actor GitHubItemsOnMemoryRepositiry {
     /// 検索パラメータをキーとしたキャッシュ
     private var responseCache: [SearchParameters: [Item]] = [:]
-    /// 検索パラメータをキーとしたキャッシュ
+    /// 識別子をキーとしたキャッシュ
     private var allCache: [ItemID: Item] = [:]
     /// 共有インスタンス
     static let shared = GitHubItemsOnMemoryRepositiry()
