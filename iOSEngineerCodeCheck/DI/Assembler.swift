@@ -43,8 +43,8 @@ private final class ServiceAssembly: Assembly {
                 ImageCache.default
             }
         container
-            .register(ImageManaging.self) { _ in
-                ImageManager()
+            .register(ImageManaging.self) { resolver in
+                ImageManager(loadable: resolver.resolve(), cachable: resolver.resolve())
             }
     }
 }
@@ -53,12 +53,12 @@ private final class ServiceAssembly: Assembly {
 private final class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
         container
-            .register(GitHubSearchUseCase.self) { _ in
-                GitHubSearchInteractor()
+            .register(GitHubSearchUseCase.self) { resolver in
+                GitHubSearchInteractor(session: resolver.resolve(), repositiry: resolver.resolve())
             }
         container
-            .register(GitHubDetailUseCase.self) { _ in
-                GitHubDetailInteractor()
+            .register(GitHubDetailUseCase.self) { resolver in
+                GitHubDetailInteractor(repositiry: resolver.resolve())
             }
     }
 }
@@ -66,5 +66,11 @@ private final class UseCaseAssembly: Assembly {
 // MARK: - Presenter Assembly
 private final class PresenterAssembly: Assembly {
     func assemble(container: Container) {
+    }
+}
+
+private extension Resolver {
+    func resolve<Service>() -> Service {
+        self.resolve(Service.self)!
     }
 }

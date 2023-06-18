@@ -7,8 +7,13 @@
 //
 
 actor GitHubSearchInteractor: GitHubSearchUseCase {
-    @Injected var session: any RequestSendable
-    @Injected var repositiry: any GitHubItemsRepositiry
+    private let session: any RequestSendable
+    private let repositiry: any GitHubItemsRepositiry
+
+    init(session: any RequestSendable, repositiry: any GitHubItemsRepositiry) {
+        self.session = session
+        self.repositiry = repositiry
+    }
 
     func cached(for parameters: SearchParameters) async -> [Item] {
         await repositiry.restore(for: parameters) ?? []

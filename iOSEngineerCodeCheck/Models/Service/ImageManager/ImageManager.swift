@@ -13,8 +13,13 @@ protocol ImageManaging: ImageLoadable, ImageCachable {
 }
 
 final class ImageManager: ImageManaging {
-    @Injected var loadable: any ImageLoadable
-    @Injected var cachable: any ImageCachable
+    private let loadable: any ImageLoadable
+    private let cachable: any ImageCachable
+
+    init(loadable: any ImageLoadable, cachable: any ImageCachable) {
+        self.loadable = loadable
+        self.cachable = cachable
+    }
 
     func cachedImage(forKey url: URL) -> UIImage? {
         cachable.cachedImage(forKey: url)

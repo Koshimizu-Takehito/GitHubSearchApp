@@ -12,13 +12,21 @@ actor GitHubDetailPresenter: GitHubDetailPresentation {
     private let id: ItemID
     private weak var view: (any GitHubDetailView)?
     private let router: any GitHubDetailRouting
-    @Injected var useCase: any GitHubDetailUseCase
-    @Injected var imageManager: any ImageManaging
+    private let useCase: any GitHubDetailUseCase
+    private let imageManager: any ImageManaging
 
-    init(id: ItemID, view: any GitHubDetailView, router: any GitHubDetailRouting) {
+    init(
+        id: ItemID,
+        view: (any GitHubDetailView)? = nil,
+        router: any GitHubDetailRouting,
+        useCase: any GitHubDetailUseCase,
+        imageManager: any ImageManaging
+    ) {
         self.id = id
         self.view = view
         self.router = router
+        self.useCase = useCase
+        self.imageManager = imageManager
     }
 
     func viewDidLoad() async {

@@ -7,7 +7,11 @@
 //
 
 actor GitHubDetailInteractor: GitHubDetailUseCase {
-    @Injected var repositiry: any GitHubItemRepositiry
+    private let repositiry: any GitHubItemRepositiry
+
+    init(repositiry: any GitHubItemRepositiry) {
+        self.repositiry = repositiry
+    }
 
     func cached(for id: ItemID) async -> Item? {
         await repositiry.restore(for: id)
