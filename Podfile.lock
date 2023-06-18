@@ -3,12 +3,14 @@ PODS:
   - Kingfisher (7.7.0)
   - SwiftGen (6.6.2)
   - SwiftLint (0.51.0)
+  - Swinject (2.8.3)
 
 DEPENDENCIES:
   - APIKit (~> 5.0)
   - Kingfisher (~> 7.0)
   - SwiftGen (~> 6.0)
   - SwiftLint
+  - Swinject
 
 SPEC REPOS:
   trunk:
@@ -16,13 +18,15 @@ SPEC REPOS:
     - Kingfisher
     - SwiftGen
     - SwiftLint
+    - Swinject
 
 SPEC CHECKSUMS:
   APIKit: 0680e86d2e8abd5bc42e64963f5f89d209eb9271
   Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
   SwiftLint: 1b7561918a19e23bfed960e40759086e70f4dba5
+  Swinject: 893c9a543000ac2f10ee4cbaf0933c6992c935d5
 
-PODFILE CHECKSUM: 4357f98bf6eccf9446cefc911c64c013f477e3f4
+PODFILE CHECKSUM: 9a44280d48ee93ccc486d357f454cba689ccaf89
 
 COCOAPODS: 1.11.3

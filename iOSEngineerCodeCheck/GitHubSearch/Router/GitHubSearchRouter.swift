@@ -19,12 +19,7 @@ final class GitHubSearchRouter: GitHubSearchRouting {
     static func assembleModules() -> UIViewController {
         let view = StoryboardScene.GitHubSearch.initialScene.instantiate()
         let router = GitHubSearchRouter(viewController: view)
-        view.presenter = GitHubSearchPresenter(
-            view: view,
-            usecase: GitHubSearchInteractor(),
-            router: router,
-            imageManager: ImageManager()
-        )
+        view.presenter = GitHubSearchPresenter(view: view, router: router)
         return view
     }
 

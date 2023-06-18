@@ -6,20 +6,15 @@
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
-import Kingfisher
+import Foundation
 import class UIKit.UIImage
 
 protocol ImageManaging: ImageLoadable, ImageCachable {
 }
 
 final class ImageManager: ImageManaging {
-    let loadable: any ImageLoadable
-    let cachable: any ImageCachable
-
-    init(loadable: any ImageLoadable = KingfisherManager.shared, cachable: any ImageCachable = ImageCache.default) {
-        self.loadable = loadable
-        self.cachable = cachable
-    }
+    @Injected var loadable: any ImageLoadable
+    @Injected var cachable: any ImageCachable
 
     func cachedImage(forKey url: URL) -> UIImage? {
         cachable.cachedImage(forKey: url)

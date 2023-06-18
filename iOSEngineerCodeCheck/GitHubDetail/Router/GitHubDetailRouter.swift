@@ -20,13 +20,7 @@ extension GitHubDetailRouter: GitHubDetailRouting {
     static func assembleModules(id: ItemID) -> UIViewController {
         let view = StoryboardScene.GitHubDetail.initialScene.instantiate()
         let router = GitHubDetailRouter(viewController: view)
-        view.presenter = GitHubDetailPresenter(
-            id: id,
-            view: view,
-            useCase: GitHubDetailInteractor(),
-            router: router,
-            imageManager: ImageManager()
-        )
+        view.presenter = GitHubDetailPresenter(id: id, view: view, router: router)
         return view
     }
 
