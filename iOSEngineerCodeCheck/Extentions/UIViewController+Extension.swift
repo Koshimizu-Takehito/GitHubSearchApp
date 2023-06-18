@@ -9,12 +9,10 @@
 import UIKit
 
 extension UIViewController {
-    ///  API通信。失敗した場合のエラーのアラート
-    @MainActor
-    func presentAlertController(error: Error) {
+    static func alert(_ error: Error) -> UIViewController {
         let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(.init(title: "OK", style: .default))
-        present(alert, animated: true)
+        return alert
     }
 
     /// GitHubSearchViewControllerで使用する
@@ -68,5 +66,13 @@ extension UIViewController {
                 .foregroundColor: UIColor.white]
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
+    }
+
+    func present(_ viewController: UIViewController) {
+        present(viewController, animated: true)
+    }
+
+    func push(_ viewController: UIViewController, animated: Bool = true) {
+        navigationController?.pushViewController(viewController, animated: animated)
     }
 }
